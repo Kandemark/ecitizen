@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block title %}Your Location — e-Citizen Onboarding{% endblock %}
+{% block extra_head %}
+<style>
+  [x-cloak] { display: none !important; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[640px] mx-auto">
+    <p class="text-sm text-[#60758a] mb-2">Step {{ step }} of {{ total_steps }}</p>
+    <div class="h-2 bg-[#f1f2f4] rounded-full mb-8">
+      <div class="h-2 bg-[#0b6e4f] rounded-full" style="width: {{ step|floatformat:0 }}0%"></div>
+    </div>
+    <p class="text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
+    <p class="text-[#60758a] mb-8">Select your county, sub-county, ward, and village. This helps us direct your applications to the right offices.</p>
+    <div x-data="locationPicker()" class="flex flex-col gap-4">
+      <form method="post" class="flex flex-col gap-4" @submit.prevent="if(selectedWard) $el.submit()">
+        {% csrf_token %}
+        <label class="flex flex-col gap-1">
+          <span class="text-sm font-medium">County</span>
+          <select name="county" x-model="selectedCounty" @change="fetchSubCounties()" class="form-select rounded-lg border border-[#dbe0e6] h-12 px-4" required>
+            <option value="">Select county</option>
+            {% for code, name in counties %}
+            <option value="{{ code }}">{{ name }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <label class="flex flex-col gap-1">
+          <span class="text-sm font-medium">Sub-County</span>
+          <select name="sub_county" x-model="selectedSubCounty" @change="fetchWards()" x-bind:disabled="!selectedCounty" class="form-select rounded-lg border border-[#dbe0e6] h-12 px-4" x-bind:class="!selectedCounty ? 'opacity-50 cursor-not-allowed' : ''" required>
+            <option value="">Select sub-county</option>
+            <template x-for="sc in subCounties" :key="sc.id">
+              <option :value="sc.id" x-text="sc.name"></option>
+            </template>
+          </select>
+          <span x-show="loadingSubCounties" class="text-xs text-[#60758a]" x-cloak>Loading sub-counties...</span>
+        </label>
+        <label class="flex flex-col gap-1">
+          <span class="text-sm font-medium">Ward</span>
+          <select name="ward" x-model="selectedWard" @change="fetchVillages()" x-bind:disabled="!selectedSubCounty" class="form-select rounded-lg border border-[#dbe0e6] h-12 px-4" x-bind:class="!selectedSubCounty ? 'opacity-50 cursor-not-allowed' : ''" required>
+            <option value="">Select ward</option>
+            <template x-for="w in wards" :key="w.id">
+              <option :value="w.id" x-text="w.name"></option>
+            </template>
+          </select>
+          <span x-show="loadingWards" class="text-xs text-[#60758a]" x-cloak>Loading wards...</span>
+        </label>
+        <label class="flex flex-col gap-1">
+          <span class="text-sm font-medium">Village / Estate</span>
+          <select name="village" x-model="selectedVillage" x-bind:disabled="!selectedWard" class="form-select rounded-lg border border-[#dbe0e6] h-12 px-4" x-bind:class="!selectedWard ? 'opacity-50 cursor-not-allowed' : ''">
+            <option value="">Select village</option>
+            <template x-for="v in villages" :key="v.id">
+              <option :value="v.id" x-text="v.name"></option>
+            </template>
+          </select>
+          <span x-show="loadingVillages" class="text-xs text-[#60758a]" x-cloak>Loading villages...</span>
+        </label>
+        <button type="submit" class="h-12 px-6 bg-[#0b6e4f] text-white rounded-full font-bold text-sm mt-4" x-bind:disabled="!selectedWard" x-bind:class="!selectedWard ? 'opacity-50 cursor-not-allowed' : ''">Continue</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+function locationPicker() {
+  return {
+    selectedCounty: '',
+    selectedSubCounty: '',
+    selectedWard: '',
+    selectedVillage: '',
+    subCounties: [],
+    wards: [],
+    villages: [],
+    loadingSubCounties: false,
+    loadingWards: false,
+    loadingVillages: false,
+
+    fetchSubCounties() {
+      this.selectedSubCounty = '';
+      this.selectedWard = '';
+      this.selectedVillage = '';
+      this.subCounties = [];
+      this.wards = [];
+      this.villages = [];
+      if (!this.selectedCounty) return;
+      this.loadingSubCounties = true;
+      fetch('/api/v1/counties/sub-counties/?county=' + this.selectedCounty)
+        .then(r => r.json())
+        .then(data => {
+          this.subCounties = data.results || [];
+          this.loadingSubCounties = false;
+        })
+        .catch(() => { this.loadingSubCounties = false; });
+    },
+
+    fetchWards() {
+      this.selectedWard = '';
+      this.selectedVillage = '';
+      this.wards = [];
+      this.villages = [];
+      if (!this.selectedSubCounty) return;
+      this.loadingWards = true;
+      fetch('/api/v1/counties/wards/?sub_county=' + this.selectedSubCounty)
+        .then(r => r.json())
+        .then(data => {
+          this.wards = data.results || [];
+          this.loadingWards = false;
+        })
+        .catch(() => { this.loadingWards = false; });
+    },
+
+    fetchVillages() {
+      this.selectedVillage = '';
+      this.villages = [];
+      if (!this.selectedWard) return;
+      this.loadingVillages = true;
+      fetch('/api/v1/counties/villages/?ward=' + this.selectedWard)
+        .then(r => r.json())
+        .then(data => {
+          this.villages = data.results || [];
+          this.loadingVillages = false;
+        })
+        .catch(() => { this.loadingVillages = false; });
+    }
+  };
+}
+</script>
+{% endblock %}

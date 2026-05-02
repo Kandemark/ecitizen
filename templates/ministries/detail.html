@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block title %}{{ ministry.name }} — e-Citizen Kenya{% endblock %}
+
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[1100px] mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
+      <a href="{% url 'dashboard' %}" class="hover:text-[#0b6e4f] transition">Dashboard</a>
+      <span>/</span>
+      <a href="{% url 'ministry_list' %}" class="hover:text-[#0b6e4f] transition">Ministries</a>
+      <span>/</span>
+      <span class="text-[#111418]">{{ ministry.name }}</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Main content -->
+      <div class="lg:col-span-2">
+        <h1 class="text-[32px] font-bold leading-tight mb-3">{{ ministry.name }}</h1>
+        {% if ministry.description %}
+        <p class="text-[#60758a] mb-6">{{ ministry.description }}</p>
+        {% endif %}
+
+        <!-- Contact info -->
+        {% if ministry.email or ministry.phone or ministry.website %}
+        <div class="flex flex-wrap gap-4 mb-8">
+          {% if ministry.website %}
+          <a href="{{ ministry.website }}" target="_blank" rel="noopener" class="text-sm text-[#0b6e4f] hover:underline font-medium">Website &nearr;</a>
+          {% endif %}
+          {% if ministry.email %}
+          <span class="text-sm text-[#60758a]">{{ ministry.email }}</span>
+          {% endif %}
+          {% if ministry.phone %}
+          <span class="text-sm text-[#60758a]">{{ ministry.phone }}</span>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- Services -->
+        <h2 class="text-xl font-bold mb-4">Services ({{ services|length }})</h2>
+        {% if services %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+          {% for svc in services %}
+          <a href="{% url 'service_detail' svc.slug %}"
+             class="border border-[#dbe0e6] rounded-lg p-4 hover:border-[#0b6e4f] hover:shadow-sm transition block">
+            <p class="font-medium text-sm">{{ svc.name }}</p>
+            <p class="text-xs text-[#60758a] mt-1 line-clamp-2">{{ svc.short_description }}</p>
+            <div class="flex items-center gap-2 mt-2">
+              {% if svc.fee_kes > 0 %}
+              <span class="text-xs font-medium">KES {{ svc.fee_kes }}</span>
+              {% else %}
+              <span class="text-xs font-medium text-[#0b6e4f]">Free</span>
+              {% endif %}
+              {% if svc.category %}
+              <span class="text-xs text-[#60758a]">&middot; {{ svc.category.name }}</span>
+              {% endif %}
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-[#60758a] text-sm mb-8">No services listed yet for this ministry.</p>
+        {% endif %}
+
+        <!-- Departments -->
+        {% if departments %}
+        <h2 class="text-xl font-bold mb-4">Departments & Divisions</h2>
+        <div class="space-y-4 mb-8">
+          {% for dept in departments %}
+          <div class="border border-[#dbe0e6] rounded-lg p-4">
+            <div class="flex items-center justify-between">
+              <p class="font-medium">{{ dept.name }}</p>
+              {% if dept.director %}
+              <span class="text-xs text-[#60758a]">{{ dept.director }}</span>
+              {% endif %}
+            </div>
+            {% if dept.description %}
+            <p class="text-sm text-[#60758a] mt-1">{{ dept.description }}</p>
+            {% endif %}
+            {% if dept.divisions.all %}
+            <div class="flex flex-wrap gap-1 mt-2">
+              {% for div in dept.divisions.all %}
+              <span class="text-xs border border-[#dbe0e6] rounded px-2 py-0.5 text-[#60758a]">{{ div.name }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-6 space-y-4">
+          <div class="border border-[#dbe0e6] rounded-xl p-5">
+            <h3 class="font-bold mb-3">Ministry Details</h3>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="text-[#60758a]">Code</dt>
+                <dd class="font-medium">{{ ministry.code }}</dd>
+              </div>
+              <div>
+                <dt class="text-[#60758a]">Departments</dt>
+                <dd class="font-medium">{{ departments|length }}</dd>
+              </div>
+              <div>
+                <dt class="text-[#60758a]">Services</dt>
+                <dd class="font-medium">{{ services|length }}</dd>
+              </div>
+            </dl>
+          </div>
+          <a href="{% url 'service_browse' %}?ministry={{ ministry.id }}"
+             class="block w-full h-12 border border-[#dbe0e6] text-[#111418] rounded-xl font-medium text-center leading-[48px] hover:border-[#0b6e4f] transition">
+            Browse All Services &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

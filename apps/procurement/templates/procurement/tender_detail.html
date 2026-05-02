@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% load ecitizen_tags %}
+{% block title %}{{ tender.title|truncatechars:60 }} — e-Citizen{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'procurement:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Procurement</a>
+  <div class="card mb-6"><div class="flex items-start justify-between"><div><h1 class="text-xl font-bold text-[#111418]">{{ tender.title }}</h1><p class="text-sm text-[#60758a]">{{ tender.tender_number }} · {{ tender.reference }}</p></div><span class="text-sm px-3 py-1 rounded-full bg-green-100 text-green-700 font-medium">Open</span></div></div>
+  <div class="card mb-6"><h2 class="font-bold text-[#111418] mb-4">Tender Details</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div><span class="text-xs text-[#60758a] block">Procurement Method</span><span class="text-sm font-medium">{{ tender.procurement_method|title }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Closing Date</span><span class="text-sm font-medium text-red-500">{{ tender.closing_date|date:"d M Y, H:i" }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Estimated Value</span><span class="text-sm font-medium">KES {{ tender.estimated_value|floatformat:2 }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Bid Bond</span><span class="text-sm font-medium">KES {{ tender.bid_bond_amount|floatformat:2 }}</span></div>
+    {% if tender.ministry %}<div><span class="text-xs text-[#60758a] block">Ministry</span><span class="text-sm font-medium">{{ tender.ministry.name }}</span></div>{% endif %}
+  </div>{% if tender.description %}<div class="mt-4"><span class="text-xs text-[#60758a] block mb-1">Description</span><p class="text-sm">{{ tender.description }}</p></div>{% endif %}</div>
+  {% if existing_bid %}<div class="card bg-[#f7f8fa]"><p class="text-sm">You have already submitted a bid ({{ existing_bid.reference }}) for KES {{ existing_bid.bid_amount|floatformat:2 }}. <a href="{% url 'procurement:detail' app_type='bid' ref=existing_bid.reference %}" class="text-[#0b6e4f] font-medium">View bid →</a></p></div>
+  {% else %}<div class="flex justify-end"><a href="{% url 'procurement:bid_submit' tender_ref=tender.reference %}" class="btn-primary">Submit Bid</a></div>{% endif %}
+</div>{% endblock %}

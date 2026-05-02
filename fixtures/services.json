@@ -1,0 +1,716 @@
+[
+  {
+    "model": "services.ServiceCategory",
+    "pk": 1,
+    "fields": {
+      "name": "National Identity & Civil Registration",
+      "description": "Services for obtaining national identification, birth and death certificates, and civil registration documents.",
+      "icon": "IdentificationBadge",
+      "order": 1,
+      "is_active": true,
+      "ministry": null,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.ServiceCategory",
+    "pk": 2,
+    "fields": {
+      "name": "Immigration & Travel",
+      "description": "Passport applications, visa services, work permits, and travel-related documentation.",
+      "icon": "Airplane",
+      "order": 2,
+      "is_active": true,
+      "ministry": null,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.ServiceCategory",
+    "pk": 3,
+    "fields": {
+      "name": "Business & Trade",
+      "description": "Business registration, trading licenses, tax compliance, and enterprise support services.",
+      "icon": "Shop",
+      "order": 3,
+      "is_active": true,
+      "ministry": null,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.ServiceCategory",
+    "pk": 4,
+    "fields": {
+      "name": "Land & Property",
+      "description": "Land title searches, property registration, land rates payments, and survey services.",
+      "icon": "LocationDot",
+      "order": 4,
+      "is_active": true,
+      "ministry": null,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.ServiceCategory",
+    "pk": 5,
+    "fields": {
+      "name": "Transport & Infrastructure",
+      "description": "Driving licenses, vehicle registration, road permits, and transport-related services.",
+      "icon": "Car",
+      "order": 5,
+      "is_active": true,
+      "ministry": null,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.ServiceCategory",
+    "pk": 6,
+    "fields": {
+      "name": "Health & Education",
+      "description": "NHIF registration, health services, education records, and professional certifications.",
+      "icon": "HeartPulse",
+      "order": 6,
+      "is_active": true,
+      "ministry": null,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "ministry": 4,
+      "name": "National ID Application",
+      "slug": "national-id-application",
+      "description": "Apply for a new national identity card for Kenyan citizens aged 18 and above.",
+      "short_description": "Apply for a new national identity card for Kenyan citizens aged 18 and above.",
+      "icon": "IdentificationCard",
+      "processing_time": "7-14 days",
+      "fee_kes": "0.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 1,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 2,
+    "fields": {
+      "category": 1,
+      "ministry": 4,
+      "name": "National ID Replacement",
+      "slug": "national-id-replacement",
+      "description": "Replace a lost, stolen, or damaged national identity card.",
+      "short_description": "Replace a lost, stolen, or damaged national identity card.",
+      "icon": "IdentificationCard",
+      "processing_time": "5-10 days",
+      "fee_kes": "200.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 2,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 3,
+    "fields": {
+      "category": 1,
+      "ministry": 4,
+      "name": "Birth Certificate Application",
+      "slug": "birth-certificate-application",
+      "description": "Apply for a birth certificate for newborns or unregistered individuals.",
+      "short_description": "Apply for a birth certificate for newborns or unregistered individuals.",
+      "icon": "Certificate",
+      "processing_time": "3-7 days",
+      "fee_kes": "50.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 3,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 4,
+    "fields": {
+      "category": 1,
+      "ministry": 4,
+      "name": "Death Certificate Application",
+      "slug": "death-certificate-application",
+      "description": "Register a death and obtain an official death certificate.",
+      "short_description": "Register a death and obtain an official death certificate.",
+      "icon": "Certificate",
+      "processing_time": "3-5 days",
+      "fee_kes": "50.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 4,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 5,
+    "fields": {
+      "category": 1,
+      "ministry": 4,
+      "name": "Civil Marriage Registration",
+      "slug": "civil-marriage-registration",
+      "description": "Register a civil marriage and obtain a marriage certificate.",
+      "short_description": "Register a civil marriage and obtain a marriage certificate.",
+      "icon": "People",
+      "processing_time": "7-14 days",
+      "fee_kes": "1000.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 5,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 6,
+    "fields": {
+      "category": 2,
+      "ministry": 4,
+      "name": "Passport Application",
+      "slug": "passport-application",
+      "description": "Apply for a new Kenyan passport for international travel. Available in 34, 50, and 66 pages.",
+      "short_description": "Apply for a new Kenyan passport for international travel. Available in 34, 50, and 66 pages.",
+      "icon": "Passport",
+      "processing_time": "10-21 days",
+      "fee_kes": "4550.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 1,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 7,
+    "fields": {
+      "category": 2,
+      "ministry": 4,
+      "name": "Passport Renewal",
+      "slug": "passport-renewal",
+      "description": "Renew an expiring or full Kenyan passport.",
+      "short_description": "Renew an expiring or full Kenyan passport.",
+      "icon": "Passport",
+      "processing_time": "7-14 days",
+      "fee_kes": "4550.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 2,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 8,
+    "fields": {
+      "category": 2,
+      "ministry": 6,
+      "name": "Visa Application",
+      "slug": "visa-application",
+      "description": "Apply for a single-entry, transit, or multiple-entry visa to enter Kenya.",
+      "short_description": "Apply for a single-entry, transit, or multiple-entry visa to enter Kenya.",
+      "icon": "Globe",
+      "processing_time": "2-5 days",
+      "fee_kes": "5100.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 3,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 9,
+    "fields": {
+      "category": 2,
+      "ministry": 6,
+      "name": "Work Permit Application",
+      "slug": "work-permit-application",
+      "description": "Apply for a work permit for foreign nationals seeking employment in Kenya.",
+      "short_description": "Apply for a work permit for foreign nationals seeking employment in Kenya.",
+      "icon": "WorkCard",
+      "processing_time": "14-30 days",
+      "fee_kes": "10000.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 4,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 10,
+    "fields": {
+      "category": 2,
+      "ministry": 4,
+      "name": "Alien ID Card",
+      "slug": "alien-id-card",
+      "description": "Apply for an alien registration card for foreign residents in Kenya.",
+      "short_description": "Apply for an alien registration card for foreign residents in Kenya.",
+      "icon": "IdentificationCard",
+      "processing_time": "14-21 days",
+      "fee_kes": "2000.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 5,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 11,
+    "fields": {
+      "category": 3,
+      "ministry": 16,
+      "name": "Business Name Registration",
+      "slug": "business-name-registration",
+      "description": "Register a sole proprietorship or partnership business name with the registrar of companies.",
+      "short_description": "Register a sole proprietorship or partnership business name with the registrar of companies.",
+      "icon": "Shop",
+      "processing_time": "3-7 days",
+      "fee_kes": "10000.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 1,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 12,
+    "fields": {
+      "category": 3,
+      "ministry": 16,
+      "name": "Company Incorporation",
+      "slug": "company-incorporation",
+      "description": "Incorporate a limited liability company under the Companies Act.",
+      "short_description": "Incorporate a limited liability company under the Companies Act.",
+      "icon": "Building",
+      "processing_time": "7-14 days",
+      "fee_kes": "20000.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 2,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 13,
+    "fields": {
+      "category": 3,
+      "ministry": 7,
+      "name": "Tax Compliance Certificate",
+      "slug": "tax-compliance-certificate",
+      "description": "Obtain a tax compliance certificate from the Kenya Revenue Authority.",
+      "short_description": "Obtain a tax compliance certificate from the Kenya Revenue Authority.",
+      "icon": "CheckmarkShield",
+      "processing_time": "1-3 days",
+      "fee_kes": "0.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 3,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 14,
+    "fields": {
+      "category": 3,
+      "ministry": 16,
+      "name": "Single Business Permit",
+      "slug": "single-business-permit",
+      "description": "Apply for or renew your annual county single business permit.",
+      "short_description": "Apply for or renew your annual county single business permit.",
+      "icon": "Document",
+      "processing_time": "3-5 days",
+      "fee_kes": "5000.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 4,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 15,
+    "fields": {
+      "category": 3,
+      "ministry": 16,
+      "name": "Export/Import License",
+      "slug": "export-import-license",
+      "description": "Apply for a license to export or import goods in and out of Kenya.",
+      "short_description": "Apply for a license to export or import goods in and out of Kenya.",
+      "icon": "Ship",
+      "processing_time": "7-14 days",
+      "fee_kes": "5000.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 5,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 16,
+    "fields": {
+      "category": 4,
+      "ministry": 14,
+      "name": "Land Title Deed Search",
+      "slug": "land-title-search",
+      "description": "Conduct an official search on a land title deed to verify ownership and encumbrances.",
+      "short_description": "Conduct an official search on a land title deed to verify ownership and encumbrances.",
+      "icon": "Search",
+      "processing_time": "1-3 days",
+      "fee_kes": "500.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 1,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 17,
+    "fields": {
+      "category": 4,
+      "ministry": 14,
+      "name": "Land Rate Payment",
+      "slug": "land-rate-payment",
+      "description": "Pay annual land rates and view your land rate account balance.",
+      "short_description": "Pay annual land rates and view your land rate account balance.",
+      "icon": "Money",
+      "processing_time": "Instant",
+      "fee_kes": "0.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 2,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 18,
+    "fields": {
+      "category": 4,
+      "ministry": 14,
+      "name": "Property Transfer Registration",
+      "slug": "property-transfer-registration",
+      "description": "Register the transfer of property ownership through sale or inheritance.",
+      "short_description": "Register the transfer of property ownership through sale or inheritance.",
+      "icon": "Home",
+      "processing_time": "14-30 days",
+      "fee_kes": "5000.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 3,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 19,
+    "fields": {
+      "category": 4,
+      "ministry": 14,
+      "name": "Land Rent Clearance Certificate",
+      "slug": "land-rent-clearance",
+      "description": "Obtain a land rent clearance certificate for your leasehold property.",
+      "short_description": "Obtain a land rent clearance certificate for your leasehold property.",
+      "icon": "Certificate",
+      "processing_time": "3-5 days",
+      "fee_kes": "500.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 4,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 20,
+    "fields": {
+      "category": 4,
+      "ministry": 14,
+      "name": "Survey Plan Approval",
+      "slug": "survey-plan-approval",
+      "description": "Submit and get approval for a land survey plan from the director of surveys.",
+      "short_description": "Submit and get approval for a land survey plan from the director of surveys.",
+      "icon": "Map",
+      "processing_time": "7-14 days",
+      "fee_kes": "2500.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 5,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 21,
+    "fields": {
+      "category": 5,
+      "ministry": 13,
+      "name": "Driving License Application",
+      "slug": "driving-license-application",
+      "description": "Apply for a new driving license or provisional driving license in Kenya.",
+      "short_description": "Apply for a new driving license or provisional driving license in Kenya.",
+      "icon": "Car",
+      "processing_time": "5-10 days",
+      "fee_kes": "3050.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 1,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 22,
+    "fields": {
+      "category": 5,
+      "ministry": 13,
+      "name": "Driving License Renewal",
+      "slug": "driving-license-renewal",
+      "description": "Renew an expiring driving license for motor vehicles or motorcycles.",
+      "short_description": "Renew an expiring driving license for motor vehicles or motorcycles.",
+      "icon": "Car",
+      "processing_time": "1-3 days",
+      "fee_kes": "3050.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 2,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 23,
+    "fields": {
+      "category": 5,
+      "ministry": 13,
+      "name": "Vehicle Registration",
+      "slug": "vehicle-registration",
+      "description": "Register a new or imported motor vehicle and obtain number plates.",
+      "short_description": "Register a new or imported motor vehicle and obtain number plates.",
+      "icon": "Vehicle",
+      "processing_time": "7-14 days",
+      "fee_kes": "2500.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 3,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 24,
+    "fields": {
+      "category": 5,
+      "ministry": 13,
+      "name": "Motor Vehicle Search",
+      "slug": "motor-vehicle-search",
+      "description": "Conduct an official search on a motor vehicle to verify ownership and status.",
+      "short_description": "Conduct an official search on a motor vehicle to verify ownership and status.",
+      "icon": "Search",
+      "processing_time": "1-2 days",
+      "fee_kes": "500.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 4,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 25,
+    "fields": {
+      "category": 5,
+      "ministry": 13,
+      "name": "Road Service License",
+      "slug": "road-service-license",
+      "description": "Apply for a road service license for public transport vehicles (PSV/TLB).",
+      "short_description": "Apply for a road service license for public transport vehicles (PSV/TLB).",
+      "icon": "Bus",
+      "processing_time": "7-14 days",
+      "fee_kes": "5000.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 5,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 26,
+    "fields": {
+      "category": 6,
+      "ministry": 8,
+      "name": "NHIF Registration",
+      "slug": "nhif-registration",
+      "description": "Register with the National Health Insurance Fund for healthcare coverage.",
+      "short_description": "Register with the National Health Insurance Fund for healthcare coverage.",
+      "icon": "HeartPulse",
+      "processing_time": "1-3 days",
+      "fee_kes": "500.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 1,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 27,
+    "fields": {
+      "category": 6,
+      "ministry": 8,
+      "name": "NHIF Contribution Payment",
+      "slug": "nhif-contribution-payment",
+      "description": "Pay your monthly NHIF contributions and view your payment history.",
+      "short_description": "Pay your monthly NHIF contributions and view your payment history.",
+      "icon": "Money",
+      "processing_time": "Instant",
+      "fee_kes": "0.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 2,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 28,
+    "fields": {
+      "category": 6,
+      "ministry": 9,
+      "name": "KCPE/KCSE Results",
+      "slug": "kcpe-kcse-results",
+      "description": "View and download national examination results and certificates.",
+      "short_description": "View and download national examination results and certificates.",
+      "icon": "Award",
+      "processing_time": "Instant",
+      "fee_kes": "0.00",
+      "is_popular": true,
+      "is_active": true,
+      "is_online": true,
+      "order": 3,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 29,
+    "fields": {
+      "category": 6,
+      "ministry": 9,
+      "name": "University Admission",
+      "slug": "university-admission",
+      "description": "Apply for university and tertiary institution placement through KUCCPS.",
+      "short_description": "Apply for university and tertiary institution placement through KUCCPS.",
+      "icon": "Education",
+      "processing_time": "30-60 days",
+      "fee_kes": "1500.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 4,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "services.Service",
+    "pk": 30,
+    "fields": {
+      "category": 6,
+      "ministry": 8,
+      "name": "Medical Practitioner License",
+      "slug": "medical-practitioner-license",
+      "description": "Apply for or renew a medical practitioner license from the KMPDC.",
+      "short_description": "Apply for or renew a medical practitioner license from the KMPDC.",
+      "icon": "HeartPulse",
+      "processing_time": "7-14 days",
+      "fee_kes": "5000.00",
+      "is_popular": false,
+      "is_active": true,
+      "is_online": true,
+      "order": 5,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  }
+]

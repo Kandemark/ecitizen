@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% load ecitizen_tags %}
+{% block title %}{{ title }} {{ record.reference }} — e-Citizen{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'judiciary:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Judiciary</a>
+  <div class="card mb-6"><div class="flex items-center justify-between"><div><h1 class="text-xl font-bold text-[#111418]">{{ title }}</h1><p class="text-sm text-[#60758a]">Ref: {{ record.reference }}</p></div><span class="status-badge text-sm px-3 py-1 rounded-full {{ record.status|status_color }} font-medium">{{ record.get_status_display }}</span></div></div>
+  <div class="card"><h2 class="font-bold text-[#111418] mb-4">Details</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {% if app_type == 'case' %}
+    <div><span class="text-xs text-[#60758a] block">Case Number</span><span class="text-sm font-medium">{{ record.case_number }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Court</span><span class="text-sm font-medium">{{ record.court_name }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Case Type</span><span class="text-sm font-medium">{{ record.get_case_type_display }}</span></div>
+    {% if record.title %}<div class="md:col-span-2"><span class="text-xs text-[#60758a] block">Title</span><span class="text-sm font-medium">{{ record.title }}</span></div>{% endif %}
+    {% elif app_type == 'filing' %}
+    <div><span class="text-xs text-[#60758a] block">Case</span><span class="text-sm font-medium">{{ record.case.case_number }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Filing Type</span><span class="text-sm font-medium">{{ record.get_filing_type_display }}</span></div>
+    {% elif app_type == 'fine' %}
+    <div class="md:col-span-2"><span class="text-xs text-[#60758a] block">Offense</span><span class="text-sm font-medium">{{ record.offense }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Amount</span><span class="text-sm font-medium">KES {{ record.amount|floatformat:2 }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Amount Paid</span><span class="text-sm font-medium">KES {{ record.amount_paid|floatformat:2 }}</span></div>
+    {% endif %}
+    <div><span class="text-xs text-[#60758a] block">Submitted</span><span class="text-sm font-medium">{{ record.created_at|date:"d M Y, H:i" }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Updated</span><span class="text-sm font-medium">{{ record.updated_at|date:"d M Y, H:i" }}</span></div>
+  </div></div>
+</div>{% endblock %}

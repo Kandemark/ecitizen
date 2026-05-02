@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Roles & Access — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <p class="text-[32px] font-bold leading-tight mb-6">Roles & Access Levels</p>
+    <p class="text-[#60758a] mb-6">Your current role and access permissions across e-Citizen services.</p>
+    <div class="border border-[#dbe0e6] rounded-lg p-4 mb-4">
+      <p class="font-medium">Citizen</p>
+      <p class="text-sm text-[#60758a] mt-1">Default role — apply for services, track applications, make payments.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="border border-[#dbe0e6] rounded-lg p-4">
+        <p class="font-medium">Service Applications</p>
+        <p class="text-sm text-green-600 mt-1">Full Access</p>
+      </div>
+      <div class="border border-[#dbe0e6] rounded-lg p-4">
+        <p class="font-medium">Document Upload</p>
+        <p class="text-sm text-green-600 mt-1">Full Access</p>
+      </div>
+      <div class="border border-[#dbe0e6] rounded-lg p-4">
+        <p class="font-medium">Payments</p>
+        <p class="text-sm text-green-600 mt-1">Full Access</p>
+      </div>
+      <div class="border border-[#dbe0e6] rounded-lg p-4">
+        <p class="font-medium">Appointments</p>
+        <p class="text-sm text-green-600 mt-1">Full Access</p>
+      </div>
+      <div class="border border-[#dbe0e6] rounded-lg p-4">
+        <p class="font-medium">Administration</p>
+        <p class="text-sm text-[#60758a] mt-1">Restricted</p>
+      </div>
+      <div class="border border-[#dbe0e6] rounded-lg p-4">
+        <p class="font-medium">API Access</p>
+        <p class="text-sm text-[#60758a] mt-1">Restricted</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

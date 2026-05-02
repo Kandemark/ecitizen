@@ -1,0 +1,418 @@
+[
+  {
+    "model": "ministries.Ministry",
+    "pk": 1,
+    "fields": {
+      "name": "Office of the President",
+      "code": "OP",
+      "description": "The highest executive office responsible for national leadership, state functions, and coordination of government ministries.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 1,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 2,
+    "fields": {
+      "name": "Office of the Deputy President",
+      "code": "ODP",
+      "description": "Supports the President as principal assistant in execution of presidential functions and deputy party leader duties.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 2,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 3,
+    "fields": {
+      "name": "Office of the Prime Cabinet Secretary",
+      "code": "OPCS",
+      "description": "Coordinates and supervises government ministries and state departments for efficient service delivery.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 3,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 4,
+    "fields": {
+      "name": "Ministry of Interior and National Administration",
+      "code": "MINA",
+      "description": "Responsible for internal security, national registration, immigration, and coordination of national government administration.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 4,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 5,
+    "fields": {
+      "name": "Ministry of Defence",
+      "code": "MOD",
+      "description": "Oversees the Kenya Defence Forces and is responsible for the defence and protection of Kenya's sovereignty.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 5,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 6,
+    "fields": {
+      "name": "Ministry of Foreign and Diaspora Affairs",
+      "code": "MFDA",
+      "description": "Manages Kenya's foreign policy, diplomatic relations, and diaspora affairs worldwide.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 6,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 7,
+    "fields": {
+      "name": "Ministry of Finance and National Planning",
+      "code": "MFNP",
+      "description": "Responsible for fiscal policy, budget formulation, public debt management, and national economic planning.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 7,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 8,
+    "fields": {
+      "name": "Ministry of Health",
+      "code": "MOH",
+      "description": "Ensures access to quality healthcare services, public health management, and health policy development.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 8,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 9,
+    "fields": {
+      "name": "Ministry of Education",
+      "code": "MOE",
+      "description": "Oversees all levels of education from early childhood to university and vocational training.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 9,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 10,
+    "fields": {
+      "name": "Ministry of Agriculture and Livestock Development",
+      "code": "MALD",
+      "description": "Promotes food security, agricultural productivity, livestock development, and farmer empowerment.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 10,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 11,
+    "fields": {
+      "name": "Ministry of Water, Sanitation and Irrigation",
+      "code": "MWSI",
+      "description": "Manages water resources, sanitation services, and irrigation infrastructure development.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 11,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 12,
+    "fields": {
+      "name": "Ministry of Energy and Petroleum",
+      "code": "MEP",
+      "description": "Responsible for energy policy, petroleum exploration, renewable energy development, and power generation.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 12,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 13,
+    "fields": {
+      "name": "Ministry of Transport and Infrastructure",
+      "code": "MTI",
+      "description": "Oversees road, rail, maritime, and air transport infrastructure development and maintenance.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 13,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 14,
+    "fields": {
+      "name": "Ministry of Lands, Public Works, Housing and Urban Development",
+      "code": "MLPWHUD",
+      "description": "Manages land administration, public works, housing development, and urban planning.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 14,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 15,
+    "fields": {
+      "name": "Ministry of Information, Communications and the Digital Economy",
+      "code": "MICDE",
+      "description": "Promotes ICT development, digital transformation, broadcasting, and telecommunications.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 15,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 16,
+    "fields": {
+      "name": "Ministry of Trade, Investment and Industry",
+      "code": "MTII",
+      "description": "Promotes trade, investment, industrialization, and enterprise development for economic growth.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 16,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 17,
+    "fields": {
+      "name": "Ministry of Labour and Social Protection",
+      "code": "MLSP",
+      "description": "Manages labour relations, employment policy, social security, and welfare programs.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 17,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 18,
+    "fields": {
+      "name": "Ministry of Environment, Climate Change and Forestry",
+      "code": "MECCF",
+      "description": "Protects the environment, mitigates climate change, and manages forest resources.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 18,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 19,
+    "fields": {
+      "name": "Ministry of Tourism and Wildlife",
+      "code": "MTW",
+      "description": "Promotes tourism, conserves wildlife, and develops the hospitality industry.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 19,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 20,
+    "fields": {
+      "name": "Ministry of Mining, Blue Economy and Maritime Affairs",
+      "code": "MMBEMA",
+      "description": "Develops mining sector, harnesses blue economy resources, and manages maritime affairs.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 20,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 21,
+    "fields": {
+      "name": "Ministry of Sports, Culture and Heritage",
+      "code": "MSCH",
+      "description": "Promotes sports development, preserves cultural heritage, and celebrates national identity.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 21,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 22,
+    "fields": {
+      "name": "Ministry of Cooperatives and MSMEs Development",
+      "code": "MCMD",
+      "description": "Supports cooperative societies and micro, small, and medium enterprise development.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 22,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 23,
+    "fields": {
+      "name": "Ministry of Youth Affairs and Sports",
+      "code": "MYAS",
+      "description": "Empowers youth through skills development, job creation, and sports programs.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 23,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 24,
+    "fields": {
+      "name": "Ministry of East African Community and Regional Development",
+      "code": "MEACRD",
+      "description": "Coordinates Kenya's participation in the East African Community and regional integration.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 24,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 25,
+    "fields": {
+      "name": "Ministry of Gender, Culture, The Arts and Heritage",
+      "code": "MGCAH",
+      "description": "Promotes gender equality, cultural expression, and artistic development.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 25,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "ministries.Ministry",
+    "pk": 26,
+    "fields": {
+      "name": "Ministry of Public Service, Performance and Delivery Management",
+      "code": "MPSPDM",
+      "description": "Oversees public service reforms, performance contracting, and service delivery improvement.",
+      "website": "",
+      "email": "",
+      "phone": "",
+      "is_active": true,
+      "order": 26,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  }
+]

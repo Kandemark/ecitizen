@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Article {{ article.number }} — Constitution of Kenya{% endblock %}
+
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-3xl mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
+      <a href="{% url 'constitution:browse' %}" class="hover:text-[#0b6e4f] transition">Constitution</a>
+      <span>/</span>
+      <a href="{% url 'constitution:chapter' article.chapter.number %}" class="hover:text-[#0b6e4f] transition">Chapter {{ article.chapter.number }}</a>
+      <span>/</span>
+      <span class="text-[#111418] font-medium">Article {{ article.number }}</span>
+    </nav>
+
+    <!-- Article -->
+    <article class="bg-white rounded-xl border border-[#dbe0e6] overflow-hidden">
+      <div class="p-8">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-[#0b6e4f]/10 text-[#0b6e4f] uppercase tracking-wide">
+          Article {{ article.number }}
+        </span>
+        <h1 class="text-2xl font-black text-[#111418] mt-3 mb-8">{{ article.title }}</h1>
+
+        <div class="prose prose-lg max-w-none text-[#111418] leading-relaxed whitespace-pre-line">
+          {{ article.content }}
+        </div>
+      </div>
+
+      <div class="border-t border-[#dbe0e6] bg-[#f7f8fa] px-8 py-4 flex items-center justify-between flex-wrap gap-4">
+        <div>
+          <p class="text-xs text-[#60758a]">This article is part of</p>
+          <a href="{% url 'constitution:chapter' article.chapter.number %}" class="text-sm font-medium text-[#0b6e4f] hover:underline">
+            Chapter {{ article.chapter.number }} — {{ article.chapter.title }}
+          </a>
+        </div>
+        <a href="{% url 'constitution:chapter' article.chapter.number %}" class="flex items-center gap-2 text-sm font-medium text-[#0b6e4f] hover:underline">
+          All articles in this chapter
+          <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </article>
+  </div>
+</div>
+{% endblock %}

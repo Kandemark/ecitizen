@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Contact Information — e-Citizen Onboarding{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[640px] mx-auto">
+    <p class="text-sm text-[#60758a] mb-2">Step {{ step }} of {{ total_steps }}</p>
+    <div class="h-2 bg-[#f1f2f4] rounded-full mb-8">
+      <div class="h-2 bg-[#0b6e4f] rounded-full" style="width: {{ step|floatformat:0 }}0%"></div>
+    </div>
+    <p class="text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
+    <p class="text-[#60758a] mb-8">How can we reach you? Your phone number will be linked to M-Pesa for payments.</p>
+    <form method="post" class="flex flex-col gap-4">
+      {% csrf_token %}
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Phone Number (M-Pesa)</span>
+        <input type="tel" name="phone" required placeholder="0712 345 678" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Email Address</span>
+        <input type="email" name="email" required class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Postal Address</span>
+        <input type="text" name="postal_address" placeholder="P.O. Box 12345, Nairobi" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      <button type="submit" class="h-12 px-6 bg-[#0b6e4f] text-white rounded-full font-bold text-sm mt-4">Continue</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

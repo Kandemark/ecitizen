@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% load ecitizen_tags %}
+{% block title %}Procurement — e-Citizen{% endblock %}
+{% block content %}
+<div class="max-w-[1100px] mx-auto px-10 py-8 page-enter">
+  <h1 class="text-2xl font-bold text-[#111418] mb-1">Procurement</h1><p class="text-[#60758a] mb-8">Browse open tenders and submit bids.</p>
+  <section class="mb-10"><h2 class="text-lg font-bold text-[#111418] mb-4">📢 Open Tenders</h2>
+    {% if tenders %}<div class="grid grid-cols-1 md:grid-cols-2 gap-4">{% for t in tenders %}<a href="{% url 'procurement:tender_detail' ref=t.reference %}" class="card-hover block"><div class="flex items-start justify-between mb-3"><span class="font-semibold text-[#111418] line-clamp-2">{{ t.title }}</span><span class="text-xs text-red-500 whitespace-nowrap ml-2">Closes {{ t.closing_date|date:"d M Y" }}</span></div><div class="text-xs text-[#60758a] space-y-1"><p>{{ t.tender_number }} · {{ t.procurement_method|title }}</p><p>Est. Value: KES {{ t.estimated_value|floatformat:2 }}</p>{% if t.ministry %}<p>{{ t.ministry.name }}</p>{% endif %}</div></a>{% endfor %}</div>{% else %}<div class="card text-center py-10 text-[#60758a]"><p class="text-3xl mb-3">📢</p><p>No open tenders at this time.</p></div>{% endif %}
+  </section>
+  <section><h2 class="text-lg font-bold text-[#111418] mb-4">📝 My Bids</h2>
+    {% if my_bids %}<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{% for b in my_bids %}<a href="{% url 'procurement:detail' app_type='bid' ref=b.reference %}" class="card-hover block"><div class="flex items-start justify-between mb-3"><span class="font-semibold text-[#111418]">{{ b.company_name }}</span><span class="status-badge text-xs px-2 py-0.5 rounded-full {{ b.status|status_color }}">{{ b.get_status_display }}</span></div><div class="text-xs text-[#60758a] space-y-1"><p>Ref: {{ b.reference }}</p><p>Bid: KES {{ b.bid_amount|floatformat:2 }}</p><p>{{ b.tender.title|truncatechars:50 }}</p></div></a>{% endfor %}</div>{% else %}<div class="card text-center py-10 text-[#60758a]"><p class="text-3xl mb-3">📝</p><p>No bids submitted yet.</p></div>{% endif %}
+  </section>
+</div>{% endblock %}

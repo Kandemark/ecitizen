@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Account Security — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <p class="text-[32px] font-bold leading-tight mb-6">Account Security</p>
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="mb-4 p-3 rounded-lg text-sm {% if msg.tags == 'error' %}bg-red-50 text-red-700{% else %}bg-green-50 text-green-700{% endif %}">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+    <form method="post" class="max-w-[480px] flex flex-col gap-4">
+      {% csrf_token %}
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Current Password</span>
+        <input type="password" name="current_password" required class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">New Password</span>
+        <input type="password" name="new_password" required class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Confirm New Password</span>
+        <input type="password" name="confirm_password" required class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      <button type="submit" class="h-10 px-6 bg-[#f1f2f4] rounded-full font-bold text-sm">Change Password</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

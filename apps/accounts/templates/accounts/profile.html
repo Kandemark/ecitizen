@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Profile — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <p class="text-[32px] font-bold leading-tight mb-6">My Profile</p>
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="mb-4 p-3 rounded-lg text-sm {% if msg.tags == 'error' %}bg-red-50 text-red-700{% else %}bg-green-50 text-green-700{% endif %}">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+    <form method="post" class="max-w-[480px] flex flex-col gap-4">
+      {% csrf_token %}
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">First Name</span>
+        <input type="text" name="first_name" value="{{ user.first_name }}" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Last Name</span>
+        <input type="text" name="last_name" value="{{ user.last_name }}" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Email</span>
+        <input type="email" name="email" value="{{ user.email }}" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      {% if profile %}
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Phone</span>
+        <input type="text" name="phone" value="{{ profile.phone }}" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">ID Number</span>
+        <input type="text" name="id_number" value="{{ profile.id_number }}" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
+      </label>
+      {% endif %}
+      <button type="submit" class="h-10 px-6 bg-[#f1f2f4] rounded-full font-bold text-sm">Save Changes</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

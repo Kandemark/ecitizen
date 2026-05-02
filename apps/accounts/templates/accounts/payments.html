@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}My Payments — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <p class="text-[32px] font-bold leading-tight mb-6">My Payments</p>
+
+    {% if wallet %}
+    <div class="border border-[#dbe0e6] rounded-xl p-5 bg-white mb-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm text-[#60758a] uppercase tracking-wider">Wallet Balance</p>
+          <p class="text-[28px] font-bold text-[#111418] mt-1">KES {{ wallet.balance|floatformat:2 }}</p>
+          <p class="text-xs text-[#60758a] mt-1">Wallet ID: {{ wallet.wallet_id }}</p>
+        </div>
+        <a href="#" class="inline-flex items-center h-10 px-5 bg-[#0b6e4f] text-white rounded-full text-sm font-medium hover:bg-[#095d42] transition">
+          Top Up
+        </a>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Filters -->
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+      <div class="text-sm font-medium text-[#60758a]">Filter:</div>
+      <select name="status" hx-get="{% url 'payments' %}" hx-trigger="change" hx-target="#paymentList" hx-include="[name='date_from'],[name='date_to']" class="rounded-lg border border-[#dbe0e6] h-10 px-3 text-sm bg-white focus:border-[#0b6e4f] focus:outline-none">
+        <option value="">All Statuses</option>
+        <option value="completed">Completed</option>
+        <option value="pending">Pending</option>
+        <option value="failed">Failed</option>
+      </select>
+      <input type="date" name="date_from" hx-get="{% url 'payments' %}" hx-trigger="change" hx-target="#paymentList" hx-include="[name='status'],[name='date_to']"
+        class="rounded-lg border border-[#dbe0e6] h-10 px-3 text-sm bg-white focus:border-[#0b6e4f] focus:outline-none" placeholder="From date" />
+      <input type="date" name="date_to" hx-get="{% url 'payments' %}" hx-trigger="change" hx-target="#paymentList" hx-include="[name='status'],[name='date_from']"
+        class="rounded-lg border border-[#dbe0e6] h-10 px-3 text-sm bg-white focus:border-[#0b6e4f] focus:outline-none" placeholder="To date" />
+    </div>
+
+    <div id="paymentList">
+      {% include 'accounts/includes/payment_list.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}

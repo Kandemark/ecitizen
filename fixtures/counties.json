@@ -1,0 +1,4373 @@
+[
+  {
+    "model": "counties.County",
+    "pk": 1,
+    "fields": {
+      "code": "001",
+      "name": "Mombasa",
+      "capital": "Mombasa City",
+      "governor": "Abdulswamad Sheriff Nassir",
+      "population": 1208333,
+      "area_sqkm": 219.9,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 48,
+    "fields": {
+      "county": 1,
+      "name": "Mvita",
+      "code": "001-MV",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 200,
+    "fields": {
+      "sub_county": 48,
+      "name": "Mji wa Kale/Makadara",
+      "code": "001-MV-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 201,
+    "fields": {
+      "sub_county": 48,
+      "name": "Tudor",
+      "code": "001-MV-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 49,
+    "fields": {
+      "county": 1,
+      "name": "Kisauni",
+      "code": "001-KS",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 202,
+    "fields": {
+      "sub_county": 49,
+      "name": "Mjambere",
+      "code": "001-KS-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 203,
+    "fields": {
+      "sub_county": 49,
+      "name": "Bamburi",
+      "code": "001-KS-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 150,
+    "fields": {
+      "county": 1,
+      "name": "Mombasa County Constituency",
+      "code": "CON-001",
+      "mp_name": "Hon. Mishi Mboko",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 2,
+    "fields": {
+      "code": "002",
+      "name": "Kwale",
+      "capital": "Kwale",
+      "governor": "Fatuma Mohamed Achani",
+      "population": 866820,
+      "area_sqkm": 8270.2,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 50,
+    "fields": {
+      "county": 2,
+      "name": "Msambweni",
+      "code": "002-MS",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 204,
+    "fields": {
+      "sub_county": 50,
+      "name": "Gombato",
+      "code": "002-MS-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 205,
+    "fields": {
+      "sub_county": 50,
+      "name": "Kinondo",
+      "code": "002-MS-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 51,
+    "fields": {
+      "county": 2,
+      "name": "Matuga",
+      "code": "002-MT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 206,
+    "fields": {
+      "sub_county": 51,
+      "name": "Tsimba Golini",
+      "code": "002-MT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 207,
+    "fields": {
+      "sub_county": 51,
+      "name": "Waa",
+      "code": "002-MT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 151,
+    "fields": {
+      "county": 2,
+      "name": "Kwale County Constituency",
+      "code": "CON-002",
+      "mp_name": "Hon. Fatuma Masito",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 3,
+    "fields": {
+      "code": "003",
+      "name": "Kilifi",
+      "capital": "Kilifi",
+      "governor": "Gideon Mung'aro",
+      "population": 1453787,
+      "area_sqkm": 12609.7,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 52,
+    "fields": {
+      "county": 3,
+      "name": "Kilifi North",
+      "code": "003-KN",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 208,
+    "fields": {
+      "sub_county": 52,
+      "name": "Tezo",
+      "code": "003-KN-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 209,
+    "fields": {
+      "sub_county": 52,
+      "name": "Mnarani",
+      "code": "003-KN-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 53,
+    "fields": {
+      "county": 3,
+      "name": "Malindi",
+      "code": "003-ML",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 210,
+    "fields": {
+      "sub_county": 53,
+      "name": "Malindi Town",
+      "code": "003-ML-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 211,
+    "fields": {
+      "sub_county": 53,
+      "name": "Ganda",
+      "code": "003-ML-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 152,
+    "fields": {
+      "county": 3,
+      "name": "Kilifi County Constituency",
+      "code": "CON-003",
+      "mp_name": "Hon. Gertrude Mbeyu",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 4,
+    "fields": {
+      "code": "004",
+      "name": "Tana River",
+      "capital": "Hola",
+      "governor": "Dhadho Gaddae Godhana",
+      "population": 315943,
+      "area_sqkm": 38862.2,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 54,
+    "fields": {
+      "county": 4,
+      "name": "Tana Delta",
+      "code": "004-TD",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 212,
+    "fields": {
+      "sub_county": 54,
+      "name": "Kipini",
+      "code": "004-TD-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 213,
+    "fields": {
+      "sub_county": 54,
+      "name": "Garsen",
+      "code": "004-TD-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 55,
+    "fields": {
+      "county": 4,
+      "name": "Tana River",
+      "code": "004-TR",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 214,
+    "fields": {
+      "sub_county": 55,
+      "name": "Bangale",
+      "code": "004-TR-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 215,
+    "fields": {
+      "sub_county": 55,
+      "name": "Galole",
+      "code": "004-TR-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 153,
+    "fields": {
+      "county": 4,
+      "name": "Tana River County Constituency",
+      "code": "CON-004",
+      "mp_name": "Hon. Amina Dika",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 5,
+    "fields": {
+      "code": "005",
+      "name": "Lamu",
+      "capital": "Lamu",
+      "governor": "Issa Timamy",
+      "population": 143920,
+      "area_sqkm": 6273.1,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 56,
+    "fields": {
+      "county": 5,
+      "name": "Lamu West",
+      "code": "005-LW",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 216,
+    "fields": {
+      "sub_county": 56,
+      "name": "Mkunumbi",
+      "code": "005-LW-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 217,
+    "fields": {
+      "sub_county": 56,
+      "name": "Hongwe",
+      "code": "005-LW-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 57,
+    "fields": {
+      "county": 5,
+      "name": "Lamu East",
+      "code": "005-LE",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 218,
+    "fields": {
+      "sub_county": 57,
+      "name": "Faza",
+      "code": "005-LE-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 219,
+    "fields": {
+      "sub_county": 57,
+      "name": "Kiunga",
+      "code": "005-LE-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 154,
+    "fields": {
+      "county": 5,
+      "name": "Lamu County Constituency",
+      "code": "CON-005",
+      "mp_name": "Hon. Monicah Muthoni",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 6,
+    "fields": {
+      "code": "006",
+      "name": "Taita Taveta",
+      "capital": "Voi",
+      "governor": "Andrew Mwadime",
+      "population": 340671,
+      "area_sqkm": 17083.9,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 58,
+    "fields": {
+      "county": 6,
+      "name": "Voi",
+      "code": "006-VO",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 220,
+    "fields": {
+      "sub_county": 58,
+      "name": "Mbololo",
+      "code": "006-VO-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 221,
+    "fields": {
+      "sub_county": 58,
+      "name": "Ngolia",
+      "code": "006-VO-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 59,
+    "fields": {
+      "county": 6,
+      "name": "Wundanyi",
+      "code": "006-WU",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 222,
+    "fields": {
+      "sub_county": 59,
+      "name": "Wundanyi/Mbale",
+      "code": "006-WU-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 223,
+    "fields": {
+      "sub_county": 59,
+      "name": "Werugha",
+      "code": "006-WU-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 155,
+    "fields": {
+      "county": 6,
+      "name": "Taita Taveta County Constituency",
+      "code": "CON-006",
+      "mp_name": "Hon. Johnes Mwashushe",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 7,
+    "fields": {
+      "code": "007",
+      "name": "Garissa",
+      "capital": "Garissa",
+      "governor": "Nathif Jama Adam",
+      "population": 841353,
+      "area_sqkm": 44753.3,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 60,
+    "fields": {
+      "county": 7,
+      "name": "Garissa Township",
+      "code": "007-GT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 224,
+    "fields": {
+      "sub_county": 60,
+      "name": "Waberi",
+      "code": "007-GT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 225,
+    "fields": {
+      "sub_county": 60,
+      "name": "Galbet",
+      "code": "007-GT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 61,
+    "fields": {
+      "county": 7,
+      "name": "Dadaab",
+      "code": "007-DD",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 226,
+    "fields": {
+      "sub_county": 61,
+      "name": "Dertu",
+      "code": "007-DD-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 227,
+    "fields": {
+      "sub_county": 61,
+      "name": "Labasigale",
+      "code": "007-DD-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 156,
+    "fields": {
+      "county": 7,
+      "name": "Garissa County Constituency",
+      "code": "CON-007",
+      "mp_name": "Hon. Mohamed Dahiye",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 8,
+    "fields": {
+      "code": "008",
+      "name": "Wajir",
+      "capital": "Wajir",
+      "governor": "Ahmed Abdullahi Jiir",
+      "population": 781263,
+      "area_sqkm": 56685.6,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 62,
+    "fields": {
+      "county": 8,
+      "name": "Wajir East",
+      "code": "008-WE",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 228,
+    "fields": {
+      "sub_county": 62,
+      "name": "Wajir Town",
+      "code": "008-WE-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 229,
+    "fields": {
+      "sub_county": 62,
+      "name": "Barwago",
+      "code": "008-WE-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 63,
+    "fields": {
+      "county": 8,
+      "name": "Wajir West",
+      "code": "008-WW",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 230,
+    "fields": {
+      "sub_county": 63,
+      "name": "Ganyure",
+      "code": "008-WW-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 231,
+    "fields": {
+      "sub_county": 63,
+      "name": "Hadado",
+      "code": "008-WW-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 157,
+    "fields": {
+      "county": 8,
+      "name": "Wajir County Constituency",
+      "code": "CON-008",
+      "mp_name": "Hon. Fatuma Abdi",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 9,
+    "fields": {
+      "code": "009",
+      "name": "Mandera",
+      "capital": "Mandera",
+      "governor": "Mohamed Adan Khalif",
+      "population": 867457,
+      "area_sqkm": 25797.7,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 64,
+    "fields": {
+      "county": 9,
+      "name": "Mandera East",
+      "code": "009-ME",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 232,
+    "fields": {
+      "sub_county": 64,
+      "name": "Mandera Town",
+      "code": "009-ME-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 233,
+    "fields": {
+      "sub_county": 64,
+      "name": "Khalalio",
+      "code": "009-ME-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 65,
+    "fields": {
+      "county": 9,
+      "name": "Mandera West",
+      "code": "009-MW",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 234,
+    "fields": {
+      "sub_county": 65,
+      "name": "Takaba",
+      "code": "009-MW-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 235,
+    "fields": {
+      "sub_county": 65,
+      "name": "Lagsure",
+      "code": "009-MW-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 158,
+    "fields": {
+      "county": 9,
+      "name": "Mandera County Constituency",
+      "code": "CON-009",
+      "mp_name": "Hon. Husna Mohamed",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 10,
+    "fields": {
+      "code": "010",
+      "name": "Marsabit",
+      "capital": "Marsabit",
+      "governor": "Mohamud Mohamed Ali",
+      "population": 459785,
+      "area_sqkm": 70961.2,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 66,
+    "fields": {
+      "county": 10,
+      "name": "Moyale",
+      "code": "010-MY",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 236,
+    "fields": {
+      "sub_county": 66,
+      "name": "Moyale Township",
+      "code": "010-MY-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 237,
+    "fields": {
+      "sub_county": 66,
+      "name": "Golbo",
+      "code": "010-MY-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 67,
+    "fields": {
+      "county": 10,
+      "name": "Laisamis",
+      "code": "010-LS",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 238,
+    "fields": {
+      "sub_county": 67,
+      "name": "Loiyangalani",
+      "code": "010-LS-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 239,
+    "fields": {
+      "sub_county": 67,
+      "name": "Kargi",
+      "code": "010-LS-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 159,
+    "fields": {
+      "county": 10,
+      "name": "Marsabit County Constituency",
+      "code": "CON-010",
+      "mp_name": "Hon. Naomi Waqo",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 11,
+    "fields": {
+      "code": "011",
+      "name": "Isiolo",
+      "capital": "Isiolo",
+      "governor": "Abdi Ibrahim Hassan",
+      "population": 298065,
+      "area_sqkm": 25336.6,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 68,
+    "fields": {
+      "county": 11,
+      "name": "Isiolo Town",
+      "code": "011-IT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 240,
+    "fields": {
+      "sub_county": 68,
+      "name": "Wabera",
+      "code": "011-IT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 241,
+    "fields": {
+      "sub_county": 68,
+      "name": "Bula Pesa",
+      "code": "011-IT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 69,
+    "fields": {
+      "county": 11,
+      "name": "Merti",
+      "code": "011-MR",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 242,
+    "fields": {
+      "sub_county": 69,
+      "name": "Merti",
+      "code": "011-MR-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 243,
+    "fields": {
+      "sub_county": 69,
+      "name": "Garba Tula",
+      "code": "011-MR-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 160,
+    "fields": {
+      "county": 11,
+      "name": "Isiolo County Constituency",
+      "code": "CON-011",
+      "mp_name": "Hon. Mumina Bonaya",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 12,
+    "fields": {
+      "code": "012",
+      "name": "Meru",
+      "capital": "Meru",
+      "governor": "Kawira Mwangaza",
+      "population": 1545714,
+      "area_sqkm": 6936.2,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 70,
+    "fields": {
+      "county": 12,
+      "name": "Imenti North",
+      "code": "012-IN",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 244,
+    "fields": {
+      "sub_county": 70,
+      "name": "Municipality",
+      "code": "012-IN-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 245,
+    "fields": {
+      "sub_county": 70,
+      "name": "Ntima East",
+      "code": "012-IN-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 71,
+    "fields": {
+      "county": 12,
+      "name": "Tigania West",
+      "code": "012-TW",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 246,
+    "fields": {
+      "sub_county": 71,
+      "name": "Mbeu",
+      "code": "012-TW-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 247,
+    "fields": {
+      "sub_county": 71,
+      "name": "Nkomo",
+      "code": "012-TW-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 161,
+    "fields": {
+      "county": 12,
+      "name": "Meru County Constituency",
+      "code": "CON-012",
+      "mp_name": "Hon. Elizabeth Kailemia",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 13,
+    "fields": {
+      "code": "013",
+      "name": "Tharaka Nithi",
+      "capital": "Chuka",
+      "governor": "Muthomi Njuki",
+      "population": 393177,
+      "area_sqkm": 2609.5,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 72,
+    "fields": {
+      "county": 13,
+      "name": "Maara",
+      "code": "013-MA",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 248,
+    "fields": {
+      "sub_county": 72,
+      "name": "Mitheru",
+      "code": "013-MA-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 249,
+    "fields": {
+      "sub_county": 72,
+      "name": "Ganga",
+      "code": "013-MA-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 73,
+    "fields": {
+      "county": 13,
+      "name": "Tharaka",
+      "code": "013-TH",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 250,
+    "fields": {
+      "sub_county": 73,
+      "name": "Marimanti",
+      "code": "013-TH-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 251,
+    "fields": {
+      "sub_county": 73,
+      "name": "Tunyai",
+      "code": "013-TH-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 162,
+    "fields": {
+      "county": 13,
+      "name": "Tharaka Nithi County Constituency",
+      "code": "CON-013",
+      "mp_name": "Hon. Susan Ngugi",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 14,
+    "fields": {
+      "code": "014",
+      "name": "Embu",
+      "capital": "Embu",
+      "governor": "Cecily Mbarire",
+      "population": 608599,
+      "area_sqkm": 2818.0,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 74,
+    "fields": {
+      "county": 14,
+      "name": "Manyatta",
+      "code": "014-MY",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 252,
+    "fields": {
+      "sub_county": 74,
+      "name": "Ruring'u",
+      "code": "014-MY-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 253,
+    "fields": {
+      "sub_county": 74,
+      "name": "Gaturi South",
+      "code": "014-MY-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 75,
+    "fields": {
+      "county": 14,
+      "name": "Runyenjes",
+      "code": "014-RU",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 254,
+    "fields": {
+      "sub_county": 75,
+      "name": "Kagaari North",
+      "code": "014-RU-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 255,
+    "fields": {
+      "sub_county": 75,
+      "name": "Kagaari South",
+      "code": "014-RU-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 163,
+    "fields": {
+      "county": 14,
+      "name": "Embu County Constituency",
+      "code": "CON-014",
+      "mp_name": "Hon. Jane Wanjuki",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 15,
+    "fields": {
+      "code": "015",
+      "name": "Kitui",
+      "capital": "Kitui",
+      "governor": "Julius Malombe",
+      "population": 1136187,
+      "area_sqkm": 30496.4,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 76,
+    "fields": {
+      "county": 15,
+      "name": "Kitui Central",
+      "code": "015-KC",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 256,
+    "fields": {
+      "sub_county": 76,
+      "name": "Miambani",
+      "code": "015-KC-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 257,
+    "fields": {
+      "sub_county": 76,
+      "name": "Township",
+      "code": "015-KC-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 77,
+    "fields": {
+      "county": 15,
+      "name": "Mwingi North",
+      "code": "015-MN",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 258,
+    "fields": {
+      "sub_county": 77,
+      "name": "Ngomeni",
+      "code": "015-MN-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 259,
+    "fields": {
+      "sub_county": 77,
+      "name": "Kyuso",
+      "code": "015-MN-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 164,
+    "fields": {
+      "county": 15,
+      "name": "Kitui County Constituency",
+      "code": "CON-015",
+      "mp_name": "Hon. Irene Kasalu",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 16,
+    "fields": {
+      "code": "016",
+      "name": "Machakos",
+      "capital": "Machakos",
+      "governor": "Wavinya Ndeti",
+      "population": 1421932,
+      "area_sqkm": 6043.3,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 78,
+    "fields": {
+      "county": 16,
+      "name": "Machakos Town",
+      "code": "016-MT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 260,
+    "fields": {
+      "sub_county": 78,
+      "name": "Kalama",
+      "code": "016-MT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 261,
+    "fields": {
+      "sub_county": 78,
+      "name": "Mua",
+      "code": "016-MT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 79,
+    "fields": {
+      "county": 16,
+      "name": "Mavoko",
+      "code": "016-MV",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 262,
+    "fields": {
+      "sub_county": 79,
+      "name": "Athi River",
+      "code": "016-MV-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 263,
+    "fields": {
+      "sub_county": 79,
+      "name": "Syokimau",
+      "code": "016-MV-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 165,
+    "fields": {
+      "county": 16,
+      "name": "Machakos County Constituency",
+      "code": "CON-016",
+      "mp_name": "Hon. Joyce Kamene",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 17,
+    "fields": {
+      "code": "017",
+      "name": "Makueni",
+      "capital": "Wote",
+      "governor": "Mutula Kilonzo Jr.",
+      "population": 987653,
+      "area_sqkm": 8008.9,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 80,
+    "fields": {
+      "county": 17,
+      "name": "Makueni",
+      "code": "017-MK",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 264,
+    "fields": {
+      "sub_county": 80,
+      "name": "Wote",
+      "code": "017-MK-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 265,
+    "fields": {
+      "sub_county": 80,
+      "name": "Muvau",
+      "code": "017-MK-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 81,
+    "fields": {
+      "county": 17,
+      "name": "Mbooni",
+      "code": "017-MB",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 266,
+    "fields": {
+      "sub_county": 81,
+      "name": "Tulimani",
+      "code": "017-MB-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 267,
+    "fields": {
+      "sub_county": 81,
+      "name": "Kithungo",
+      "code": "017-MB-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 166,
+    "fields": {
+      "county": 17,
+      "name": "Makueni County Constituency",
+      "code": "CON-017",
+      "mp_name": "Hon. Rose Museo",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 18,
+    "fields": {
+      "code": "018",
+      "name": "Nyandarua",
+      "capital": "Ol Kalou",
+      "governor": "Kiarie Badilisha",
+      "population": 638289,
+      "area_sqkm": 3245.3,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 82,
+    "fields": {
+      "county": 18,
+      "name": "Ol Kalou",
+      "code": "018-OK",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 268,
+    "fields": {
+      "sub_county": 82,
+      "name": "Ol Kalou Town",
+      "code": "018-OK-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 269,
+    "fields": {
+      "sub_county": 82,
+      "name": "Kanjuiri",
+      "code": "018-OK-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 83,
+    "fields": {
+      "county": 18,
+      "name": "Kinangop",
+      "code": "018-KN",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 270,
+    "fields": {
+      "sub_county": 83,
+      "name": "Engineer",
+      "code": "018-KN-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 271,
+    "fields": {
+      "sub_county": 83,
+      "name": "Magumu",
+      "code": "018-KN-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 167,
+    "fields": {
+      "county": 18,
+      "name": "Nyandarua County Constituency",
+      "code": "CON-018",
+      "mp_name": "Hon. Faith Gitau",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 19,
+    "fields": {
+      "code": "019",
+      "name": "Nyeri",
+      "capital": "Nyeri",
+      "governor": "Mutahi Kahiga",
+      "population": 759164,
+      "area_sqkm": 3337.1,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 84,
+    "fields": {
+      "county": 19,
+      "name": "Nyeri Town",
+      "code": "019-NT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 272,
+    "fields": {
+      "sub_county": 84,
+      "name": "Witemere",
+      "code": "019-NT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 273,
+    "fields": {
+      "sub_county": 84,
+      "name": "Kamakwa",
+      "code": "019-NT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 85,
+    "fields": {
+      "county": 19,
+      "name": "Mathira",
+      "code": "019-MH",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 274,
+    "fields": {
+      "sub_county": 85,
+      "name": "Ruguru",
+      "code": "019-MH-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 275,
+    "fields": {
+      "sub_county": 85,
+      "name": "Magutu",
+      "code": "019-MH-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 168,
+    "fields": {
+      "county": 19,
+      "name": "Nyeri County Constituency",
+      "code": "CON-019",
+      "mp_name": "Hon. Rahab Mukami",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 20,
+    "fields": {
+      "code": "020",
+      "name": "Kirinyaga",
+      "capital": "Kerugoya",
+      "governor": "Anne Waiguru",
+      "population": 610411,
+      "area_sqkm": 1478.1,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 86,
+    "fields": {
+      "county": 20,
+      "name": "Kirinyaga Central",
+      "code": "020-KC",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 276,
+    "fields": {
+      "sub_county": 86,
+      "name": "Mutira",
+      "code": "020-KC-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 277,
+    "fields": {
+      "sub_county": 86,
+      "name": "Inoi",
+      "code": "020-KC-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 87,
+    "fields": {
+      "county": 20,
+      "name": "Mwea",
+      "code": "020-MW",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 278,
+    "fields": {
+      "sub_county": 87,
+      "name": "Mutithi",
+      "code": "020-MW-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 279,
+    "fields": {
+      "sub_county": 87,
+      "name": "Kangai",
+      "code": "020-MW-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 169,
+    "fields": {
+      "county": 20,
+      "name": "Kirinyaga County Constituency",
+      "code": "CON-020",
+      "mp_name": "Hon. Jane Njeri",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 21,
+    "fields": {
+      "code": "021",
+      "name": "Murang'a",
+      "capital": "Murang'a",
+      "governor": "Irungu Kang'ata",
+      "population": 1056640,
+      "area_sqkm": 2558.8,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 88,
+    "fields": {
+      "county": 21,
+      "name": "Murang'a Town",
+      "code": "021-MT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 280,
+    "fields": {
+      "sub_county": 88,
+      "name": "Murang'a Central",
+      "code": "021-MT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 281,
+    "fields": {
+      "sub_county": 88,
+      "name": "Kiharu",
+      "code": "021-MT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 89,
+    "fields": {
+      "county": 21,
+      "name": "Kandara",
+      "code": "021-KD",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 282,
+    "fields": {
+      "sub_county": 89,
+      "name": "Ngurwe",
+      "code": "021-KD-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 283,
+    "fields": {
+      "sub_county": 89,
+      "name": "Muruka",
+      "code": "021-KD-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 170,
+    "fields": {
+      "county": 21,
+      "name": "Murang'a County Constituency",
+      "code": "CON-021",
+      "mp_name": "Hon. Betty Maina",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 22,
+    "fields": {
+      "code": "022",
+      "name": "Kiambu",
+      "capital": "Kiambu",
+      "governor": "Kimani Wamatangi",
+      "population": 2417735,
+      "area_sqkm": 2543.5,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 90,
+    "fields": {
+      "county": 22,
+      "name": "Kiambu Town",
+      "code": "022-KT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 284,
+    "fields": {
+      "sub_county": 90,
+      "name": "Township",
+      "code": "022-KT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 285,
+    "fields": {
+      "sub_county": 90,
+      "name": "Ting'ang'a",
+      "code": "022-KT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 91,
+    "fields": {
+      "county": 22,
+      "name": "Thika",
+      "code": "022-TH",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 286,
+    "fields": {
+      "sub_county": 91,
+      "name": "Township",
+      "code": "022-TH-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 287,
+    "fields": {
+      "sub_county": 91,
+      "name": "Kiganjo",
+      "code": "022-TH-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 171,
+    "fields": {
+      "county": 22,
+      "name": "Kiambu County Constituency",
+      "code": "CON-022",
+      "mp_name": "Hon. Anne Wanjiku",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 23,
+    "fields": {
+      "code": "023",
+      "name": "Turkana",
+      "capital": "Lodwar",
+      "governor": "Jeremiah Lomorukai Napotikan",
+      "population": 1069855,
+      "area_sqkm": 68680.3,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 92,
+    "fields": {
+      "county": 23,
+      "name": "Turkana Central",
+      "code": "023-TC",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 288,
+    "fields": {
+      "sub_county": 92,
+      "name": "Lodwar Township",
+      "code": "023-TC-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 289,
+    "fields": {
+      "sub_county": 92,
+      "name": "Kanamkemer",
+      "code": "023-TC-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 93,
+    "fields": {
+      "county": 23,
+      "name": "Turkana North",
+      "code": "023-TN",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 290,
+    "fields": {
+      "sub_county": 93,
+      "name": "Kaeris",
+      "code": "023-TN-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 291,
+    "fields": {
+      "sub_county": 93,
+      "name": "Lakezone",
+      "code": "023-TN-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 172,
+    "fields": {
+      "county": 23,
+      "name": "Turkana County Constituency",
+      "code": "CON-023",
+      "mp_name": "Hon. Margaret Nakara",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 24,
+    "fields": {
+      "code": "024",
+      "name": "West Pokot",
+      "capital": "Kapenguria",
+      "governor": "Simon Kachapin",
+      "population": 621241,
+      "area_sqkm": 9169.4,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 94,
+    "fields": {
+      "county": 24,
+      "name": "Kapenguria",
+      "code": "024-KP",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 292,
+    "fields": {
+      "sub_county": 94,
+      "name": "Kapenguria Town",
+      "code": "024-KP-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 293,
+    "fields": {
+      "sub_county": 94,
+      "name": "Riwo",
+      "code": "024-KP-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 95,
+    "fields": {
+      "county": 24,
+      "name": "Pokot South",
+      "code": "024-PS",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 294,
+    "fields": {
+      "sub_county": 95,
+      "name": "Chepareria",
+      "code": "024-PS-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 295,
+    "fields": {
+      "sub_county": 95,
+      "name": "Batei",
+      "code": "024-PS-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 173,
+    "fields": {
+      "county": 24,
+      "name": "West Pokot County Constituency",
+      "code": "CON-024",
+      "mp_name": "Hon. Dorcas Chepkwony",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 25,
+    "fields": {
+      "code": "025",
+      "name": "Samburu",
+      "capital": "Maralal",
+      "governor": "Jonathan Lati Lelelit",
+      "population": 310327,
+      "area_sqkm": 21022.3,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 96,
+    "fields": {
+      "county": 25,
+      "name": "Samburu East",
+      "code": "025-SE",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 296,
+    "fields": {
+      "sub_county": 96,
+      "name": "Wamba",
+      "code": "025-SE-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 297,
+    "fields": {
+      "sub_county": 96,
+      "name": "Lodokejek",
+      "code": "025-SE-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 97,
+    "fields": {
+      "county": 25,
+      "name": "Samburu North",
+      "code": "025-SN",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 298,
+    "fields": {
+      "sub_county": 97,
+      "name": "Baragoi",
+      "code": "025-SN-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 299,
+    "fields": {
+      "sub_county": 97,
+      "name": "Nachola",
+      "code": "025-SN-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 174,
+    "fields": {
+      "county": 25,
+      "name": "Samburu County Constituency",
+      "code": "CON-025",
+      "mp_name": "Hon. Pauline Lenguris",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 26,
+    "fields": {
+      "code": "026",
+      "name": "Trans Nzoia",
+      "capital": "Kitale",
+      "governor": "George Natembeya",
+      "population": 990341,
+      "area_sqkm": 2495.5,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 98,
+    "fields": {
+      "county": 26,
+      "name": "Kitale Town",
+      "code": "026-KT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 300,
+    "fields": {
+      "sub_county": 98,
+      "name": "Township",
+      "code": "026-KT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 301,
+    "fields": {
+      "sub_county": 98,
+      "name": "Tuwani",
+      "code": "026-KT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 99,
+    "fields": {
+      "county": 26,
+      "name": "Kiminini",
+      "code": "026-KM",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 302,
+    "fields": {
+      "sub_county": 99,
+      "name": "Kiminini",
+      "code": "026-KM-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 303,
+    "fields": {
+      "sub_county": 99,
+      "name": "Sirende",
+      "code": "026-KM-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 175,
+    "fields": {
+      "county": 26,
+      "name": "Trans Nzoia County Constituency",
+      "code": "CON-026",
+      "mp_name": "Hon. Janet Nangabo",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 27,
+    "fields": {
+      "code": "027",
+      "name": "Uasin Gishu",
+      "capital": "Eldoret",
+      "governor": "Jonathan Bii Chelilim",
+      "population": 1163186,
+      "area_sqkm": 3345.2,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 100,
+    "fields": {
+      "county": 27,
+      "name": "Eldoret Town",
+      "code": "027-ET",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 304,
+    "fields": {
+      "sub_county": 100,
+      "name": "Kapsoya",
+      "code": "027-ET-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 305,
+    "fields": {
+      "sub_county": 100,
+      "name": "Langas",
+      "code": "027-ET-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 101,
+    "fields": {
+      "county": 27,
+      "name": "Turbo",
+      "code": "027-TB",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 306,
+    "fields": {
+      "sub_county": 101,
+      "name": "Turbo",
+      "code": "027-TB-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 307,
+    "fields": {
+      "sub_county": 101,
+      "name": "Sugoi",
+      "code": "027-TB-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 176,
+    "fields": {
+      "county": 27,
+      "name": "Uasin Gishu County Constituency",
+      "code": "CON-027",
+      "mp_name": "Hon. Gladys Shollei",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 28,
+    "fields": {
+      "code": "028",
+      "name": "Elgeyo Marakwet",
+      "capital": "Iten",
+      "governor": "Wisley Rotich",
+      "population": 454480,
+      "area_sqkm": 3049.8,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 102,
+    "fields": {
+      "county": 28,
+      "name": "Keiyo North",
+      "code": "028-KN",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 308,
+    "fields": {
+      "sub_county": 102,
+      "name": "Iten Township",
+      "code": "028-KN-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 309,
+    "fields": {
+      "sub_county": 102,
+      "name": "Kamariny",
+      "code": "028-KN-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 103,
+    "fields": {
+      "county": 28,
+      "name": "Marakwet East",
+      "code": "028-ME",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 310,
+    "fields": {
+      "sub_county": 103,
+      "name": "Chesoi",
+      "code": "028-ME-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 311,
+    "fields": {
+      "sub_county": 103,
+      "name": "Embobut",
+      "code": "028-ME-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 177,
+    "fields": {
+      "county": 28,
+      "name": "Elgeyo Marakwet County Constituency",
+      "code": "CON-028",
+      "mp_name": "Hon. Caroline Ng'elechei",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 29,
+    "fields": {
+      "code": "029",
+      "name": "Nandi",
+      "capital": "Kapsabet",
+      "governor": "Stephen Sang",
+      "population": 885711,
+      "area_sqkm": 2884.2,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 104,
+    "fields": {
+      "county": 29,
+      "name": "Nandi Hills",
+      "code": "029-NH",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 312,
+    "fields": {
+      "sub_county": 104,
+      "name": "Nandi Hills Town",
+      "code": "029-NH-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 313,
+    "fields": {
+      "sub_county": 104,
+      "name": "Chepkunyuk",
+      "code": "029-NH-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 105,
+    "fields": {
+      "county": 29,
+      "name": "Kapsabet",
+      "code": "029-KP",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 314,
+    "fields": {
+      "sub_county": 105,
+      "name": "Kapsabet Town",
+      "code": "029-KP-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 315,
+    "fields": {
+      "sub_county": 105,
+      "name": "Chemundu",
+      "code": "029-KP-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 178,
+    "fields": {
+      "county": 29,
+      "name": "Nandi County Constituency",
+      "code": "CON-029",
+      "mp_name": "Hon. Cynthia Muge",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 30,
+    "fields": {
+      "code": "030",
+      "name": "Baringo",
+      "capital": "Kabarnet",
+      "governor": "Benjamin Cheboi",
+      "population": 666763,
+      "area_sqkm": 11015.3,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 106,
+    "fields": {
+      "county": 30,
+      "name": "Baringo Central",
+      "code": "030-BC",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 316,
+    "fields": {
+      "sub_county": 106,
+      "name": "Kabarnet",
+      "code": "030-BC-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 317,
+    "fields": {
+      "sub_county": 106,
+      "name": "Kapropita",
+      "code": "030-BC-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 107,
+    "fields": {
+      "county": 30,
+      "name": "Baringo North",
+      "code": "030-BN",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 318,
+    "fields": {
+      "sub_county": 107,
+      "name": "Kabartonjo",
+      "code": "030-BN-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 319,
+    "fields": {
+      "sub_county": 107,
+      "name": "Bartabwa",
+      "code": "030-BN-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 179,
+    "fields": {
+      "county": 30,
+      "name": "Baringo County Constituency",
+      "code": "CON-030",
+      "mp_name": "Hon. Martha Wangari",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 31,
+    "fields": {
+      "code": "031",
+      "name": "Laikipia",
+      "capital": "Nanyuki",
+      "governor": "Joshua Irungu",
+      "population": 518560,
+      "area_sqkm": 9462.2,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 108,
+    "fields": {
+      "county": 31,
+      "name": "Laikipia East",
+      "code": "031-LE",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 320,
+    "fields": {
+      "sub_county": 108,
+      "name": "Nanyuki",
+      "code": "031-LE-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 321,
+    "fields": {
+      "sub_county": 108,
+      "name": "Tigithi",
+      "code": "031-LE-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 109,
+    "fields": {
+      "county": 31,
+      "name": "Laikipia West",
+      "code": "031-LW",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 322,
+    "fields": {
+      "sub_county": 109,
+      "name": "Nyahururu",
+      "code": "031-LW-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 323,
+    "fields": {
+      "sub_county": 109,
+      "name": "Rumuruti",
+      "code": "031-LW-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 180,
+    "fields": {
+      "county": 31,
+      "name": "Laikipia County Constituency",
+      "code": "CON-031",
+      "mp_name": "Hon. Jane Kagiri",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 32,
+    "fields": {
+      "code": "032",
+      "name": "Nakuru",
+      "capital": "Nakuru",
+      "governor": "Susan Kihika",
+      "population": 2162202,
+      "area_sqkm": 7495.3,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 110,
+    "fields": {
+      "county": 32,
+      "name": "Nakuru Town East",
+      "code": "032-NE",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 324,
+    "fields": {
+      "sub_county": 110,
+      "name": "Nakuru East",
+      "code": "032-NE-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 325,
+    "fields": {
+      "sub_county": 110,
+      "name": "Menengai",
+      "code": "032-NE-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 111,
+    "fields": {
+      "county": 32,
+      "name": "Naivasha",
+      "code": "032-NV",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 326,
+    "fields": {
+      "sub_county": 111,
+      "name": "Naivasha Town",
+      "code": "032-NV-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 327,
+    "fields": {
+      "sub_county": 111,
+      "name": "Mai Mahiu",
+      "code": "032-NV-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 181,
+    "fields": {
+      "county": 32,
+      "name": "Nakuru County Constituency",
+      "code": "CON-032",
+      "mp_name": "Hon. Liza Chelule",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 33,
+    "fields": {
+      "code": "033",
+      "name": "Narok",
+      "capital": "Narok",
+      "governor": "Patrick Ole Ntutu",
+      "population": 1157873,
+      "area_sqkm": 17933.5,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 112,
+    "fields": {
+      "county": 33,
+      "name": "Narok Town",
+      "code": "033-NT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 328,
+    "fields": {
+      "sub_county": 112,
+      "name": "Narok Township",
+      "code": "033-NT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 329,
+    "fields": {
+      "sub_county": 112,
+      "name": "Nkareta",
+      "code": "033-NT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 113,
+    "fields": {
+      "county": 33,
+      "name": "Narok South",
+      "code": "033-NS",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 330,
+    "fields": {
+      "sub_county": 113,
+      "name": "Ololulunga",
+      "code": "033-NS-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 331,
+    "fields": {
+      "sub_county": 113,
+      "name": "Maji Moto",
+      "code": "033-NS-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 182,
+    "fields": {
+      "county": 33,
+      "name": "Narok County Constituency",
+      "code": "CON-033",
+      "mp_name": "Hon. Rebecca Tonkei",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 34,
+    "fields": {
+      "code": "034",
+      "name": "Kajiado",
+      "capital": "Kajiado",
+      "governor": "Joseph Ole Lenku",
+      "population": 1117840,
+      "area_sqkm": 21900.8,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 114,
+    "fields": {
+      "county": 34,
+      "name": "Kajiado Central",
+      "code": "034-KC",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 332,
+    "fields": {
+      "sub_county": 114,
+      "name": "Kajiado Township",
+      "code": "034-KC-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 333,
+    "fields": {
+      "sub_county": 114,
+      "name": "Ildamat",
+      "code": "034-KC-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 115,
+    "fields": {
+      "county": 34,
+      "name": "Kajiado North",
+      "code": "034-KN",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 334,
+    "fields": {
+      "sub_county": 115,
+      "name": "Ngong",
+      "code": "034-KN-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 335,
+    "fields": {
+      "sub_county": 115,
+      "name": "Ongata Rongai",
+      "code": "034-KN-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 183,
+    "fields": {
+      "county": 34,
+      "name": "Kajiado County Constituency",
+      "code": "CON-034",
+      "mp_name": "Hon. Leah Sankaire",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 35,
+    "fields": {
+      "code": "035",
+      "name": "Kericho",
+      "capital": "Kericho",
+      "governor": "Erick Mutai",
+      "population": 901777,
+      "area_sqkm": 2454.5,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 116,
+    "fields": {
+      "county": 35,
+      "name": "Ainamoi",
+      "code": "035-AI",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 336,
+    "fields": {
+      "sub_county": 116,
+      "name": "Kapsoit",
+      "code": "035-AI-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 337,
+    "fields": {
+      "sub_county": 116,
+      "name": "Ainamoi",
+      "code": "035-AI-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 117,
+    "fields": {
+      "county": 35,
+      "name": "Belgut",
+      "code": "035-BL",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 338,
+    "fields": {
+      "sub_county": 117,
+      "name": "Chepseon",
+      "code": "035-BL-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 339,
+    "fields": {
+      "sub_county": 117,
+      "name": "Kapsuser",
+      "code": "035-BL-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 184,
+    "fields": {
+      "county": 35,
+      "name": "Kericho County Constituency",
+      "code": "CON-035",
+      "mp_name": "Hon. Beatrice Kemei",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 36,
+    "fields": {
+      "code": "036",
+      "name": "Bomet",
+      "capital": "Bomet",
+      "governor": "Hillary Barchok",
+      "population": 875689,
+      "area_sqkm": 2530.4,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 118,
+    "fields": {
+      "county": 36,
+      "name": "Bomet Central",
+      "code": "036-BC",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 340,
+    "fields": {
+      "sub_county": 118,
+      "name": "Bomet Township",
+      "code": "036-BC-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 341,
+    "fields": {
+      "sub_county": 118,
+      "name": "Silibwet",
+      "code": "036-BC-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 119,
+    "fields": {
+      "county": 36,
+      "name": "Sotik",
+      "code": "036-ST",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 342,
+    "fields": {
+      "sub_county": 119,
+      "name": "Sotik",
+      "code": "036-ST-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 343,
+    "fields": {
+      "sub_county": 119,
+      "name": "Kaplong",
+      "code": "036-ST-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 185,
+    "fields": {
+      "county": 36,
+      "name": "Bomet County Constituency",
+      "code": "CON-036",
+      "mp_name": "Hon. Linet Toto",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 37,
+    "fields": {
+      "code": "037",
+      "name": "Kakamega",
+      "capital": "Kakamega",
+      "governor": "Fernandes Barasa",
+      "population": 1867579,
+      "area_sqkm": 3033.8,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 120,
+    "fields": {
+      "county": 37,
+      "name": "Lurambi",
+      "code": "037-LR",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 344,
+    "fields": {
+      "sub_county": 120,
+      "name": "Butsotso",
+      "code": "037-LR-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 345,
+    "fields": {
+      "sub_county": 120,
+      "name": "Shikhambi",
+      "code": "037-LR-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 121,
+    "fields": {
+      "county": 37,
+      "name": "Mumias",
+      "code": "037-MM",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 346,
+    "fields": {
+      "sub_county": 121,
+      "name": "Mumias Central",
+      "code": "037-MM-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 347,
+    "fields": {
+      "sub_county": 121,
+      "name": "Mumias North",
+      "code": "037-MM-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 186,
+    "fields": {
+      "county": 37,
+      "name": "Kakamega County Constituency",
+      "code": "CON-037",
+      "mp_name": "Hon. Elsie Muhanda",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 38,
+    "fields": {
+      "code": "038",
+      "name": "Vihiga",
+      "capital": "Vihiga",
+      "governor": "Wilber Ottichilo",
+      "population": 590013,
+      "area_sqkm": 563.7,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 122,
+    "fields": {
+      "county": 38,
+      "name": "Vihiga",
+      "code": "038-VH",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 348,
+    "fields": {
+      "sub_county": 122,
+      "name": "Maragoli",
+      "code": "038-VH-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 349,
+    "fields": {
+      "sub_county": 122,
+      "name": "Chavakali",
+      "code": "038-VH-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 123,
+    "fields": {
+      "county": 38,
+      "name": "Sabatia",
+      "code": "038-SB",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 350,
+    "fields": {
+      "sub_county": 123,
+      "name": "Sabatia",
+      "code": "038-SB-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 351,
+    "fields": {
+      "sub_county": 123,
+      "name": "Busali",
+      "code": "038-SB-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 187,
+    "fields": {
+      "county": 38,
+      "name": "Vihiga County Constituency",
+      "code": "CON-038",
+      "mp_name": "Hon. Beatrice Adagala",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 39,
+    "fields": {
+      "code": "039",
+      "name": "Bungoma",
+      "capital": "Bungoma",
+      "governor": "Kenneth Lusaka",
+      "population": 1670570,
+      "area_sqkm": 3032.2,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 124,
+    "fields": {
+      "county": 39,
+      "name": "Bungoma South",
+      "code": "039-BS",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 352,
+    "fields": {
+      "sub_county": 124,
+      "name": "Township",
+      "code": "039-BS-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 353,
+    "fields": {
+      "sub_county": 124,
+      "name": "Khalaba",
+      "code": "039-BS-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 125,
+    "fields": {
+      "county": 39,
+      "name": "Webuye",
+      "code": "039-WB",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 354,
+    "fields": {
+      "sub_county": 125,
+      "name": "Webuye Town",
+      "code": "039-WB-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 355,
+    "fields": {
+      "sub_county": 125,
+      "name": "Mihuu",
+      "code": "039-WB-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 188,
+    "fields": {
+      "county": 39,
+      "name": "Bungoma County Constituency",
+      "code": "CON-039",
+      "mp_name": "Hon. Catherine Wambilianga",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 40,
+    "fields": {
+      "code": "040",
+      "name": "Busia",
+      "capital": "Busia",
+      "governor": "Paul Otuoma",
+      "population": 893681,
+      "area_sqkm": 1694.5,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 126,
+    "fields": {
+      "county": 40,
+      "name": "Busia Town",
+      "code": "040-BT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 356,
+    "fields": {
+      "sub_county": 126,
+      "name": "Busia Township",
+      "code": "040-BT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 357,
+    "fields": {
+      "sub_county": 126,
+      "name": "Burumba",
+      "code": "040-BT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 127,
+    "fields": {
+      "county": 40,
+      "name": "Nambale",
+      "code": "040-NB",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 358,
+    "fields": {
+      "sub_county": 127,
+      "name": "Nambale Township",
+      "code": "040-NB-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 359,
+    "fields": {
+      "sub_county": 127,
+      "name": "Bukhayo",
+      "code": "040-NB-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 189,
+    "fields": {
+      "county": 40,
+      "name": "Busia County Constituency",
+      "code": "CON-040",
+      "mp_name": "Hon. Catherine Omanyo",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 41,
+    "fields": {
+      "code": "041",
+      "name": "Siaya",
+      "capital": "Siaya",
+      "governor": "James Orengo",
+      "population": 993183,
+      "area_sqkm": 2530.4,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 128,
+    "fields": {
+      "county": 41,
+      "name": "Alego Usonga",
+      "code": "041-AU",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 360,
+    "fields": {
+      "sub_county": 128,
+      "name": "Siaya Township",
+      "code": "041-AU-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 361,
+    "fields": {
+      "sub_county": 128,
+      "name": "Usonga",
+      "code": "041-AU-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 129,
+    "fields": {
+      "county": 41,
+      "name": "Bondo",
+      "code": "041-BD",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 362,
+    "fields": {
+      "sub_county": 129,
+      "name": "Bondo Town",
+      "code": "041-BD-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 363,
+    "fields": {
+      "sub_county": 129,
+      "name": "Yimbo",
+      "code": "041-BD-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 190,
+    "fields": {
+      "county": 41,
+      "name": "Siaya County Constituency",
+      "code": "CON-041",
+      "mp_name": "Hon. Christine Ombaka",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 42,
+    "fields": {
+      "code": "042",
+      "name": "Kisumu",
+      "capital": "Kisumu",
+      "governor": "Anyang' Nyong'o",
+      "population": 1155574,
+      "area_sqkm": 2085.9,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 130,
+    "fields": {
+      "county": 42,
+      "name": "Kisumu Central",
+      "code": "042-KC",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 364,
+    "fields": {
+      "sub_county": 130,
+      "name": "Kisumu Township",
+      "code": "042-KC-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 365,
+    "fields": {
+      "sub_county": 130,
+      "name": "Nyalenda",
+      "code": "042-KC-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 131,
+    "fields": {
+      "county": 42,
+      "name": "Nyando",
+      "code": "042-NY",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 366,
+    "fields": {
+      "sub_county": 131,
+      "name": "Ahero",
+      "code": "042-NY-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 367,
+    "fields": {
+      "sub_county": 131,
+      "name": "Kochogo",
+      "code": "042-NY-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 191,
+    "fields": {
+      "county": 42,
+      "name": "Kisumu County Constituency",
+      "code": "CON-042",
+      "mp_name": "Hon. Ruth Odinga",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 43,
+    "fields": {
+      "code": "043",
+      "name": "Homa Bay",
+      "capital": "Homa Bay",
+      "governor": "Gladys Wanga",
+      "population": 1131950,
+      "area_sqkm": 3183.3,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 132,
+    "fields": {
+      "county": 43,
+      "name": "Homa Bay Town",
+      "code": "043-HT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 368,
+    "fields": {
+      "sub_county": 132,
+      "name": "Homa Bay Township",
+      "code": "043-HT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 369,
+    "fields": {
+      "sub_county": 132,
+      "name": "Kanyamwa",
+      "code": "043-HT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 133,
+    "fields": {
+      "county": 43,
+      "name": "Rachuonyo North",
+      "code": "043-RN",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 370,
+    "fields": {
+      "sub_county": 133,
+      "name": "Kendu Bay",
+      "code": "043-RN-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 371,
+    "fields": {
+      "sub_county": 133,
+      "name": "Kanyadhiang",
+      "code": "043-RN-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 192,
+    "fields": {
+      "county": 43,
+      "name": "Homa Bay County Constituency",
+      "code": "CON-043",
+      "mp_name": "Hon. Lilian Achieng",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 44,
+    "fields": {
+      "code": "044",
+      "name": "Migori",
+      "capital": "Migori",
+      "governor": "Ochilo Ayacko",
+      "population": 1116436,
+      "area_sqkm": 2596.5,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 134,
+    "fields": {
+      "county": 44,
+      "name": "Migori Town",
+      "code": "044-MT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 372,
+    "fields": {
+      "sub_county": 134,
+      "name": "Migori Township",
+      "code": "044-MT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 373,
+    "fields": {
+      "sub_county": 134,
+      "name": "Central Kamagambo",
+      "code": "044-MT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 135,
+    "fields": {
+      "county": 44,
+      "name": "Awendo",
+      "code": "044-AW",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 374,
+    "fields": {
+      "sub_county": 135,
+      "name": "Awendo",
+      "code": "044-AW-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 375,
+    "fields": {
+      "sub_county": 135,
+      "name": "Sakwa",
+      "code": "044-AW-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 193,
+    "fields": {
+      "county": 44,
+      "name": "Migori County Constituency",
+      "code": "CON-044",
+      "mp_name": "Hon. Pamela Odhiambo",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 45,
+    "fields": {
+      "code": "045",
+      "name": "Kisii",
+      "capital": "Kisii",
+      "governor": "Simba Arati",
+      "population": 1266860,
+      "area_sqkm": 1317.9,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 136,
+    "fields": {
+      "county": 45,
+      "name": "Kisii Central",
+      "code": "045-KC",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 376,
+    "fields": {
+      "sub_county": 136,
+      "name": "Kisii Township",
+      "code": "045-KC-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 377,
+    "fields": {
+      "sub_county": 136,
+      "name": "Bobaracho",
+      "code": "045-KC-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 137,
+    "fields": {
+      "county": 45,
+      "name": "Marani",
+      "code": "045-MR",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 378,
+    "fields": {
+      "sub_county": 137,
+      "name": "Marani",
+      "code": "045-MR-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 379,
+    "fields": {
+      "sub_county": 137,
+      "name": "Kegogi",
+      "code": "045-MR-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 194,
+    "fields": {
+      "county": 45,
+      "name": "Kisii County Constituency",
+      "code": "CON-045",
+      "mp_name": "Hon. Dorice Donya",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 46,
+    "fields": {
+      "code": "046",
+      "name": "Nyamira",
+      "capital": "Nyamira",
+      "governor": "Amos Nyaribo",
+      "population": 605576,
+      "area_sqkm": 897.3,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 138,
+    "fields": {
+      "county": 46,
+      "name": "Nyamira Town",
+      "code": "046-NT",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 380,
+    "fields": {
+      "sub_county": 138,
+      "name": "Nyamira Township",
+      "code": "046-NT-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 381,
+    "fields": {
+      "sub_county": 138,
+      "name": "Bosamaro",
+      "code": "046-NT-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 139,
+    "fields": {
+      "county": 46,
+      "name": "Manga",
+      "code": "046-MG",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 382,
+    "fields": {
+      "sub_county": 139,
+      "name": "Manga",
+      "code": "046-MG-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 383,
+    "fields": {
+      "sub_county": 139,
+      "name": "Kemera",
+      "code": "046-MG-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 195,
+    "fields": {
+      "county": 46,
+      "name": "Nyamira County Constituency",
+      "code": "CON-046",
+      "mp_name": "Hon. Jerusha Momanyi",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.County",
+    "pk": 47,
+    "fields": {
+      "code": "047",
+      "name": "Nairobi",
+      "capital": "Nairobi City",
+      "governor": "Johnson Sakaja",
+      "population": 4397073,
+      "area_sqkm": 696.1,
+      "is_active": true,
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 140,
+    "fields": {
+      "county": 47,
+      "name": "Westlands",
+      "code": "047-WL",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 384,
+    "fields": {
+      "sub_county": 140,
+      "name": "Kitisuru",
+      "code": "047-WL-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 385,
+    "fields": {
+      "sub_county": 140,
+      "name": "Parklands/Highridge",
+      "code": "047-WL-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.SubCounty",
+    "pk": 141,
+    "fields": {
+      "county": 47,
+      "name": "Kasarani",
+      "code": "047-KS",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 386,
+    "fields": {
+      "sub_county": 141,
+      "name": "Roysambu",
+      "code": "047-KS-01",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Ward",
+    "pk": 387,
+    "fields": {
+      "sub_county": 141,
+      "name": "Kasarani",
+      "code": "047-KS-02",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  },
+  {
+    "model": "counties.Constituency",
+    "pk": 196,
+    "fields": {
+      "county": 47,
+      "name": "Nairobi County Constituency",
+      "code": "CON-047",
+      "mp_name": "Hon. Esther Passaris",
+      "created_at": "2025-01-01T00:00:00.000Z",
+      "updated_at": "2025-01-01T00:00:00.000Z"
+    }
+  }
+]

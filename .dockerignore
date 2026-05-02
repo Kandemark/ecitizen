@@ -1,0 +1,79 @@
+# ==============================================================================
+# e-Citizen Kenya — .dockerignore
+# Everything not needed inside the Docker build context.
+# ==============================================================================
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+venv/
+.venv/
+env/
+.env/
+
+# ── Git ───────────────────────────────────────────────────────────────────────
+.git/
+.gitignore
+.gitattributes
+.github/
+
+# ── Environment & secrets ─────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+credentials.json
+service-account.json
+*.pem
+*.key
+
+# ── IDE / Editor ──────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.cursor/
+
+# ── OS files ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ── Django runtime (mounted as volumes or built fresh) ────────────────────────
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+collected-static/
+
+# ── Testing & Coverage ────────────────────────────────────────────────────────
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+.mypy_cache/
+
+# ── Node (if frontend tooling exists) ─────────────────────────────────────────
+node_modules/
+.npm/
+.yarn/
+
+# ── Docker / CI ───────────────────────────────────────────────────────────────
+.docker/
+docker-compose.override.yml
+*.md
+LICENSE
+
+# ── Claude Code ───────────────────────────────────────────────────────────────
+.claude/
+
+# ── Logs & temp ───────────────────────────────────────────────────────────────
+*.log
+*.bak
+*.tmp
+.cache/

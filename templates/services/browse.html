@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Government Services — e-Citizen Kenya{% endblock %}
+
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="flex flex-wrap justify-between items-start gap-3 mb-6">
+      <div>
+        <p class="text-[32px] font-bold leading-tight">Government Services</p>
+        <p class="text-[#60758a] text-sm mt-1">{{ total_services }} services available across {{ ministries|length }} ministries</p>
+      </div>
+    </div>
+
+    <!-- Search bar -->
+    <div class="mb-8">
+      <input type="search"
+        name="q"
+        placeholder="Search services by name, ministry, or category..."
+        hx-get="{% url 'service_browse' %}"
+        hx-trigger="keyup changed delay:300ms"
+        hx-target="#serviceGrid"
+        hx-swap="innerHTML"
+        hx-include="[name='ministry'],[name='category'],[name='is_free']"
+        class="w-full max-w-2xl rounded-xl border border-[#dbe0e6] h-12 px-5 text-sm focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f] focus:outline-none"
+        placeholder="e.g. passport, driving license, business registration..." />
+    </div>
+
+    <!-- Filter bar -->
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+      <div class="text-sm font-medium text-[#60758a]">Filter:</div>
+      <select name="ministry" hx-get="{% url 'service_browse' %}" hx-trigger="change" hx-target="#serviceGrid" hx-include="[name='q'],[name='category'],[name='is_free']" class="rounded-lg border border-[#dbe0e6] h-10 px-3 text-sm bg-white focus:border-[#0b6e4f] focus:outline-none">
+        <option value="">All Ministries</option>
+        {% for m_name, m_data in ministries.items %}
+          <option value="{{ m_data.ministry.id }}">{{ m_name }}</option>
+        {% endfor %}
+      </select>
+      <select name="category" hx-get="{% url 'service_browse' %}" hx-trigger="change" hx-target="#serviceGrid" hx-include="[name='q'],[name='ministry'],[name='is_free']" class="rounded-lg border border-[#dbe0e6] h-10 px-3 text-sm bg-white focus:border-[#0b6e4f] focus:outline-none">
+        <option value="">All Categories</option>
+        {% for cat in categories %}
+          <option value="{{ cat.id }}">{{ cat.name }}</option>
+        {% endfor %}
+      </select>
+      <label class="flex items-center gap-2 text-sm cursor-pointer">
+        <input type="checkbox" name="is_free" value="1" hx-get="{% url 'service_browse' %}" hx-trigger="change" hx-target="#serviceGrid" hx-include="[name='q'],[name='ministry'],[name='category']" class="rounded border-[#dbe0e6] text-[#0b6e4f] focus:ring-[#0b6e4f]" />
+        Free services only
+      </label>
+    </div>
+
+    <!-- Service grid (htmx target) -->
+    <div id="serviceGrid">
+      {% include 'services/includes/service_grid.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load ecitizen_tags %}
+{% block title %}{{ title }} {{ record.reference }} — e-Citizen{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'transport:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Transport</a>
+  <div class="card mb-6"><div class="flex items-center justify-between"><div><h1 class="text-xl font-bold text-[#111418]">{{ title }}</h1><p class="text-sm text-[#60758a]">Ref: {{ record.reference }}</p></div><span class="status-badge text-sm px-3 py-1 rounded-full {{ record.status|status_color }} font-medium">{{ record.get_status_display }}</span></div></div>
+  <div class="card"><h2 class="font-bold text-[#111418] mb-4">Details</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {% if app_type == 'license' %}
+      <div><span class="text-xs text-[#60758a] block">License Class</span><span class="text-sm font-medium">{{ record.get_license_class_display }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Blood Group</span><span class="text-sm font-medium">{{ record.blood_group|default:"—" }}</span></div>
+      {% elif app_type == 'vehicle' %}
+      <div><span class="text-xs text-[#60758a] block">Plate Number</span><span class="text-sm font-medium">{{ record.plate_number }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Make & Model</span><span class="text-sm font-medium">{{ record.vehicle_make }} {{ record.vehicle_model }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Year</span><span class="text-sm font-medium">{{ record.year_of_manufacture|default:"—" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Color</span><span class="text-sm font-medium">{{ record.color|default:"—" }}</span></div>
+      {% elif app_type == 'psv' %}
+      <div><span class="text-xs text-[#60758a] block">Route</span><span class="text-sm font-medium">{{ record.route }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Vehicle</span><span class="text-sm font-medium">{{ record.vehicle.plate_number|default:"—" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Operator</span><span class="text-sm font-medium">{{ record.operator_name|default:"—" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">SACCO</span><span class="text-sm font-medium">{{ record.sacco_name|default:"—" }}</span></div>
+      {% elif app_type == 'inspection' %}
+      <div><span class="text-xs text-[#60758a] block">Vehicle</span><span class="text-sm font-medium">{{ record.vehicle.plate_number|default:"—" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Center</span><span class="text-sm font-medium">{{ record.inspection_center }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Result</span><span class="text-sm font-medium">{{ record.result|title }}</span></div>
+      {% endif %}
+      <div><span class="text-xs text-[#60758a] block">Submitted</span><span class="text-sm font-medium">{{ record.created_at|date:"d M Y, H:i" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Last Updated</span><span class="text-sm font-medium">{{ record.updated_at|date:"d M Y, H:i" }}</span></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

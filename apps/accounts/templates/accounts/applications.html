@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}My Applications — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <p class="text-[32px] font-bold leading-tight mb-6">My Applications</p>
+    {% if applications %}
+    <div class="grid grid-cols-1 gap-3">
+      {% for app in applications %}
+      <a href="{% url 'application_detail' app.reference %}" class="flex items-center justify-between border border-[#dbe0e6] rounded-lg p-4 bg-white hover:border-[#0b6e4f] hover:shadow-sm transition">
+        <div>
+          <p class="font-medium">{{ app.service.name }}</p>
+          <p class="text-sm text-[#60758a]">Ref: {{ app.reference }} &middot; {{ app.created_at|date:"F j, Y" }}</p>
+        </div>
+        {% include 'components/status_badge.html' with status=app.status %}
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="border border-[#dbe0e6] rounded-lg p-8 text-center">
+      <p class="text-[#60758a]">You haven't submitted any applications yet.</p>
+      <a href="{% url 'services_list' %}" class="inline-block mt-3 h-10 px-6 bg-[#f1f2f4] rounded-full font-bold text-sm leading-10">Browse Services</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

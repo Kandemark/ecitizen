@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% load ecitizen_tags %}
+{% block title %}Bid {{ record.reference }} — e-Citizen{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'procurement:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Procurement</a>
+  <div class="card mb-6"><div class="flex items-center justify-between"><div><h1 class="text-xl font-bold text-[#111418]">Bid {{ record.reference }}</h1><p class="text-sm text-[#60758a]">{{ record.tender.tender_number }}</p></div><span class="status-badge text-sm px-3 py-1 rounded-full {{ record.status|status_color }} font-medium">{{ record.get_status_display }}</span></div></div>
+  <div class="card"><h2 class="font-bold text-[#111418] mb-4">Bid Details</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div><span class="text-xs text-[#60758a] block">Company</span><span class="text-sm font-medium">{{ record.company_name }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Bid Amount</span><span class="text-sm font-medium">KES {{ record.bid_amount|floatformat:2 }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Technical Score</span><span class="text-sm font-medium">{{ record.technical_score }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Financial Score</span><span class="text-sm font-medium">{{ record.financial_score }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Submitted</span><span class="text-sm font-medium">{{ record.created_at|date:"d M Y, H:i" }}</span></div>
+  </div></div>
+</div>{% endblock %}

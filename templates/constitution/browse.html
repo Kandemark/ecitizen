@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Constitution of Kenya, 2010 — e-Citizen{% endblock %}
+
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[1100px] mx-auto">
+    <!-- Preamble -->
+    <div class="bg-gradient-to-br from-[#0b6e4f] to-[#095d42] text-white rounded-2xl p-10 mb-8">
+      <p class="text-sm font-medium text-white/70 uppercase tracking-wide">The Republic of Kenya</p>
+      <h1 class="text-[32px] font-bold leading-tight mt-1">Constitution of Kenya, 2010</h1>
+      <p class="mt-4 text-white/80 leading-relaxed max-w-3xl text-sm">
+        We, the people of Kenya — acknowledging the supremacy of the Almighty God of all creation,
+        honouring those who heroically struggled to bring freedom and justice to our land,
+        and proud of our ethnic, cultural and religious diversity, and determined to live in
+        peace and unity as one indivisible sovereign nation.
+      </p>
+      <div class="flex flex-wrap items-center gap-6 mt-5 text-sm text-white/70">
+        <span>{{ chapters|length }} Chapters</span>
+        <span>{{ schedules|length }} Schedules</span>
+        <span>Promulgated 27 August 2010</span>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <form action="{% url 'constitution:search' %}" method="get" class="mb-8">
+      <div class="relative max-w-2xl">
+        <svg class="size-5 absolute left-4 top-1/2 -translate-y-1/2 text-[#60758a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="search" name="q" placeholder="Search the Constitution — e.g. sovereignty, bill of rights, land, elections…"
+               class="w-full pl-12 pr-4 py-3 text-sm rounded-xl border border-[#dbe0e6] focus:border-[#0b6e4f] focus:ring-2 focus:ring-[#0b6e4f]/20 focus:outline-none shadow-sm">
+      </div>
+    </form>
+
+    <!-- Chapters -->
+    <div class="grid gap-4 sm:grid-cols-2">
+      {% for ch in chapters %}
+        <a href="{% url 'constitution:chapter' ch.number %}"
+           class="group block bg-white rounded-xl border border-[#dbe0e6] p-5 hover:border-[#0b6e4f] hover:shadow-md transition">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 size-10 rounded-lg bg-[#0b6e4f]/10 text-[#0b6e4f] flex items-center justify-center font-bold text-sm">
+              {{ ch.number }}
+            </div>
+            <div class="min-w-0">
+              <h3 class="font-semibold text-[#111418] group-hover:text-[#0b6e4f] transition">{{ ch.title }}</h3>
+              {% if ch.subtitle %}<p class="text-sm text-[#60758a] mt-0.5">{{ ch.subtitle }}</p>{% endif %}
+              {% if ch.overview %}<p class="text-sm text-[#60758a] mt-2 line-clamp-2">{{ ch.overview }}</p>{% endif %}
+              <span class="inline-block mt-2 text-xs text-[#0b6e4f] font-medium group-hover:translate-x-1 transition-transform">
+                {{ ch.article_count }} article{{ ch.article_count|pluralize }} &rarr;
+              </span>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    <!-- Schedules -->
+    <div class="mt-10">
+      <h2 class="text-lg font-bold text-[#111418] mb-4">
+        <a href="{% url 'constitution:schedules' %}" class="hover:text-[#0b6e4f] transition">Schedules</a>
+      </h2>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {% for s in schedules %}
+          <div class="bg-white rounded-xl border border-[#dbe0e6] p-4">
+            <div class="flex items-center gap-3">
+              <div class="flex-shrink-0 size-8 rounded-lg bg-[#60758a]/10 text-[#60758a] flex items-center justify-center font-bold text-xs">{{ s.number }}</div>
+              <div>
+                <h4 class="text-sm font-semibold text-[#111418]">{{ s.title }}</h4>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <p class="text-sm text-[#60758a] col-span-full">No schedules loaded.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

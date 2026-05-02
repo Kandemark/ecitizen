@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}My Appointments — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <p class="text-[32px] font-bold leading-tight">My Appointments</p>
+        <p class="text-[#60758a] text-sm mt-1">{{ appointments|length }} appointment{{ appointments|length|pluralize }}</p>
+      </div>
+      <a href="{% url 'book_appointment' %}" class="h-10 px-5 bg-[#0b6e4f] text-white rounded-full text-sm font-medium leading-10 hover:bg-[#095d42] transition">
+        Book New
+      </a>
+    </div>
+
+    {% if appointments %}
+    <div class="space-y-3">
+      {% for apt in appointments %}
+      <div class="flex items-center justify-between border border-[#dbe0e6] rounded-lg p-4 bg-white">
+        <div class="flex items-start gap-3">
+          <div class="flex-shrink-0 size-12 rounded-full bg-[#e8f5ef] text-[#0b6e4f] flex items-center justify-center text-sm font-bold">
+            {{ apt.time_slot.date|date:"d" }}<br><span class="text-[10px]">{{ apt.time_slot.date|date:"M" }}</span>
+          </div>
+          <div>
+            <p class="font-medium">{{ apt.service.name|default:"General Appointment" }}</p>
+            <p class="text-sm text-[#60758a]">{{ apt.time_slot.date|date:"F j, Y" }} at {{ apt.time_slot.start_time|time:"g:i A" }}</p>
+            <p class="text-xs text-[#60758a]">{{ apt.time_slot.office.name }} &middot; Ref: {{ apt.reference }}</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          {% include 'components/status_badge.html' with status=apt.status %}
+          {% if apt.status == 'scheduled' or apt.status == 'confirmed' %}
+          <a href="{% url 'cancel_appointment' apt.pk %}" class="text-xs text-red-600 hover:underline" onclick="return confirm('Cancel this appointment?')">Cancel</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="border border-[#dbe0e6] rounded-lg p-8 text-center">
+      <p class="text-[#60758a]">You have no appointments.</p>
+      <a href="{% url 'book_appointment' %}" class="inline-block mt-3 h-10 px-6 bg-[#f1f2f4] rounded-full font-bold text-sm leading-10">Book an Appointment</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

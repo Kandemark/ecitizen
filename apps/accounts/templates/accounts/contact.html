@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <p class="text-[32px] font-bold leading-tight mb-2">Contact Us</p>
+    <p class="text-[#60758a] text-sm mb-6">Get in touch with the e-Citizen support team</p>
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="mb-4 p-3 rounded-lg text-sm {% if msg.tags == 'error' %}bg-red-50 text-red-700{% else %}bg-green-50 text-green-700{% endif %}">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+    <form method="post" class="max-w-[480px] flex flex-col gap-4">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="h-10 px-6 bg-[#111418] text-white rounded-full font-bold text-sm">Send Message</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}{{ consultation.title }} — e-Citizen{% endblock %}{% block content %}
+<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'participation:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Public Participation</a>
+  <div class="card mb-6"><h1 class="text-xl font-bold text-[#111418] mb-2">{{ consultation.title }}</h1><p class="text-sm text-[#60758a] mb-4">{{ consultation.description }}</p><div class="flex gap-6 text-xs text-[#60758a]"><span>{{ consultation.ministry.name }}</span><span>Starts: {{ consultation.start_date|date:"d M Y" }}</span><span>Ends: {{ consultation.end_date|date:"d M Y" }}</span></div></div>
+  <div class="card mb-6"><h2 class="font-bold text-[#111418] mb-4">Comments ({{ comments|length }})</h2>
+    {% if comments %}<div class="space-y-4">{% for c in comments %}<div class="border-b border-[#f0f2f5] pb-4 last:border-0"><p class="text-sm mb-1">{{ c.comment }}</p><p class="text-xs text-[#60758a]">{{ c.user.username }} · {{ c.created_at|date:"d M Y, H:i" }}</p></div>{% endfor %}</div>{% else %}<p class="text-sm text-[#60758a]">No comments yet. Be the first to share your views.</p>{% endif %}
+  </div>
+  {% if show_form %}<form method="POST" class="card"><h2 class="font-bold text-[#111418] mb-3">Share Your View</h2>{% csrf_token %}<textarea name="comment" required rows="3" placeholder="Write your comment..." class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none mb-3"></textarea><button type="submit" class="btn-primary">Submit Comment</button></form>{% else %}<div class="card bg-[#f7f8fa] text-sm text-[#60758a]"><p>You have already submitted a comment on this consultation.</p></div>{% endif %}
+</div>{% endblock %}

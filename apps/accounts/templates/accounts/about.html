@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}About — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <p class="text-[32px] font-bold leading-tight mb-6">About e-Citizen</p>
+    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">Our Mission</h2>
+    <p class="text-base font-normal leading-normal pb-3 pt-1 px-4">
+      e-Citizen is a digital platform that provides citizens with convenient access to government services online.
+      Our mission is to simplify the process of accessing public services, making them more efficient, transparent,
+      and accessible to everyone.
+    </p>
+    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">What We Offer</h2>
+    <p class="text-base font-normal leading-normal pb-3 pt-1 px-4">
+      From applying for national identification documents to registering a business or filing taxes,
+      e-Citizen brings essential government services to your fingertips. Our platform is designed to
+      reduce paperwork, eliminate long queues, and provide real-time updates on your applications.
+    </p>
+    <h2 class="text-[22px] font-bold px-4 pb-3 pt-5">FAQs</h2>
+    <div class="flex flex-col p-4 gap-3">
+      <details class="flex flex-col rounded-lg border border-[#dbe0e6] bg-white px-[15px] py-[7px] group">
+        <summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+          <p class="text-sm font-medium leading-normal">How do I create an account?</p>
+          <div class="group-open:rotate-180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/>
+            </svg>
+          </div>
+        </summary>
+        <p class="text-[#60758a] text-sm pb-2">Register through the onboarding page by clicking "Sign up" and following the on-screen instructions.</p>
+      </details>
+      <details class="flex flex-col rounded-lg border border-[#dbe0e6] bg-white px-[15px] py-[7px] group">
+        <summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+          <p class="text-sm font-medium leading-normal">What services are available?</p>
+          <div class="group-open:rotate-180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/>
+            </svg>
+          </div>
+        </summary>
+        <p class="text-[#60758a] text-sm pb-2">Browse our Services page to see all available government services including ID applications, permits, registrations, and more.</p>
+      </details>
+      <details class="flex flex-col rounded-lg border border-[#dbe0e6] bg-white px-[15px] py-[7px] group">
+        <summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
+          <p class="text-sm font-medium leading-normal">How can I track my application status?</p>
+          <div class="group-open:rotate-180">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+              <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/>
+            </svg>
+          </div>
+        </summary>
+        <p class="text-[#60758a] text-sm pb-2">Log in to your dashboard and visit the Applications page to see the current status of all your submissions.</p>
+      </details>
+    </div>
+  </div>
+</div>
+{% endblock %}

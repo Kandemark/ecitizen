@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block title %}Staff Dashboard — e-Citizen Authorities{% endblock %}
+
+{% block content %}
+<div class="bg-[#f7f8fa] min-h-screen">
+  <div class="max-w-7xl mx-auto px-10 py-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <p class="text-sm text-[#60758a] uppercase tracking-wide font-bold">Government Staff Portal</p>
+        <h1 class="text-[32px] font-bold leading-tight text-[#111418]">Authorities Dashboard</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="{% url 'authorities:review_queue' %}" class="px-4 py-2.5 bg-[#0b6e4f] text-white rounded-xl text-sm font-bold hover:bg-[#095d42] transition">
+          My Review Queue
+          {% if pending_count %}
+            <span class="ml-2 px-2 py-0.5 bg-white/20 rounded-full text-xs">{{ pending_count }}</span>
+          {% endif %}
+        </a>
+        <a href="{% url 'authorities:all_applications' %}" class="px-4 py-2.5 bg-white text-[#111418] border border-[#dbe0e6] rounded-xl text-sm font-medium hover:bg-[#f7f8fa] transition">
+          All Applications
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats cards -->
+    <div class="grid grid-cols-4 gap-4 mb-8">
+      <div class="bg-white rounded-xl border border-[#dbe0e6] p-5">
+        <p class="text-xs font-bold uppercase tracking-wide text-[#60758a]">Total Pending</p>
+        <p class="text-3xl font-black text-[#111418] mt-1">{{ total_pending }}</p>
+      </div>
+      <div class="bg-white rounded-xl border border-[#dbe0e6] p-5">
+        <p class="text-xs font-bold uppercase tracking-wide text-[#60758a]">My Assignments</p>
+        <p class="text-3xl font-black text-[#0b6e4f] mt-1">{{ pending_count }}</p>
+      </div>
+      {% for sc in status_counts %}
+        {% if sc.status == 'submitted' %}
+          <div class="bg-white rounded-xl border border-[#dbe0e6] p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-[#60758a]">New Submissions</p>
+            <p class="text-3xl font-black text-blue-600 mt-1">{{ sc.count }}</p>
+          </div>
+        {% elif sc.status == 'in_review' %}
+          <div class="bg-white rounded-xl border border-[#dbe0e6] p-5">
+            <p class="text-xs font-bold uppercase tracking-wide text-[#60758a]">In Review</p>
+            <p class="text-3xl font-black text-amber-600 mt-1">{{ sc.count }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Recent submissions -->
+      <div class="lg:col-span-2">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-bold text-[#111418]">Recent Applications</h2>
+          <a href="{% url 'authorities:all_applications' %}" class="text-sm font-medium text-[#0b6e4f] hover:underline">View all &rarr;</a>
+        </div>
+        {% if recent_applications %}
+          <div class="bg-white rounded-xl border border-[#dbe0e6] overflow-hidden">
+            <table class="w-full text-sm">
+              <thead class="bg-[#f7f8fa] border-b border-[#dbe0e6]">
+                <tr>
+                  <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Reference</th>
+                  <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Citizen</th>
+                  <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Service</th>
+                  <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Status</th>
+                  <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Date</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#f1f2f4]">
+                {% for app in recent_applications %}
+                  <tr class="hover:bg-[#f7f8fa] transition cursor-pointer" onclick="window.location='{% url 'authorities:review_application' app.id %}'">
+                    <td class="px-5 py-3 font-mono text-xs font-bold text-[#0b6e4f]">{{ app.reference }}</td>
+                    <td class="px-5 py-3 font-medium">{{ app.user.username|default:"—" }}</td>
+                    <td class="px-5 py-3 text-[#60758a]">{{ app.service.name|default:"—" }}</td>
+                    <td class="px-5 py-3">
+                      <span class="px-2 py-0.5 rounded-full text-xs font-medium
+                        {% if app.status == 'submitted' %}bg-blue-100 text-blue-700
+                        {% elif app.status == 'in_review' %}bg-amber-100 text-amber-700
+                        {% elif app.status == 'approved' %}bg-green-100 text-green-700
+                        {% elif app.status == 'rejected' %}bg-red-100 text-red-700
+                        {% elif app.status == 'pending_documents' %}bg-purple-100 text-purple-700
+                        {% else %}bg-gray-100 text-gray-600{% endif %}">
+                        {{ app.get_status_display }}
+                      </span>
+                    </td>
+                    <td class="px-5 py-3 text-[#60758a]">{{ app.submitted_at|date:"d M Y"|default:"—" }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="bg-white rounded-xl border border-[#dbe0e6] p-10 text-center">
+            <p class="text-[#60758a]">No applications received yet.</p>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- My pending assignments -->
+      <div>
+        <h2 class="text-lg font-bold text-[#111418] mb-4">My Pending Reviews</h2>
+        {% if pending_assignments %}
+          <div class="space-y-3">
+            {% for pa in pending_assignments %}
+              <a href="{% url 'authorities:review_application' pa.application.id %}" class="block bg-white rounded-xl border border-[#dbe0e6] p-4 hover:border-[#0b6e4f] hover:shadow-sm transition">
+                <p class="text-xs font-bold text-[#0b6e4f] font-mono">{{ pa.application.reference }}</p>
+                <p class="text-sm font-semibold text-[#111418] mt-1">{{ pa.application.service.name }}</p>
+                <div class="flex items-center gap-2 mt-2 text-xs text-[#60758a]">
+                  <span>{{ pa.step.name }}</span>
+                  <span>&middot;</span>
+                  <span>{{ pa.application.submitted_at|date:"d M Y" }}</span>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="bg-white rounded-xl border border-[#dbe0e6] p-6 text-center">
+            <p class="text-sm text-[#60758a]">No pending reviews assigned to you.</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

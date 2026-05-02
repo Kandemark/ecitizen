@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load ecitizen_tags %}
+
+{% block title %}Immigration — e-Citizen{% endblock %}
+
+{% block content %}
+<div class="max-w-[1100px] mx-auto px-10 py-8 page-enter">
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h1 class="text-2xl font-bold text-[#111418]">Immigration Services</h1>
+      <p class="text-[#60758a] mt-1">Passports, visas, and work permits</p>
+    </div>
+    <div class="flex gap-2">
+      <a href="{% url 'immigration:passport_apply' %}" class="btn-primary text-sm">+ Passport</a>
+      <a href="{% url 'immigration:visa_apply' %}" class="btn-primary text-sm">+ Visa</a>
+      <a href="{% url 'immigration:permit_apply' %}" class="btn-primary text-sm">+ Work Permit</a>
+    </div>
+  </div>
+
+  <!-- Passports -->
+  <section class="mb-10">
+    <h2 class="text-lg font-bold text-[#111418] mb-4">🛂 Passport Applications</h2>
+    {% if passports %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for app in passports %}
+      <a href="{% url 'immigration:detail' app_type='passport' ref=app.reference %}" class="card-hover block">
+        <div class="flex items-start justify-between mb-3">
+          <span class="font-semibold text-[#111418]">{{ app.get_passport_type_display|default:app.passport_type|title }}</span>
+          <span class="status-badge text-xs px-2 py-0.5 rounded-full {{ app.status|status_color }}">{{ app.get_status_display }}</span>
+        </div>
+        <div class="text-xs text-[#60758a] space-y-1">
+          <p>Ref: {{ app.reference }}</p>
+          <p>Applied: {{ app.created_at|date:"d M Y" }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center py-10 text-[#60758a]">
+      <p class="text-3xl mb-3">🛂</p>
+      <p>No passport applications yet.</p>
+      <a href="{% url 'immigration:passport_apply' %}" class="text-[#0b6e4f] font-medium text-sm mt-2 inline-block">Apply now →</a>
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Visas -->
+  <section class="mb-10">
+    <h2 class="text-lg font-bold text-[#111418] mb-4">🛃 Visa Applications</h2>
+    {% if visas %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for app in visas %}
+      <a href="{% url 'immigration:detail' app_type='visa' ref=app.reference %}" class="card-hover block">
+        <div class="flex items-start justify-between mb-3">
+          <span class="font-semibold text-[#111418]">{{ app.get_visa_type_display|default:app.visa_type|title }}</span>
+          <span class="status-badge text-xs px-2 py-0.5 rounded-full {{ app.status|status_color }}">{{ app.get_status_display }}</span>
+        </div>
+        <div class="text-xs text-[#60758a] space-y-1">
+          <p>Ref: {{ app.reference }}</p>
+          <p>Applied: {{ app.created_at|date:"d M Y" }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center py-10 text-[#60758a]">
+      <p class="text-3xl mb-3">🛃</p>
+      <p>No visa applications yet.</p>
+      <a href="{% url 'immigration:visa_apply' %}" class="text-[#0b6e4f] font-medium text-sm mt-2 inline-block">Apply now →</a>
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Work Permits -->
+  <section>
+    <h2 class="text-lg font-bold text-[#111418] mb-4">💼 Work Permits</h2>
+    {% if permits %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for app in permits %}
+      <a href="{% url 'immigration:detail' app_type='permit' ref=app.reference %}" class="card-hover block">
+        <div class="flex items-start justify-between mb-3">
+          <span class="font-semibold text-[#111418]">Class {{ app.permit_class }}</span>
+          <span class="status-badge text-xs px-2 py-0.5 rounded-full {{ app.status|status_color }}">{{ app.get_status_display }}</span>
+        </div>
+        <div class="text-xs text-[#60758a] space-y-1">
+          <p>Ref: {{ app.reference }}</p>
+          {% if app.employer %}<p>Employer: {{ app.employer }}</p>{% endif %}
+          <p>Applied: {{ app.created_at|date:"d M Y" }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center py-10 text-[#60758a]">
+      <p class="text-3xl mb-3">💼</p>
+      <p>No work permit applications yet.</p>
+      <a href="{% url 'immigration:permit_apply' %}" class="text-[#0b6e4f] font-medium text-sm mt-2 inline-block">Apply now →</a>
+    </div>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

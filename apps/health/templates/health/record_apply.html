@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Add Health Record — e-Citizen{% endblock %}
+{% block content %}
+<div class="max-w-2xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'health:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Health</a>
+  <h1 class="text-2xl font-bold text-[#111418] mb-1">Add Health Record</h1>
+  <p class="text-[#60758a] mb-8">Record a health visit, diagnosis, or treatment.</p>
+  <form method="POST" class="card space-y-5">
+    {% csrf_token %}
+    <div><label class="block text-sm font-medium text-[#111418] mb-1">Facility Name *</label><input type="text" name="facility_name" required placeholder="e.g. Kenyatta National Hospital" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></div>
+    <div class="grid grid-cols-2 gap-4">
+      <div><label class="block text-sm font-medium text-[#111418] mb-1">Record Type *</label><select name="record_type" required class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none bg-white">{% for v,l in record_types %}<option value="{{ v }}">{{ l }}</option>{% endfor %}</select></div>
+      <div><label class="block text-sm font-medium text-[#111418] mb-1">Visit Date</label><input type="date" name="visit_date" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></div>
+    </div>
+    <div><label class="block text-sm font-medium text-[#111418] mb-1">Attending Practitioner</label><input type="text" name="attending_practitioner" placeholder="Dr. Name" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></div>
+    <div><label class="block text-sm font-medium text-[#111418] mb-1">Diagnosis</label><textarea name="diagnosis" rows="2" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></textarea></div>
+    <div><label class="block text-sm font-medium text-[#111418] mb-1">Prescription</label><textarea name="prescription" rows="2" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></textarea></div>
+    <div><label class="block text-sm font-medium text-[#111418] mb-1">Notes</label><textarea name="notes" rows="2" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></textarea></div>
+    <div class="flex justify-end gap-3 pt-4 border-t border-[#f0f2f5]"><a href="{% url 'health:list' %}" class="btn-outline">Cancel</a><button type="submit" class="btn-primary">Save Record</button></div>
+  </form>
+</div>
+{% endblock %}

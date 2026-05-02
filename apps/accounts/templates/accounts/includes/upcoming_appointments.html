@@ -1,0 +1,24 @@
+{% if upcoming_appointments %}
+<div class="border border-[#dbe0e6] rounded-xl p-5 bg-white">
+  <div class="flex items-center justify-between mb-3">
+    <h3 class="font-bold text-lg">Upcoming Appointments</h3>
+    <a href="{% url 'applications' %}" class="text-xs text-[#0b6e4f] hover:underline font-medium">View All</a>
+  </div>
+  <div class="space-y-2">
+    {% for apt in upcoming_appointments %}
+    <div class="flex items-center gap-3 border border-[#dbe0e6] rounded-lg p-3">
+      <div class="flex-shrink-0 size-10 rounded-full bg-[#e8f5ef] text-[#0b6e4f] flex items-center justify-center text-sm font-bold">
+        {{ apt.time_slot.date|date:"d" }}
+      </div>
+      <div class="min-w-0 flex-1">
+        <p class="font-medium text-sm truncate">{{ apt.service.name|default:"Appointment" }}</p>
+        <p class="text-xs text-[#60758a]">{{ apt.time_slot.date|date:"F j, Y" }} at {{ apt.time_slot.start_time|time:"g:i A" }}</p>
+      </div>
+      <span class="text-xs px-2 py-0.5 rounded-full font-medium {% if apt.status == 'confirmed' %}bg-green-100 text-green-700{% else %}bg-blue-100 text-blue-700{% endif %}">
+        {{ apt.get_status_display }}
+      </span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

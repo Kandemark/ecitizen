@@ -1,0 +1,27 @@
+<div class="border border-[#dbe0e6] rounded-xl p-5 bg-white">
+  <div class="flex items-center justify-between mb-3">
+    <h3 class="font-bold text-lg">Notifications</h3>
+    {% if notifications %}
+    <span class="text-xs bg-red-50 text-red-700 px-2 py-0.5 rounded-full">{{ notifications|length }} new</span>
+    {% endif %}
+  </div>
+  {% if notifications %}
+  <div class="space-y-2">
+    {% for note in notifications %}
+    <div class="flex items-start gap-3 p-2 rounded-lg {% if not note.is_read %}bg-[#f7f8fa]{% endif %}">
+      <span class="w-2 h-2 rounded-full flex-shrink-0 mt-2 {% if not note.is_read %}bg-[#0b6e4f]{% else %}bg-[#dbe0e6]{% endif %}"></span>
+      <div class="flex-1 min-w-0">
+        <p class="text-sm font-medium truncate">{{ note.title }}</p>
+        <p class="text-xs text-[#60758a] truncate">{{ note.message }}</p>
+        <p class="text-xs text-[#9aa6b2] mt-1">{{ note.created_at|timesince }} ago</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="text-center py-6">
+    <p class="text-sm text-[#9aa6b2]">No new notifications</p>
+    <p class="text-xs text-[#c4cdd5] mt-1">You're all caught up!</p>
+  </div>
+  {% endif %}
+</div>

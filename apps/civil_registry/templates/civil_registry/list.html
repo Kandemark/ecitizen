@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load ecitizen_tags %}
+
+{% block title %}Civil Registry — e-Citizen{% endblock %}
+
+{% block content %}
+<div class="max-w-[1100px] mx-auto px-10 py-8 page-enter">
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h1 class="text-2xl font-bold text-[#111418]">Civil Registry</h1>
+      <p class="text-[#60758a] mt-1">Birth, death, and marriage certificates</p>
+    </div>
+    <div class="flex gap-2">
+      <a href="{% url 'civil_registry:apply' cert_type='birth' %}" class="btn-primary text-sm">+ Birth Certificate</a>
+      <a href="{% url 'civil_registry:apply' cert_type='death' %}" class="btn-primary text-sm">+ Death Certificate</a>
+      <a href="{% url 'civil_registry:apply' cert_type='marriage' %}" class="btn-primary text-sm">+ Marriage Certificate</a>
+    </div>
+  </div>
+
+  <!-- Birth Certificates -->
+  <section class="mb-10">
+    <h2 class="text-lg font-bold text-[#111418] mb-4">Birth Certificates</h2>
+    {% if birth_certificates %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for cert in birth_certificates %}
+      <a href="{% url 'civil_registry:detail' cert_type='birth' ref=cert.reference %}" class="card-hover block">
+        <div class="flex items-start justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">👶</span>
+            <span class="font-semibold text-[#111418]">{{ cert.child_name }}</span>
+          </div>
+          <span class="status-badge text-xs px-2 py-0.5 rounded-full {{ cert.status|status_color }}">{{ cert.get_status_display }}</span>
+        </div>
+        <div class="text-xs text-[#60758a] space-y-1">
+          <p>Ref: {{ cert.reference }}</p>
+          <p>DOB: {{ cert.date_of_birth|date:"d M Y" }}</p>
+          {% if cert.registration_number %}<p>Reg No: {{ cert.registration_number }}</p>{% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center py-10 text-[#60758a]">
+      <p class="text-3xl mb-3">👶</p>
+      <p>No birth certificate applications yet.</p>
+      <a href="{% url 'civil_registry:apply' cert_type='birth' %}" class="text-[#0b6e4f] font-medium text-sm mt-2 inline-block">Apply for one →</a>
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Death Certificates -->
+  <section class="mb-10">
+    <h2 class="text-lg font-bold text-[#111418] mb-4">Death Certificates</h2>
+    {% if death_certificates %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for cert in death_certificates %}
+      <a href="{% url 'civil_registry:detail' cert_type='death' ref=cert.reference %}" class="card-hover block">
+        <div class="flex items-start justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">📄</span>
+            <span class="font-semibold text-[#111418]">{{ cert.deceased_name }}</span>
+          </div>
+          <span class="status-badge text-xs px-2 py-0.5 rounded-full {{ cert.status|status_color }}">{{ cert.get_status_display }}</span>
+        </div>
+        <div class="text-xs text-[#60758a] space-y-1">
+          <p>Ref: {{ cert.reference }}</p>
+          <p>DOD: {{ cert.date_of_death|date:"d M Y" }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center py-10 text-[#60758a]">
+      <p class="text-3xl mb-3">📄</p>
+      <p>No death certificate applications yet.</p>
+      <a href="{% url 'civil_registry:apply' cert_type='death' %}" class="text-[#0b6e4f] font-medium text-sm mt-2 inline-block">Apply for one →</a>
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Marriage Certificates -->
+  <section>
+    <h2 class="text-lg font-bold text-[#111418] mb-4">Marriage Certificates</h2>
+    {% if marriage_certificates %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for cert in marriage_certificates %}
+      <a href="{% url 'civil_registry:detail' cert_type='marriage' ref=cert.reference %}" class="card-hover block">
+        <div class="flex items-start justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">💍</span>
+            <span class="font-semibold text-[#111418]">{{ cert.spouse1_name }} & {{ cert.spouse2_name }}</span>
+          </div>
+          <span class="status-badge text-xs px-2 py-0.5 rounded-full {{ cert.status|status_color }}">{{ cert.get_status_display }}</span>
+        </div>
+        <div class="text-xs text-[#60758a] space-y-1">
+          <p>Ref: {{ cert.reference }}</p>
+          <p>Married: {{ cert.marriage_date|date:"d M Y" }}</p>
+          {% if cert.registration_number %}<p>Reg No: {{ cert.registration_number }}</p>{% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center py-10 text-[#60758a]">
+      <p class="text-3xl mb-3">💍</p>
+      <p>No marriage certificate applications yet.</p>
+      <a href="{% url 'civil_registry:apply' cert_type='marriage' %}" class="text-[#0b6e4f] font-medium text-sm mt-2 inline-block">Apply for one →</a>
+    </div>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

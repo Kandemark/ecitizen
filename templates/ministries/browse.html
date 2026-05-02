@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Ministries & Departments — e-Citizen Kenya{% endblock %}
+
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="mb-6">
+      <p class="text-[32px] font-bold leading-tight">Ministries & Departments</p>
+      <p class="text-[#60758a] text-sm mt-1">{{ ministries|length }} ministries &middot; {{ total_services }} services available</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for ministry in ministries %}
+      <a href="{% url 'ministry_detail' ministry.code %}"
+         class="border border-[#dbe0e6] rounded-xl p-5 hover:border-[#0b6e4f] hover:shadow-md transition block group">
+        <div class="flex items-start justify-between mb-3">
+          <h3 class="font-bold text-lg group-hover:text-[#0b6e4f] transition">{{ ministry.name }}</h3>
+          <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-[#e8f5ef] text-[#0b6e4f]">{{ ministry.service_count }} service{{ ministry.service_count|pluralize }}</span>
+        </div>
+        {% if ministry.description %}
+        <p class="text-sm text-[#60758a] line-clamp-2 mb-3">{{ ministry.description }}</p>
+        {% endif %}
+        <div class="flex flex-wrap gap-1">
+          {% for dept in ministry.departments.all|slice:":5" %}
+          <span class="text-xs bg-[#f7f8fa] text-[#60758a] px-2 py-0.5 rounded">{{ dept.name }}</span>
+          {% endfor %}
+          {% if ministry.departments.count > 5 %}
+          <span class="text-xs text-[#60758a]">+{{ ministry.departments.count|add:"-5" }} more</span>
+          {% endif %}
+        </div>
+      </a>
+      {% empty %}
+      <div class="col-span-full py-16 text-center">
+        <p class="text-[#60758a] text-lg">No ministries available yet.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

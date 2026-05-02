@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Register School — e-Citizen{% endblock %}
+{% block content %}
+<div class="max-w-2xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'education:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Education</a>
+  <h1 class="text-2xl font-bold text-[#111418] mb-1">Register School</h1>
+  <p class="text-[#60758a] mb-8">Register an educational institution with the Ministry of Education.</p>
+  <form method="POST" class="card space-y-5">
+    {% csrf_token %}
+    <div><label class="block text-sm font-medium text-[#111418] mb-1">School Name *</label><input type="text" name="school_name" required class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></div>
+    <div class="grid grid-cols-2 gap-4">
+      <div><label class="block text-sm font-medium text-[#111418] mb-1">Registration Type *</label><select name="registration_type" required class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none bg-white">{% for v,l in reg_types %}<option value="{{ v }}">{{ l }}</option>{% endfor %}</select></div>
+      <div><label class="block text-sm font-medium text-[#111418] mb-1">County</label><select name="county" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none bg-white"><option value="">-- Select --</option>{% for c in counties %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select></div>
+    </div>
+    <div><label class="block text-sm font-medium text-[#111418] mb-1">Physical Address</label><textarea name="physical_address" rows="2" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></textarea></div>
+    <div class="grid grid-cols-2 gap-4">
+      <div><label class="block text-sm font-medium text-[#111418] mb-1">Postal Address</label><input type="text" name="postal_address" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></div>
+      <div><label class="block text-sm font-medium text-[#111418] mb-1">Proprietor Name</label><input type="text" name="proprietor_name" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></div>
+    </div>
+    <div class="flex justify-end gap-3 pt-4 border-t border-[#f0f2f5]"><a href="{% url 'education:list' %}" class="btn-outline">Cancel</a><button type="submit" class="btn-primary">Register School</button></div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% if news_articles %}
+<div class="border border-[#dbe0e6] rounded-xl p-5 bg-white">
+  <div class="flex items-center justify-between mb-3">
+    <h3 class="font-bold text-lg">Latest News</h3>
+    <span class="text-xs text-[#60758a]">Kenya</span>
+  </div>
+  <div class="space-y-3">
+    {% for article in news_articles %}
+    <a href="{{ article.url }}" target="_blank" rel="noopener" class="block hover:text-[#0b6e4f] transition">
+      <p class="text-sm font-medium line-clamp-2">{{ article.title }}</p>
+      <p class="text-xs text-[#60758a] mt-1">{{ article.source.name }} &middot; {{ article.published_at|date:"M j" }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

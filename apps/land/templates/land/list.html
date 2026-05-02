@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load ecitizen_tags %}
+
+{% block title %}Land Services — e-Citizen{% endblock %}
+
+{% block content %}
+<div class="max-w-[1100px] mx-auto px-10 py-8 page-enter">
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h1 class="text-2xl font-bold text-[#111418]">Land Services</h1>
+      <p class="text-[#60758a] mt-1">Title deeds, land searches, and transfers</p>
+    </div>
+    <div class="flex gap-2">
+      <a href="{% url 'land:title_deed_apply' %}" class="btn-primary text-sm">+ Title Deed</a>
+      <a href="{% url 'land:search_apply' %}" class="btn-primary text-sm">+ Land Search</a>
+      <a href="{% url 'land:transfer_apply' %}" class="btn-primary text-sm">+ Transfer</a>
+    </div>
+  </div>
+
+  <!-- Title Deeds -->
+  <section class="mb-10">
+    <h2 class="text-lg font-bold text-[#111418] mb-4">🏠 Title Deeds</h2>
+    {% if title_deeds %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for deed in title_deeds %}
+      <a href="{% url 'land:detail' app_type='title_deed' ref=deed.reference %}" class="card-hover block">
+        <div class="flex items-start justify-between mb-3">
+          <span class="font-semibold text-[#111418]">{{ deed.title_number }}</span>
+          <span class="status-badge text-xs px-2 py-0.5 rounded-full {{ deed.status|status_color }}">{{ deed.get_status_display }}</span>
+        </div>
+        <div class="text-xs text-[#60758a] space-y-1">
+          <p class="line-clamp-2">{{ deed.property_location }}</p>
+          <p>Ref: {{ deed.reference }}</p>
+          <p>{{ deed.land_size_hectares }} ha · {{ deed.tenure_type|title }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center py-10 text-[#60758a]">
+      <p class="text-3xl mb-3">🏠</p>
+      <p>No title deeds registered yet.</p>
+      <a href="{% url 'land:title_deed_apply' %}" class="text-[#0b6e4f] font-medium text-sm mt-2 inline-block">Register a title deed →</a>
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Land Searches -->
+  <section class="mb-10">
+    <h2 class="text-lg font-bold text-[#111418] mb-4">🔍 Land Searches</h2>
+    {% if searches %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for search in searches %}
+      <a href="{% url 'land:detail' app_type='land_search' ref=search.reference %}" class="card-hover block">
+        <div class="flex items-start justify-between mb-3">
+          <span class="font-semibold text-[#111418]">{{ search.title_number }}</span>
+          <span class="status-badge text-xs px-2 py-0.5 rounded-full {{ search.status|status_color }}">{{ search.get_status_display }}</span>
+        </div>
+        <div class="text-xs text-[#60758a] space-y-1">
+          <p>Ref: {{ search.reference }}</p>
+          <p class="line-clamp-2">{{ search.search_purpose }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center py-10 text-[#60758a]">
+      <p class="text-3xl mb-3">🔍</p>
+      <p>No land searches yet.</p>
+      <a href="{% url 'land:search_apply' %}" class="text-[#0b6e4f] font-medium text-sm mt-2 inline-block">Start a search →</a>
+    </div>
+    {% endif %}
+  </section>
+
+  <!-- Transfers -->
+  <section>
+    <h2 class="text-lg font-bold text-[#111418] mb-4">📋 Transfers</h2>
+    {% if transfers %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for transfer in transfers %}
+      <a href="{% url 'land:detail' app_type='transfer' ref=transfer.reference %}" class="card-hover block">
+        <div class="flex items-start justify-between mb-3">
+          <span class="font-semibold text-[#111418]">{{ transfer.transfer_type|title }}</span>
+          <span class="status-badge text-xs px-2 py-0.5 rounded-full {{ transfer.status|status_color }}">{{ transfer.get_status_display }}</span>
+        </div>
+        <div class="text-xs text-[#60758a] space-y-1">
+          <p>Ref: {{ transfer.reference }}</p>
+          <p>{{ transfer.from_owner }} → {{ transfer.to_owner }}</p>
+          {% if transfer.consideration_amount %}<p>KES {{ transfer.consideration_amount|floatformat:2 }}</p>{% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="card text-center py-10 text-[#60758a]">
+      <p class="text-3xl mb-3">📋</p>
+      <p>No transfers yet.</p>
+      <a href="{% url 'land:transfer_apply' %}" class="text-[#0b6e4f] font-medium text-sm mt-2 inline-block">Start a transfer →</a>
+    </div>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

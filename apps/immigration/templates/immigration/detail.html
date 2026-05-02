@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load ecitizen_tags %}
+
+{% block title %}{{ title }} {{ application.reference }} — e-Citizen{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'immigration:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Immigration</a>
+
+  <div class="card mb-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-xl font-bold text-[#111418]">{{ title }}</h1>
+        <p class="text-sm text-[#60758a]">Ref: {{ application.reference }}</p>
+      </div>
+      <span class="status-badge text-sm px-3 py-1 rounded-full {{ application.status|status_color }} font-medium">{{ application.get_status_display }}</span>
+    </div>
+  </div>
+
+  <div class="card mb-6">
+    <h2 class="font-bold text-[#111418] mb-4">Application Details</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {% if app_type == 'passport' %}
+      <div><span class="text-xs text-[#60758a] block">Passport Type</span><span class="text-sm font-medium">{{ application.get_passport_type_display|default:application.passport_type|title }}</span></div>
+      {% elif app_type == 'visa' %}
+      <div><span class="text-xs text-[#60758a] block">Visa Type</span><span class="text-sm font-medium">{{ application.get_visa_type_display|default:application.visa_type|title }}</span></div>
+      {% elif app_type == 'permit' %}
+      <div><span class="text-xs text-[#60758a] block">Permit Class</span><span class="text-sm font-medium">Class {{ application.permit_class }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Employer</span><span class="text-sm font-medium">{{ application.employer|default:"—" }}</span></div>
+      {% endif %}
+      <div><span class="text-xs text-[#60758a] block">Submitted</span><span class="text-sm font-medium">{{ application.created_at|date:"d M Y, H:i" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Last Updated</span><span class="text-sm font-medium">{{ application.updated_at|date:"d M Y, H:i" }}</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="font-bold text-[#111418] mb-4">Timeline</h2>
+    <div class="space-y-3">
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="size-3 rounded-full bg-green-500"></div>
+          <div class="w-px h-full bg-[#dbe0e6]"></div>
+        </div>
+        <div>
+          <p class="text-sm font-medium">Application Submitted</p>
+          <p class="text-xs text-[#60758a]">{{ application.created_at|date:"d M Y, H:i" }}</p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="size-3 rounded-full {% if application.status == 'submitted' %}bg-yellow-500{% elif application.status == 'approved' or application.status == 'completed' %}bg-green-500{% elif application.status == 'rejected' %}bg-red-500{% else %}bg-gray-300{% endif %}"></div>
+        </div>
+        <div>
+          <p class="text-sm font-medium">
+            {% if application.status == 'submitted' %}Awaiting Review
+            {% elif application.status == 'approved' %}Approved
+            {% elif application.status == 'completed' %}Completed
+            {% elif application.status == 'rejected' %}Rejected
+            {% else %}{{ application.get_status_display }}{% endif %}
+          </p>
+          <p class="text-xs text-[#60758a]">{{ application.updated_at|date:"d M Y, H:i" }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

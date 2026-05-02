@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load ecitizen_tags %}
+{% block title %}{{ title }} {{ record.reference }} — e-Citizen{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'health:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Health</a>
+  <div class="card mb-6"><div class="flex items-center justify-between"><div><h1 class="text-xl font-bold text-[#111418]">{{ title }}</h1><p class="text-sm text-[#60758a]">Ref: {{ record.reference }}</p></div><span class="status-badge text-sm px-3 py-1 rounded-full {{ record.status|status_color }} font-medium">{{ record.get_status_display }}</span></div></div>
+  <div class="card"><h2 class="font-bold text-[#111418] mb-4">Details</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {% if app_type == 'record' %}
+      <div><span class="text-xs text-[#60758a] block">Facility</span><span class="text-sm font-medium">{{ record.facility_name }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Record Type</span><span class="text-sm font-medium">{{ record.get_record_type_display }}</span></div>
+      {% if record.visit_date %}<div><span class="text-xs text-[#60758a] block">Visit Date</span><span class="text-sm font-medium">{{ record.visit_date|date:"d M Y" }}</span></div>{% endif %}
+      {% if record.attending_practitioner %}<div><span class="text-xs text-[#60758a] block">Practitioner</span><span class="text-sm font-medium">{{ record.attending_practitioner }}</span></div>{% endif %}
+      {% if record.diagnosis %}<div class="md:col-span-2"><span class="text-xs text-[#60758a] block">Diagnosis</span><span class="text-sm font-medium">{{ record.diagnosis }}</span></div>{% endif %}
+      {% if record.prescription %}<div class="md:col-span-2"><span class="text-xs text-[#60758a] block">Prescription</span><span class="text-sm font-medium">{{ record.prescription }}</span></div>{% endif %}
+      {% elif app_type == 'nhif' %}
+      <div><span class="text-xs text-[#60758a] block">NHIF Number</span><span class="text-sm font-medium">{{ record.nhif_number|default:"Pending" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Employer</span><span class="text-sm font-medium">{{ record.employer_name|default:"Self-employed" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Monthly Contribution</span><span class="text-sm font-medium">KES {{ record.monthly_contribution|floatformat:2 }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Dependants</span><span class="text-sm font-medium">{{ record.dependants }}</span></div>
+      {% elif app_type == 'certificate' %}
+      <div><span class="text-xs text-[#60758a] block">Certificate Type</span><span class="text-sm font-medium">{{ record.get_certificate_type_display }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Facility</span><span class="text-sm font-medium">{{ record.issuing_facility }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Practitioner</span><span class="text-sm font-medium">{{ record.issuing_practitioner|default:"—" }}</span></div>
+      {% if record.issued_date %}<div><span class="text-xs text-[#60758a] block">Issued</span><span class="text-sm font-medium">{{ record.issued_date|date:"d M Y" }}</span></div>{% endif %}
+      {% endif %}
+      <div><span class="text-xs text-[#60758a] block">Submitted</span><span class="text-sm font-medium">{{ record.created_at|date:"d M Y, H:i" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Last Updated</span><span class="text-sm font-medium">{{ record.updated_at|date:"d M Y, H:i" }}</span></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+[
+  {
+    "model": "news.newssource",
+    "pk": 1,
+    "fields": {
+      "name": "Daily Nation",
+      "url": "https://nation.africa/kenya",
+      "feed_url": "https://nation.africa/service/rss/kenya/690552",
+      "is_active": true
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 2,
+    "fields": {
+      "name": "The Standard",
+      "url": "https://www.standardmedia.co.ke",
+      "feed_url": "https://www.standardmedia.co.ke/rss/headlines.php",
+      "is_active": true
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 3,
+    "fields": {
+      "name": "Citizen Digital",
+      "url": "https://www.citizen.digital",
+      "feed_url": "https://citizen.digital/feed",
+      "is_active": true
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 4,
+    "fields": {
+      "name": "Capital FM",
+      "url": "https://www.capitalfm.co.ke",
+      "feed_url": "https://www.capitalfm.co.ke/news/feed/",
+      "is_active": true
+    }
+  },
+  {
+    "model": "news.newssource",
+    "pk": 5,
+    "fields": {
+      "name": "KBC",
+      "url": "https://www.kbc.co.ke",
+      "feed_url": "https://www.kbc.co.ke/feed/",
+      "is_active": true
+    }
+  }
+]

@@ -1,0 +1,26 @@
+{% if recent_documents %}
+<div class="border border-[#dbe0e6] rounded-xl p-5 bg-white">
+  <div class="flex items-center justify-between mb-3">
+    <h3 class="font-bold text-lg">Recent Documents</h3>
+    <a href="{% url 'documents' %}" class="text-xs text-[#0b6e4f] hover:underline font-medium">View All</a>
+  </div>
+  <div class="space-y-2">
+    {% for doc in recent_documents %}
+    <div class="flex items-center gap-3 border border-[#dbe0e6] rounded-lg p-3">
+      <span class="flex-shrink-0 size-10 rounded-lg bg-[#f7f8fa] flex items-center justify-center text-lg">
+        📄
+      </span>
+      <div class="min-w-0 flex-1">
+        <p class="font-medium text-sm truncate">{{ doc.name }}</p>
+        <p class="text-xs text-[#60758a]">{{ doc.created_at|date:"F j, Y" }} &middot; {{ doc.file_size|filesizeformat }}</p>
+      </div>
+      {% if doc.is_verified %}
+      <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-green-100 text-green-700">Verified</span>
+      {% else %}
+      <span class="text-xs px-2 py-0.5 rounded-full font-medium bg-yellow-100 text-yellow-700">Pending</span>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

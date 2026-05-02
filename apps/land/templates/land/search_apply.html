@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Land Search — e-Citizen{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'land:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Land Services</a>
+
+  <h1 class="text-2xl font-bold text-[#111418] mb-1">Land Search</h1>
+  <p class="text-[#60758a] mb-8">Search for property details by title number.</p>
+
+  <form method="POST" class="card space-y-5">
+    {% csrf_token %}
+    <div>
+      <label class="block text-sm font-medium text-[#111418] mb-1">Title Number *</label>
+      <input type="text" name="title_number" required placeholder="e.g. NAIROBI/BLOCK12/345"
+             class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none">
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-[#111418] mb-1">Purpose of Search *</label>
+      <textarea name="search_purpose" required rows="2" placeholder="e.g. Property purchase due diligence, court case, etc."
+                class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></textarea>
+    </div>
+
+    <div class="bg-[#f7f8fa] border border-[#f0f2f5] rounded-lg p-4 text-sm text-[#60758a]">
+      <p class="font-medium text-[#111418] mb-2">About Land Search</p>
+      <p>A land search reveals the registered owner, any encumbrances (charges/mortgages/caveats), land size, and tenure type of a property. Search fee: KES 550.</p>
+    </div>
+
+    <div class="flex justify-end gap-3 pt-4 border-t border-[#f0f2f5]">
+      <a href="{% url 'land:list' %}" class="btn-outline">Cancel</a>
+      <button type="submit" class="btn-primary">Submit Search</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

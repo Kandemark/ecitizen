@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% block title %}{{ service.name }} — e-Citizen Kenya{% endblock %}
+
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
+      <a href="{% url 'dashboard' %}" class="hover:text-[#0b6e4f] transition">Dashboard</a>
+      <span>/</span>
+      <a href="{% url 'service_browse' %}" class="hover:text-[#0b6e4f] transition">Services</a>
+      <span>/</span>
+      <span class="text-[#111418]">{{ service.name }}</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Main content -->
+      <div class="lg:col-span-2">
+        <div class="flex items-start gap-4 mb-6">
+          <span class="text-4xl">{{ service.icon|default:'📋' }}</span>
+          <div>
+            <h1 class="text-[32px] font-bold leading-tight">{{ service.name }}</h1>
+            {% if service.ministry %}
+            <p class="text-sm text-[#60758a] mt-1">{{ service.ministry.name }}</p>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if service.short_description %}
+        <p class="text-lg text-[#111418] mb-4">{{ service.short_description }}</p>
+        {% endif %}
+
+        {% if service.description %}
+        <div class="prose max-w-none text-[#60758a] mb-8">{{ service.description|linebreaks }}</div>
+        {% endif %}
+
+        <!-- Key details -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div class="border border-[#dbe0e6] rounded-xl p-4">
+            <p class="text-xs text-[#60758a] uppercase tracking-wider">Fee</p>
+            {% if service.fee_kes > 0 %}
+            <p class="text-lg font-bold text-[#111418] mt-1">KES {{ service.fee_kes }}</p>
+            {% else %}
+            <p class="text-lg font-bold text-[#0b6e4f] mt-1">Free</p>
+            {% endif %}
+          </div>
+          <div class="border border-[#dbe0e6] rounded-xl p-4">
+            <p class="text-xs text-[#60758a] uppercase tracking-wider">Processing Time</p>
+            <p class="text-lg font-bold text-[#111418] mt-1">{{ service.processing_time|default:'Varies' }}</p>
+          </div>
+          <div class="border border-[#dbe0e6] rounded-xl p-4">
+            <p class="text-xs text-[#60758a] uppercase tracking-wider">Type</p>
+            <p class="text-lg font-bold text-[#111418] mt-1">{% if service.is_online %}Online{% else %}In-Person{% endif %}</p>
+          </div>
+          <div class="border border-[#dbe0e6] rounded-xl p-4">
+            <p class="text-xs text-[#60758a] uppercase tracking-wider">Category</p>
+            <p class="text-lg font-bold text-[#111418] mt-1">{{ service.category.name|default:'General' }}</p>
+          </div>
+        </div>
+
+        <!-- Required Documents -->
+        {% if service.required_documents.all %}
+        <h2 class="text-xl font-bold mb-4">Required Documents</h2>
+        <ul class="space-y-2 mb-8">
+          {% for doc in service.required_documents.all %}
+          <li class="flex items-center gap-3 border border-[#dbe0e6] rounded-lg p-3">
+            <span class="flex-shrink-0 size-8 rounded-full bg-[#e8f5ef] text-[#0b6e4f] flex items-center justify-center text-sm font-bold">{{ forloop.counter }}</span>
+            <div>
+              <p class="font-medium">{{ doc.name }}</p>
+              {% if doc.description %}
+              <p class="text-xs text-[#60758a]">{{ doc.description }}</p>
+              {% endif %}
+            </div>
+            {% if doc.is_mandatory %}
+            <span class="ml-auto text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded-full">Required</span>
+            {% else %}
+            <span class="ml-auto text-xs bg-[#f7f8fa] text-[#60758a] px-2 py-0.5 rounded-full">Optional</span>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        <!-- Eligibility -->
+        {% if service.eligibility_rules.all %}
+        <h2 class="text-xl font-bold mb-4">Eligibility</h2>
+        <div class="space-y-3 mb-8">
+          {% for rule in service.eligibility_rules.all %}
+          <div class="border border-[#dbe0e6] rounded-lg p-4">
+            <p class="font-medium">{{ rule.name }}</p>
+            {% if rule.description %}
+            <p class="text-sm text-[#60758a] mt-1">{{ rule.description }}</p>
+            {% endif %}
+            <div class="flex flex-wrap gap-2 mt-2">
+              {% if rule.min_age > 0 or rule.max_age < 100 %}
+              <span class="text-xs bg-[#f7f8fa] text-[#60758a] px-2 py-0.5 rounded">Age: {{ rule.min_age }}–{{ rule.max_age }}</span>
+              {% endif %}
+              {% if rule.kenyan_citizen_only %}
+              <span class="text-xs bg-[#f7f8fa] text-[#60758a] px-2 py-0.5 rounded">Kenyan Citizens Only</span>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Available Counties -->
+        {% if service.counties.all %}
+        <h2 class="text-xl font-bold mb-4">Available In</h2>
+        <div class="flex flex-wrap gap-2 mb-8">
+          {% for county in service.counties.all %}
+          <span class="text-sm border border-[#dbe0e6] rounded-full px-3 py-1 text-[#60758a]">{{ county.name }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-6 space-y-4">
+          <a href="{% url 'apply_service' service.slug %}" class="block w-full h-12 bg-[#0b6e4f] text-white rounded-xl font-medium text-center leading-[48px] hover:bg-[#095d42] transition">
+            Apply Now
+          </a>
+          <a href="{% url 'book_appointment' %}?service={{ service.slug }}" class="block w-full h-12 border border-[#dbe0e6] text-[#111418] rounded-xl font-medium text-center leading-[48px] hover:border-[#0b6e4f] transition">
+            Book Appointment
+          </a>
+
+          {% if related_services %}
+          <div class="border border-[#dbe0e6] rounded-xl p-5 mt-6">
+            <h3 class="font-bold mb-3">Related Services</h3>
+            <div class="space-y-3">
+              {% for rel in related_services %}
+              <a href="{% url 'service_detail' rel.slug %}" class="block hover:text-[#0b6e4f] transition">
+                <p class="text-sm font-medium">{{ rel.name }}</p>
+                <p class="text-xs text-[#60758a] mt-0.5">{{ rel.short_description|truncatechars:80 }}</p>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<div class="border border-[#dbe0e6] rounded-xl p-5 bg-white">
+  <div class="flex items-center justify-between mb-3">
+    <h3 class="font-bold text-lg">e-Citizen Wallet</h3>
+    <span class="text-xs text-[#60758a] bg-[#f1f2f4] px-2 py-1 rounded-full">{{ wallet.currency }}</span>
+  </div>
+  <p class="text-[32px] font-bold text-[#0b6e4f]">KES {{ wallet.balance|floatformat:2 }}</p>
+  <p class="text-xs text-[#60758a] mt-1">{{ wallet.wallet_id }}</p>
+  <div class="flex gap-2 mt-4">
+    <button class="h-9 px-4 bg-[#0b6e4f] text-white rounded-full text-sm font-medium hover:bg-[#095a3f] transition">Top Up</button>
+    <button class="h-9 px-4 bg-[#f1f2f4] text-[#111418] rounded-full text-sm font-medium hover:bg-[#dbe0e6] transition">History</button>
+  </div>
+  {% if recent_payments %}
+  <div class="mt-4 pt-4 border-t border-[#f1f2f4]">
+    <p class="text-xs text-[#60758a] mb-2">Recent Transactions</p>
+    {% for tx in recent_payments %}
+    <div class="flex justify-between text-sm py-1">
+      <span class="text-[#60758a] truncate max-w-[180px]">{{ tx.description|default:tx.get_transaction_type_display }}</span>
+      <span class="font-medium {% if tx.amount > 0 %}text-green-600{% else %}text-[#111418]{% endif %}">
+        {% if tx.amount > 0 %}+{% endif %}KES {{ tx.amount|floatformat:2 }}
+      </span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>

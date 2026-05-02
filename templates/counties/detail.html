@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}{{ county.name }} County Services — e-Citizen Kenya{% endblock %}
+
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[1100px] mx-auto">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
+      <a href="{% url 'dashboard' %}" class="hover:text-[#0b6e4f] transition">Dashboard</a>
+      <span>/</span>
+      <a href="{% url 'county_list' %}" class="hover:text-[#0b6e4f] transition">Counties</a>
+      <span>/</span>
+      <span class="text-[#111418]">{{ county.name }}</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Main content -->
+      <div class="lg:col-span-2">
+        <h1 class="text-[32px] font-bold leading-tight mb-6">{{ county.name }} County</h1>
+
+        {% if services_by_category %}
+        {% for cat_name, cat_services in services_by_category.items %}
+        <h2 class="text-xl font-bold mb-3">{{ cat_name }} <span class="text-sm font-normal text-[#60758a]">({{ cat_services|length }})</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+          {% for svc in cat_services %}
+          <a href="{% url 'service_detail' svc.slug %}"
+             class="border border-[#dbe0e6] rounded-lg p-4 hover:border-[#0b6e4f] hover:shadow-sm transition block">
+            <div class="flex items-start gap-3">
+              <span class="text-xl">{{ svc.icon|default:'📋' }}</span>
+              <div>
+                <p class="font-medium text-sm">{{ svc.name }}</p>
+                <p class="text-xs text-[#60758a] mt-1 line-clamp-2">{{ svc.short_description }}</p>
+                <div class="flex items-center gap-2 mt-2">
+                  {% if svc.fee_kes > 0 %}
+                  <span class="text-xs font-medium">KES {{ svc.fee_kes }}</span>
+                  {% else %}
+                  <span class="text-xs font-medium text-[#0b6e4f]">Free</span>
+                  {% endif %}
+                  {% if svc.processing_time %}
+                  <span class="text-xs text-[#60758a]">&middot; {{ svc.processing_time }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="py-16 text-center">
+          <p class="text-[#60758a] text-lg">No services available in {{ county.name }} County yet.</p>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-6 space-y-4">
+          <div class="border border-[#dbe0e6] rounded-xl p-5">
+            <h3 class="font-bold mb-3">County Info</h3>
+            <dl class="space-y-3 text-sm">
+              <div>
+                <dt class="text-[#60758a]">Code</dt>
+                <dd class="font-medium">{{ county.code }}</dd>
+              </div>
+              {% if county.capital %}
+              <div>
+                <dt class="text-[#60758a]">Capital</dt>
+                <dd class="font-medium">{{ county.capital }}</dd>
+              </div>
+              {% endif %}
+              {% if county.governor %}
+              <div>
+                <dt class="text-[#60758a]">Governor</dt>
+                <dd class="font-medium">{{ county.governor }}</dd>
+              </div>
+              {% endif %}
+              {% if county.population %}
+              <div>
+                <dt class="text-[#60758a]">Population</dt>
+                <dd class="font-medium">{{ county.population|intcomma }}</dd>
+              </div>
+              {% endif %}
+              <div>
+                <dt class="text-[#60758a]">Available Services</dt>
+                <dd class="font-medium">{{ services|length }}</dd>
+              </div>
+            </dl>
+          </div>
+          <a href="{% url 'service_browse' %}"
+             class="block w-full h-12 border border-[#dbe0e6] text-[#111418] rounded-xl font-medium text-center leading-[48px] hover:border-[#0b6e4f] transition">
+            Browse All Services &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

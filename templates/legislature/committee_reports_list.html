@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Committee Reports — Parliament of Kenya{% endblock %}
+
+{% block content %}
+<div class="bg-[#f7f8fa] min-h-screen">
+  <div class="max-w-5xl mx-auto px-10 py-10">
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-4">
+      <a href="{% url 'legislature:dashboard' %}" class="hover:text-[#0b6e4f] transition">Parliament</a>
+      <span>/</span>
+      <span class="text-[#111418] font-medium">Committee Reports</span>
+    </nav>
+    <h1 class="text-2xl font-black text-[#111418] mb-6">Committee Reports</h1>
+
+    {% if reports %}
+      <div class="space-y-4">
+        {% for r in reports %}
+          <a href="{% url 'legislature:committee_report_detail' r.id %}" class="block bg-white rounded-xl border border-[#dbe0e6] p-5 hover:border-[#0b6e4f] hover:shadow-sm transition group">
+            <div class="flex items-start justify-between gap-4">
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-xs font-bold text-[#0b6e4f]">{{ r.committee_name }}</span>
+                  <span class="text-xs text-[#60758a]">{{ r.date_published|date:"d M Y" }}</span>
+                </div>
+                <h3 class="font-semibold text-[#111418] group-hover:text-[#0b6e4f] transition">{{ r.title }}</h3>
+                {% if r.summary %}<p class="text-sm text-[#60758a] mt-1 line-clamp-2">{{ r.summary }}</p>{% endif %}
+              </div>
+              <svg class="size-5 text-[#dbe0e6] group-hover:text-[#0b6e4f] flex-shrink-0 mt-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="bg-white rounded-xl border border-[#dbe0e6] p-12 text-center">
+        <svg class="size-12 mx-auto text-[#dbe0e6]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+        <p class="mt-4 text-[#60758a] font-medium">No committee reports available</p>
+        <p class="text-sm text-[#60758a] mt-1">Reports will appear here after the Parliament API sync runs.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Notification Preferences — e-Citizen Onboarding{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[640px] mx-auto" x-data="{ email: true, sms: true }">
+    <p class="text-sm text-[#60758a] mb-2">Step {{ step }} of {{ total_steps }}</p>
+    <div class="h-2 bg-[#f1f2f4] rounded-full mb-8">
+      <div class="h-2 bg-[#0b6e4f] rounded-full transition-all duration-500" style="width: {{ step|floatformat:0 }}0%"></div>
+    </div>
+    <p class="text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
+    <p class="text-[#60758a] mb-8">Choose how you'd like to receive updates about your applications and services.</p>
+    <form method="post" class="flex flex-col gap-4">
+      {% csrf_token %}
+      <label class="flex items-center justify-between border-2 border-[#dbe0e6] rounded-xl p-5 cursor-pointer hover:bg-[#f7f8fa] transition" @click.prevent="email = !email">
+        <div>
+          <p class="font-medium text-base">Email Notifications</p>
+          <p class="text-sm text-[#60758a]">Receive application status updates via email</p>
+        </div>
+        <div class="relative w-12 h-7 flex-shrink-0 transition-colors duration-200 rounded-full" :class="email ? 'bg-[#0b6e4f]' : 'bg-[#dbe0e6]'">
+          <span class="absolute top-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform duration-200" :class="email ? 'translate-x-6' : 'translate-x-0.5'"></span>
+        </div>
+        <input type="checkbox" name="email_notifications" class="hidden" x-bind:checked="email" />
+      </label>
+      <label class="flex items-center justify-between border-2 border-[#dbe0e6] rounded-xl p-5 cursor-pointer hover:bg-[#f7f8fa] transition" @click.prevent="sms = !sms">
+        <div>
+          <p class="font-medium text-base">SMS Notifications</p>
+          <p class="text-sm text-[#60758a]">Receive payment confirmations and alerts via SMS</p>
+        </div>
+        <div class="relative w-12 h-7 flex-shrink-0 transition-colors duration-200 rounded-full" :class="sms ? 'bg-[#0b6e4f]' : 'bg-[#dbe0e6]'">
+          <span class="absolute top-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform duration-200" :class="sms ? 'translate-x-6' : 'translate-x-0.5'"></span>
+        </div>
+        <input type="checkbox" name="sms_notifications" class="hidden" x-bind:checked="sms" />
+      </label>
+      <button type="submit" class="h-12 px-6 bg-[#0b6e4f] text-white rounded-full font-bold text-sm mt-4 hover:bg-[#095a3f] transition">Save &amp; Continue</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

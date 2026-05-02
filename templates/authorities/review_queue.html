@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Review Queue — e-Citizen Authorities{% endblock %}
+
+{% block content %}
+<div class="bg-[#f7f8fa] min-h-screen">
+  <div class="max-w-7xl mx-auto px-10 py-8">
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-4">
+      <a href="{% url 'authorities:staff_dashboard' %}" class="hover:text-[#0b6e4f] transition">Dashboard</a>
+      <span>/</span>
+      <span class="text-[#111418] font-medium">Review Queue</span>
+    </nav>
+
+    <h1 class="text-[32px] font-bold leading-tight text-[#111418] mb-6">My Review Queue</h1>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+      <span class="text-xs font-bold uppercase text-[#60758a]">Status:</span>
+      <a href="?" class="px-3 py-1.5 rounded-lg text-sm font-medium transition {% if not current_status %}bg-[#0b6e4f] text-white{% else %}bg-white text-[#60758a] border border-[#dbe0e6]{% endif %}">All</a>
+      <a href="?status=pending" class="px-3 py-1.5 rounded-lg text-sm font-medium transition {% if current_status == 'pending' %}bg-[#0b6e4f] text-white{% else %}bg-white text-[#60758a] border border-[#dbe0e6]{% endif %}">Pending</a>
+      <a href="?status=completed" class="px-3 py-1.5 rounded-lg text-sm font-medium transition {% if current_status == 'completed' %}bg-[#0b6e4f] text-white{% else %}bg-white text-[#60758a] border border-[#dbe0e6]{% endif %}">Completed</a>
+      <div class="w-px h-6 bg-[#dbe0e6]"></div>
+      <span class="text-xs font-bold uppercase text-[#60758a]">Service:</span>
+      <select name="service" onchange="window.location.href='?service='+this.value{% if current_status %}+'&status={{ current_status }}'{% endif %}" class="rounded-lg border border-[#dbe0e6] h-10 px-3 text-sm bg-white focus:border-[#0b6e4f] focus:outline-none">
+        <option value="">All Services</option>
+        {% for s in services %}
+          <option value="{{ s.id }}" {% if current_service == s.id|stringformat:"s" %}selected{% endif %}>{{ s.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    {% if assignments %}
+      <div class="bg-white rounded-xl border border-[#dbe0e6] overflow-hidden">
+        <table class="w-full text-sm">
+          <thead class="bg-[#f7f8fa] border-b border-[#dbe0e6]">
+            <tr>
+              <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Reference</th>
+              <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Citizen</th>
+              <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Service</th>
+              <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Step</th>
+              <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Decision</th>
+              <th class="text-left px-5 py-3 text-xs font-bold uppercase text-[#60758a]">Date</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#f1f2f4]">
+            {% for a in assignments %}
+              <tr class="hover:bg-[#f7f8fa] transition cursor-pointer" onclick="window.location='{% url 'authorities:review_application' a.application.id %}'">
+                <td class="px-5 py-3 font-mono text-xs font-bold text-[#0b6e4f]">{{ a.application.reference }}</td>
+                <td class="px-5 py-3 font-medium">{{ a.application.user.username|default:"—" }}</td>
+                <td class="px-5 py-3 text-[#60758a] max-w-xs truncate">{{ a.application.service.name }}</td>
+                <td class="px-5 py-3 text-sm">{{ a.step.name }}</td>
+                <td class="px-5 py-3">
+                  {% if a.is_completed %}
+                    <span class="px-2 py-0.5 rounded-full text-xs font-medium
+                      {% if a.decision == 'approved' %}bg-green-100 text-green-700
+                      {% elif a.decision == 'rejected' %}bg-red-100 text-red-700
+                      {% else %}bg-purple-100 text-purple-700{% endif %}">{{ a.get_decision_display }}</span>
+                  {% else %}
+                    <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700">Pending</span>
+                  {% endif %}
+                </td>
+                <td class="px-5 py-3 text-[#60758a]">{{ a.application.submitted_at|date:"d M Y"|default:"—" }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="bg-white rounded-xl border border-[#dbe0e6] p-12 text-center">
+        <p class="text-[#60758a] font-medium">No applications in your review queue</p>
+        <p class="text-sm text-[#60758a] mt-1">Assignments will appear here when citizens submit applications that match your review role.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

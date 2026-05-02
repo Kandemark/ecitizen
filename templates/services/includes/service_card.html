@@ -1,0 +1,26 @@
+<a href="{% url 'service_detail' service.slug %}"
+   class="border border-[#dbe0e6] rounded-xl p-5 hover:border-[#0b6e4f] hover:shadow-md transition block group">
+  <div class="flex items-start gap-3">
+    <span class="flex-shrink-0 text-2xl">{{ service.icon|default:'📋' }}</span>
+    <div class="min-w-0 flex-1">
+      <p class="font-semibold text-[#111418] group-hover:text-[#0b6e4f] transition truncate">{{ service.name }}</p>
+      <p class="text-sm text-[#60758a] mt-1 line-clamp-2">{{ service.short_description }}</p>
+      <div class="flex items-center gap-3 mt-3">
+        {% if service.fee_kes > 0 %}
+          <span class="text-sm font-medium text-[#111418]">KES {{ service.fee_kes }}</span>
+        {% else %}
+          <span class="text-sm font-medium text-[#0b6e4f]">Free</span>
+        {% endif %}
+        {% if service.processing_time %}
+          <span class="text-xs text-[#60758a]">&#183; {{ service.processing_time }}</span>
+        {% endif %}
+        {% if service.ministry %}
+          <span class="text-xs text-[#60758a] truncate">&#183; {{ service.ministry.name }}</span>
+        {% endif %}
+      </div>
+    </div>
+    <svg class="flex-shrink-0 size-5 text-[#dbe0e6] group-hover:text-[#0b6e4f] transition mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+    </svg>
+  </div>
+</a>

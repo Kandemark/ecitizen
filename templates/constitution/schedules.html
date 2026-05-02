@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Schedules — Constitution of Kenya{% endblock %}
+
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[1100px] mx-auto">
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
+      <a href="{% url 'constitution:browse' %}" class="hover:text-[#0b6e4f] transition">Constitution</a>
+      <span>/</span>
+      <span class="text-[#111418] font-medium">Schedules</span>
+    </nav>
+
+    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-[#60758a]/10 text-[#60758a] uppercase tracking-wide">Appendices</span>
+    <h1 class="text-[32px] font-bold leading-tight text-[#111418] mt-3 mb-8">Schedules to the Constitution</h1>
+
+    <div class="space-y-6">
+      {% for s in schedules %}
+        <div class="bg-white rounded-xl border border-[#dbe0e6] overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 size-10 rounded-lg bg-[#60758a]/10 text-[#60758a] flex items-center justify-center font-bold text-sm">
+                {{ s.number }}
+              </div>
+              <div class="min-w-0 flex-1">
+                <h2 class="text-lg font-bold text-[#111418]">{{ s.title }}</h2>
+                <div class="mt-4 text-sm text-[#111418] leading-relaxed whitespace-pre-line">
+                  {{ s.content }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="bg-white rounded-xl border border-[#dbe0e6] p-8 text-center text-[#60758a]">
+          No schedules available.
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="mt-8">
+      <a href="{% url 'constitution:browse' %}" class="text-sm font-medium text-[#0b6e4f] hover:underline">&larr; Back to Constitution</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

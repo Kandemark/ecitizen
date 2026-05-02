@@ -1,0 +1,64 @@
+{% if payments %}
+<div class="border border-[#dbe0e6] rounded-xl overflow-hidden">
+  <table class="w-full text-sm">
+    <thead class="bg-[#f7f8fa] text-left">
+      <tr>
+        <th class="px-4 py-3 font-medium text-[#60758a]">Reference</th>
+        <th class="px-4 py-3 font-medium text-[#60758a]">Description</th>
+        <th class="px-4 py-3 font-medium text-[#60758a]">Amount</th>
+        <th class="px-4 py-3 font-medium text-[#60758a]">Date</th>
+        <th class="px-4 py-3 font-medium text-[#60758a]">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for payment in payments %}
+      <tr class="border-t border-[#dbe0e6] hover:bg-[#f7f8fa] transition">
+        <td class="px-4 py-3 font-medium">{{ payment.reference }}</td>
+        <td class="px-4 py-3 text-[#60758a]">{{ payment.description|default:payment.application.service.name|default:"Payment" }}</td>
+        <td class="px-4 py-3 font-medium">KES {{ payment.amount }}</td>
+        <td class="px-4 py-3 text-[#60758a]">{{ payment.created_at|date:"M j, Y" }}</td>
+        <td class="px-4 py-3">{% include 'components/status_badge.html' with status=payment.status %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="border border-[#dbe0e6] rounded-lg p-8 text-center">
+  <p class="text-[#60758a]">No payment history matching these filters.</p>
+</div>
+{% endif %}
+
+{% if invoices %}
+<h3 class="text-lg font-bold mt-8 mb-3">Invoices</h3>
+<div class="border border-[#dbe0e6] rounded-xl overflow-hidden">
+  <table class="w-full text-sm">
+    <thead class="bg-[#f7f8fa] text-left">
+      <tr>
+        <th class="px-4 py-3 font-medium text-[#60758a]">Reference</th>
+        <th class="px-4 py-3 font-medium text-[#60758a]">Service</th>
+        <th class="px-4 py-3 font-medium text-[#60758a]">Amount</th>
+        <th class="px-4 py-3 font-medium text-[#60758a]">Due Date</th>
+        <th class="px-4 py-3 font-medium text-[#60758a]">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for inv in invoices %}
+      <tr class="border-t border-[#dbe0e6] hover:bg-[#f7f8fa] transition">
+        <td class="px-4 py-3 font-medium">{{ inv.reference }}</td>
+        <td class="px-4 py-3 text-[#60758a]">{{ inv.service.name|default:"—" }}</td>
+        <td class="px-4 py-3 font-medium">KES {{ inv.total_amount }}</td>
+        <td class="px-4 py-3 text-[#60758a]">{{ inv.due_date|date:"M j, Y"|default:"—" }}</td>
+        <td class="px-4 py-3">
+          {% if inv.is_paid %}
+          <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-700">Paid</span>
+          {% else %}
+          <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-yellow-100 text-yellow-700">Pending</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}

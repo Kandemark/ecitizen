@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Search Constitution — e-Citizen Kenya{% endblock %}
+
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[1100px] mx-auto">
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
+      <a href="{% url 'constitution:browse' %}" class="hover:text-[#0b6e4f] transition">Constitution</a>
+      <span>/</span>
+      <span class="text-[#111418] font-medium">Search</span>
+    </nav>
+
+    <h1 class="text-[32px] font-bold leading-tight text-[#111418] mb-2">Search the Constitution</h1>
+    <p class="text-sm text-[#60758a] mb-6">Search across all chapters, articles, and schedules</p>
+
+    <form action="{% url 'constitution:search' %}" method="get">
+      <div class="relative max-w-2xl">
+        <svg class="size-5 absolute left-4 top-1/2 -translate-y-1/2 text-[#60758a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="search" name="q" value="{{ query }}" placeholder="Search by article title, content, or keywords…"
+               class="w-full pl-12 pr-4 py-3 text-sm rounded-xl border border-[#dbe0e6] focus:border-[#0b6e4f] focus:ring-2 focus:ring-[#0b6e4f]/20 focus:outline-none shadow-sm"
+               autofocus>
+      </div>
+    </form>
+
+    {% if query %}
+      <div class="mt-8">
+        <p class="text-sm text-[#60758a]">
+          {{ results|length }} result{{ results|pluralize }} for <strong class="text-[#111418]">"{{ query }}"</strong>
+        </p>
+
+        {% if results %}
+          <div class="mt-4 space-y-4">
+            {% for article in results %}
+              <a href="{% url 'constitution:article' article.number %}"
+                 class="block bg-white rounded-xl border border-[#dbe0e6] p-5 hover:border-[#0b6e4f] hover:shadow-sm transition group">
+                <div class="flex items-start gap-3">
+                  <div class="flex-shrink-0 mt-0.5">
+                    <span class="text-xs font-bold text-[#0b6e4f] bg-[#0b6e4f]/10 px-2 py-0.5 rounded">Art. {{ article.number }}</span>
+                  </div>
+                  <div class="min-w-0">
+                    <h3 class="font-semibold text-[#111418] group-hover:text-[#0b6e4f] transition">
+                      {{ article.title }}
+                    </h3>
+                    <p class="text-xs text-[#60758a] mt-0.5">
+                      Chapter {{ article.chapter.number }} — {{ article.chapter.title }}
+                    </p>
+                    <p class="mt-2 text-sm text-[#60758a] leading-relaxed line-clamp-2">
+                      {{ article.content|truncatewords:40 }}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="mt-8 text-center py-12 bg-white rounded-xl border border-[#dbe0e6]">
+            <svg class="size-12 mx-auto text-[#dbe0e6]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <p class="mt-4 text-[#60758a] font-medium">No articles found for "{{ query }}"</p>
+            <p class="text-sm text-[#60758a] mt-1">Try different keywords or <a href="{% url 'constitution:browse' %}" class="text-[#0b6e4f] hover:underline">browse by chapter</a></p>
+          </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="mt-8 text-center py-12 bg-white rounded-xl border border-[#dbe0e6]">
+        <svg class="size-12 mx-auto text-[#dbe0e6]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <p class="mt-4 text-[#60758a]">Enter a search term to find articles in the Constitution</p>
+        <p class="text-sm text-[#60758a] mt-1">You can search by keywords like "sovereignty", "bill of rights", "land", "elections", etc.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

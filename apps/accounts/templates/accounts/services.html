@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Services — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <div class="flex items-center justify-between mb-6">
+      <p class="text-[32px] font-bold leading-tight">Government Services</p>
+      <a href="{% url 'service_browse' %}" class="text-sm text-[#0b6e4f] hover:underline font-medium">Browse All &rarr;</a>
+    </div>
+    {% if popular_services %}
+    <h3 class="text-lg font-bold px-4 pb-2">Popular Services</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 mb-8">
+      {% for service in popular_services %}
+      <a href="{% url 'service_detail' service.slug %}" class="border border-[#dbe0e6] rounded-lg p-4 hover:border-[#0b6e4f] hover:shadow-md transition block">
+        <p class="font-medium group-hover:text-[#0b6e4f]">{{ service.name }}</p>
+        <p class="text-sm text-[#60758a] mt-1">{{ service.short_description }}</p>
+        {% if service.fee_kes > 0 %}
+        <p class="text-sm font-medium text-[#111418] mt-2">KES {{ service.fee_kes }}</p>
+        {% else %}
+        <p class="text-sm font-medium text-green-600 mt-2">Free</p>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if categories %}
+    <h3 class="text-lg font-bold px-4 pb-2">Browse by Category</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
+      {% for category in categories %}
+      <a href="{% url 'service_browse' %}?category={{ category.id }}" class="border border-[#dbe0e6] rounded-lg p-4 hover:border-[#0b6e4f] transition block">
+        <p class="font-medium">{{ category.name }}</p>
+        <p class="text-sm text-[#60758a] mt-1">{{ category.description }}</p>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-[#60758a] px-4">No service categories available yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

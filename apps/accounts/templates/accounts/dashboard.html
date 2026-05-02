@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="flex flex-wrap justify-between gap-3 mb-6">
+      <div>
+        <p class="text-[32px] font-bold leading-tight">Dashboard</p>
+        <p class="text-[#60758a] text-sm mt-1">Welcome{% if user.is_authenticated %} back, {{ user.first_name|default:user.username }}{% endif %}</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
+      <div class="lg:col-span-2">
+        {% if wallet %}
+          {% include 'accounts/includes/wallet_card.html' %}
+        {% else %}
+        <div class="border border-dashed border-[#dbe0e6] rounded-xl p-5 bg-white">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-bold text-lg">e-Citizen Wallet</h3>
+          </div>
+          <p class="text-[#60758a] text-sm">Complete your onboarding to activate your wallet.</p>
+          <a href="{% url 'onboarding' %}" class="inline-block mt-3 h-9 px-4 bg-[#0b6e4f] text-white rounded-full text-sm font-medium leading-9">Complete Onboarding</a>
+        </div>
+        {% endif %}
+      </div>
+      <div id="notificationFeed">
+        {% include 'accounts/includes/notification_feed.html' %}
+        {% if weather %}
+        <div class="mt-5">
+          {% include 'accounts/includes/weather_card.html' %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if upcoming_appointments or recent_documents %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+      {% include 'accounts/includes/upcoming_appointments.html' %}
+      {% include 'accounts/includes/expiring_docs.html' %}
+    </div>
+    {% endif %}
+
+    {% if news_articles %}
+    <div class="mb-6">
+      {% include 'accounts/includes/news_feed.html' %}
+    </div>
+    {% endif %}
+
+    {% if indicators and exchange_rates %}
+    <div class="mb-6">
+      {% include 'accounts/includes/economic_widget.html' %}
+    </div>
+    {% endif %}
+
+    {% if recent_applications %}
+    <h3 class="text-lg font-bold px-4 pb-3">Your Recent Applications</h3>
+    <div class="grid grid-cols-1 gap-3 px-4 mb-6">
+      {% for app in recent_applications %}
+      <div class="flex items-center justify-between border border-[#dbe0e6] rounded-lg p-4 bg-white">
+        <div>
+          <p class="font-medium">{{ app.service.name }}</p>
+          <p class="text-sm text-[#60758a]">Ref: {{ app.reference }} &middot; {{ app.submitted_at|date:"F j, Y" }}</p>
+        </div>
+        {% include 'components/status_badge.html' with status=app.status %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <h3 class="text-lg font-bold px-4 pb-3">Quick Links</h3>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 px-4">
+      {% for link in quick_links %}
+        {% if link.slug %}
+        <a href="{% url 'service_detail' link.slug %}" class="border border-[#dbe0e6] rounded-lg p-4 bg-white hover:border-[#0b6e4f] hover:shadow-sm transition block">
+          <span class="text-xl">{{ link.icon|default:'📋' }}</span>
+          <p class="font-medium text-sm mt-2">{{ link.name }}</p>
+        </a>
+        {% else %}
+        <a href="{{ link.url }}" class="border border-[#dbe0e6] rounded-lg p-4 bg-white hover:border-[#0b6e4f] hover:shadow-sm transition block">
+          <span class="text-xl">{{ link.icon|default:'📋' }}</span>
+          <p class="font-medium text-sm mt-2">{{ link.name }}</p>
+        </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+{% if notifications %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    setInterval(function() {
+      htmx.ajax('GET', '{% url "latest_notifications" %}', { target: '#notificationFeed' });
+    }, 30000);
+  });
+</script>
+{% endif %}
+{% endblock %}

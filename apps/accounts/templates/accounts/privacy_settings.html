@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Privacy Settings — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <p class="text-[32px] font-bold leading-tight mb-6">Privacy Settings</p>
+    <p class="text-[#60758a]">Manage how your personal information is used and shared across government services.</p>
+    <div class="mt-6 space-y-4 max-w-[480px]">
+      <div class="flex items-center justify-between border border-[#dbe0e6] rounded-lg p-4">
+        <div>
+          <p class="font-medium">Profile Visibility</p>
+          <p class="text-sm text-[#60758a]">Allow government officers to view your profile when processing applications</p>
+        </div>
+        <input type="checkbox" checked class="form-checkbox rounded border-[#dbe0e6]" />
+      </div>
+      <div class="flex items-center justify-between border border-[#dbe0e6] rounded-lg p-4">
+        <div>
+          <p class="font-medium">Data Sharing</p>
+          <p class="text-sm text-[#60758a]">Share your verified identity across government ministries</p>
+        </div>
+        <input type="checkbox" checked class="form-checkbox rounded border-[#dbe0e6]" />
+      </div>
+      <div class="flex items-center justify-between border border-[#dbe0e6] rounded-lg p-4">
+        <div>
+          <p class="font-medium">Analytics</p>
+          <p class="text-sm text-[#60758a]">Allow anonymized usage data to improve services</p>
+        </div>
+        <input type="checkbox" class="form-checkbox rounded border-[#dbe0e6]" />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

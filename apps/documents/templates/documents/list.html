@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}My Documents — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[960px] mx-auto">
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+      <div>
+        <p class="text-[32px] font-bold leading-tight">My Documents</p>
+        <p class="text-[#60758a] text-sm mt-1">{{ documents|length }} document{{ documents|length|pluralize }}{% if total_size %} &middot; {{ total_size|filesizeformat }}{% endif %}</p>
+      </div>
+    </div>
+
+    <!-- Upload form -->
+    <form method="post" action="{% url 'document_upload' %}" enctype="multipart/form-data" class="border border-dashed border-[#dbe0e6] rounded-xl p-6 mb-6 bg-[#fafbfc]">
+      {% csrf_token %}
+      <div class="flex flex-wrap items-end gap-3">
+        <div class="flex-1 min-w-[200px]">
+          <label class="block text-sm font-medium mb-1">Document Name</label>
+          <input type="text" name="name" placeholder="e.g. National ID Scan" class="w-full rounded-lg border border-[#dbe0e6] h-10 px-3 text-sm focus:border-[#0b6e4f] focus:outline-none" />
+        </div>
+        <div class="flex-1 min-w-[200px]">
+          <label class="block text-sm font-medium mb-1">File</label>
+          <input type="file" name="file" required class="block w-full text-sm text-[#60758a] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-medium file:bg-[#e8f5ef] file:text-[#0b6e4f]" />
+        </div>
+        <button type="submit" class="h-10 px-5 bg-[#0b6e4f] text-white rounded-full text-sm font-medium hover:bg-[#095d42] transition">
+          Upload
+        </button>
+      </div>
+    </form>
+
+    {% if documents %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+      {% for doc in documents %}
+      <div class="border border-[#dbe0e6] rounded-lg p-4 bg-white group">
+        <div class="flex items-start justify-between mb-2">
+          <span class="text-2xl">📄</span>
+          <div class="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition">
+            <a href="{{ doc.file.url }}" class="text-xs text-[#0b6e4f] hover:underline font-medium" download>Download</a>
+            <a href="{% url 'document_delete' doc.pk %}" class="text-xs text-red-600 hover:underline ml-2" onclick="return confirm('Delete this document?')">Delete</a>
+          </div>
+        </div>
+        <p class="font-medium text-sm truncate">{{ doc.name }}</p>
+        <p class="text-xs text-[#60758a] mt-1">{{ doc.file_size|filesizeformat }} &middot; {{ doc.created_at|date:"M j, Y" }}</p>
+        <div class="flex items-center gap-2 mt-2">
+          {% if doc.is_verified %}
+          <span class="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700">Verified</span>
+          {% else %}
+          <span class="text-xs px-2 py-0.5 rounded-full bg-yellow-100 text-yellow-700">Unverified</span>
+          {% endif %}
+          {% if doc.mime_type %}
+          <span class="text-xs text-[#60758a]">{{ doc.mime_type|truncatechars:20 }}</span>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="border border-[#dbe0e6] rounded-lg p-8 text-center">
+      <p class="text-[#60758a]">No documents uploaded yet. Use the form above to upload your first document.</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

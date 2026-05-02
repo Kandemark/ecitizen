@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block title %}Create Your Account — e-Citizen Onboarding{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[640px] mx-auto" x-data="{
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    password: '',
+    confirm: '',
+    dob: '',
+    gender: '',
+    get valid() {
+      return this.firstName && this.lastName && this.username.length >= 3
+        && this.email && this.email.includes('@')
+        && this.password.length >= 6 && this.password === this.confirm
+        && this.dob && this.gender
+    }
+  }">
+    <p class="text-sm text-[#60758a] mb-2">Step {{ step }} of {{ total_steps }}</p>
+    <div class="h-2 bg-[#f1f2f4] rounded-full mb-8">
+      <div class="h-2 bg-[#0b6e4f] rounded-full transition-all duration-500" style="width: {{ step|floatformat:0 }}0%"></div>
+    </div>
+    <p class="text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
+    <p class="text-[#60758a] mb-8">Create your account with a unique username and password. Your personal details help us verify your identity.</p>
+
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="mb-4 p-3 rounded-lg text-sm {% if msg.tags == 'error' %}bg-red-50 text-red-700{% else %}bg-green-50 text-green-700{% endif %}">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <form method="post" class="flex flex-col gap-4" @submit.prevent="if(valid) $el.submit()">
+      {% csrf_token %}
+
+      <!-- Account credentials -->
+      <div class="bg-[#f7f8fa] rounded-xl p-4 mb-2">
+        <p class="text-sm font-bold text-[#111418] mb-3">Account Credentials</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-medium">Username <span class="text-red-500">*</span></span>
+            <input type="text" name="username" x-model="username" required minlength="3"
+              class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4 focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f] transition"
+              placeholder="Choose a unique username" />
+            <span class="text-xs text-[#60758a]">At least 3 characters</span>
+          </label>
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-medium">Email <span class="text-red-500">*</span></span>
+            <input type="email" name="email" x-model="email" required
+              class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4 focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f] transition"
+              placeholder="your@email.com" />
+          </label>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-medium">Password <span class="text-red-500">*</span></span>
+            <input type="password" name="password" x-model="password" required minlength="6"
+              class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4 focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f] transition"
+              placeholder="Min 6 characters" />
+            <span class="text-xs" :class="password.length >= 6 ? 'text-green-600' : 'text-[#9aa6b2]'">Minimum 6 characters</span>
+          </label>
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-medium">Confirm Password <span class="text-red-500">*</span></span>
+            <input type="password" name="confirm_password" x-model="confirm" required minlength="6"
+              class="form-input rounded-lg border h-12 px-4 focus:ring-1 transition"
+              :class="confirm && confirm !== password ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : 'border-[#dbe0e6] focus:border-[#0b6e4f] focus:ring-[#0b6e4f]'"
+              placeholder="Re-enter password" />
+            <span class="text-xs text-red-500" x-show="confirm && confirm !== password">Passwords do not match</span>
+            <span class="text-xs text-green-600" x-show="confirm && confirm === password && password.length >= 6">Passwords match</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Personal details -->
+      <div class="bg-[#f7f8fa] rounded-xl p-4">
+        <p class="text-sm font-bold text-[#111418] mb-3">Personal Information</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-medium">First Name <span class="text-red-500">*</span></span>
+            <input type="text" name="first_name" x-model="firstName" required
+              class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4 focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f] transition"
+              placeholder="As on your ID" />
+          </label>
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-medium">Last Name <span class="text-red-500">*</span></span>
+            <input type="text" name="last_name" x-model="lastName" required
+              class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4 focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f] transition"
+              placeholder="As on your ID" />
+          </label>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-medium">Date of Birth <span class="text-red-500">*</span></span>
+            <input type="date" name="date_of_birth" x-model="dob" required
+              class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4 focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f] transition" />
+          </label>
+          <label class="flex flex-col gap-1">
+            <span class="text-sm font-medium">Gender <span class="text-red-500">*</span></span>
+            <select name="gender" x-model="gender"
+              class="form-select rounded-lg border border-[#dbe0e6] h-12 px-4 focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f] transition">
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit"
+        class="h-12 px-6 bg-[#0b6e4f] text-white rounded-full font-bold text-sm mt-4 hover:bg-[#095a3f] transition"
+        x-bind:disabled="!valid"
+        x-bind:class="!valid ? 'opacity-50 cursor-not-allowed' : ''">
+        Create Account & Continue
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

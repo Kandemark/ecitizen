@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load ecitizen_tags %}
+
+{% block title %}{{ title }} {{ record.reference }} — e-Citizen{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'land:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Land Services</a>
+
+  <div class="card mb-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-xl font-bold text-[#111418]">{{ title }}</h1>
+        <p class="text-sm text-[#60758a]">Ref: {{ record.reference }}</p>
+      </div>
+      <span class="status-badge text-sm px-3 py-1 rounded-full {{ record.status|status_color }} font-medium">{{ record.get_status_display }}</span>
+    </div>
+  </div>
+
+  <div class="card mb-6">
+    <h2 class="font-bold text-[#111418] mb-4">Record Details</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      {% if app_type == 'title_deed' %}
+      <div><span class="text-xs text-[#60758a] block">Title Number</span><span class="text-sm font-medium">{{ record.title_number }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Property Location</span><span class="text-sm font-medium">{{ record.property_location }}</span></div>
+      {% if record.county %}<div><span class="text-xs text-[#60758a] block">County</span><span class="text-sm font-medium">{{ record.county.name }}</span></div>{% endif %}
+      <div><span class="text-xs text-[#60758a] block">Land Size</span><span class="text-sm font-medium">{{ record.land_size_hectares }} ha</span></div>
+      <div><span class="text-xs text-[#60758a] block">Tenure Type</span><span class="text-sm font-medium">{{ record.tenure_type|title }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Registered Owner</span><span class="text-sm font-medium">{{ record.registered_owner_name|default:"—" }}</span></div>
+      {% if record.registration_date %}<div><span class="text-xs text-[#60758a] block">Registration Date</span><span class="text-sm font-medium">{{ record.registration_date|date:"d M Y" }}</span></div>{% endif %}
+      {% if record.encumbrances %}<div class="md:col-span-2"><span class="text-xs text-[#60758a] block">Encumbrances</span><span class="text-sm font-medium">{{ record.encumbrances }}</span></div>{% endif %}
+
+      {% elif app_type == 'land_search' %}
+      <div><span class="text-xs text-[#60758a] block">Title Number</span><span class="text-sm font-medium">{{ record.title_number }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Search Date</span><span class="text-sm font-medium">{{ record.search_date|date:"d M Y, H:i"|default:"Pending" }}</span></div>
+      <div class="md:col-span-2"><span class="text-xs text-[#60758a] block">Purpose</span><span class="text-sm font-medium">{{ record.search_purpose }}</span></div>
+      {% if record.search_result %}<div class="md:col-span-2"><span class="text-xs text-[#60758a] block">Result</span><span class="text-sm font-medium">{{ record.search_result }}</span></div>{% endif %}
+
+      {% elif app_type == 'transfer' %}
+      <div><span class="text-xs text-[#60758a] block">Title Deed</span><span class="text-sm font-medium">{{ record.title_deed.title_number }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Transfer Type</span><span class="text-sm font-medium">{{ record.transfer_type|title }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">From</span><span class="text-sm font-medium">{{ record.from_owner }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">To</span><span class="text-sm font-medium">{{ record.to_owner }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Consideration</span><span class="text-sm font-medium">KES {{ record.consideration_amount|floatformat:2 }}</span></div>
+      {% if record.transfer_date %}<div><span class="text-xs text-[#60758a] block">Transfer Date</span><span class="text-sm font-medium">{{ record.transfer_date|date:"d M Y" }}</span></div>{% endif %}
+      {% endif %}
+
+      <div><span class="text-xs text-[#60758a] block">Submitted</span><span class="text-sm font-medium">{{ record.created_at|date:"d M Y, H:i" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Last Updated</span><span class="text-sm font-medium">{{ record.updated_at|date:"d M Y, H:i" }}</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="font-bold text-[#111418] mb-4">Timeline</h2>
+    <div class="space-y-3">
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="size-3 rounded-full bg-green-500"></div>
+          <div class="w-px h-full bg-[#dbe0e6]"></div>
+        </div>
+        <div>
+          <p class="text-sm font-medium">Application Submitted</p>
+          <p class="text-xs text-[#60758a]">{{ record.created_at|date:"d M Y, H:i" }}</p>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="size-3 rounded-full {% if record.status == 'submitted' %}bg-yellow-500{% elif record.status == 'approved' or record.status == 'completed' %}bg-green-500{% elif record.status == 'rejected' %}bg-red-500{% else %}bg-gray-300{% endif %}"></div>
+        </div>
+        <div>
+          <p class="text-sm font-medium">{{ record.get_status_display }}</p>
+          <p class="text-xs text-[#60758a]">{{ record.updated_at|date:"d M Y, H:i" }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

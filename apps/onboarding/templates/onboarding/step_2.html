@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Select ID Type — e-Citizen Onboarding{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[640px] mx-auto" x-data="{ selected: 'national_id' }">
+    <p class="text-sm text-[#60758a] mb-2">Step {{ step }} of {{ total_steps }}</p>
+    <div class="h-2 bg-[#f1f2f4] rounded-full mb-8">
+      <div class="h-2 bg-[#0b6e4f] rounded-full transition-all duration-500" style="width: {{ step|floatformat:0 }}0%"></div>
+    </div>
+    <p class="text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
+    <p class="text-[#60758a] mb-8">Choose the type of identification you will use to verify your identity.</p>
+    <form method="post" class="flex flex-col gap-4">
+      {% csrf_token %}
+      <label class="flex items-center gap-4 border-2 rounded-xl p-5 cursor-pointer transition-all duration-200" :class="selected === 'national_id' ? 'border-[#0b6e4f] bg-green-50' : 'border-[#dbe0e6] hover:bg-[#f7f8fa]'" @click="selected='national_id'">
+        <input type="radio" name="id_type" value="national_id" x-model="selected" class="form-radio text-[#0b6e4f]" />
+        <div>
+          <p class="font-medium text-base">Kenyan National ID</p>
+          <p class="text-sm text-[#60758a]">For Kenyan citizens with a valid national ID card</p>
+        </div>
+      </label>
+      <label class="flex items-center gap-4 border-2 rounded-xl p-5 cursor-pointer transition-all duration-200" :class="selected === 'passport' ? 'border-[#0b6e4f] bg-green-50' : 'border-[#dbe0e6] hover:bg-[#f7f8fa]'" @click="selected='passport'">
+        <input type="radio" name="id_type" value="passport" x-model="selected" class="form-radio text-[#0b6e4f]" />
+        <div>
+          <p class="font-medium text-base">Passport</p>
+          <p class="text-sm text-[#60758a]">For foreign residents or citizens using a passport</p>
+        </div>
+      </label>
+      <label class="flex items-center gap-4 border-2 rounded-xl p-5 cursor-pointer transition-all duration-200" :class="selected === 'alien_id' ? 'border-[#0b6e4f] bg-green-50' : 'border-[#dbe0e6] hover:bg-[#f7f8fa]'" @click="selected='alien_id'">
+        <input type="radio" name="id_type" value="alien_id" x-model="selected" class="form-radio text-[#0b6e4f]" />
+        <div>
+          <p class="font-medium text-base">Alien ID / Foreign Resident</p>
+          <p class="text-sm text-[#60758a]">For non-citizen residents of Kenya</p>
+        </div>
+      </label>
+      <button type="submit" class="h-12 px-6 bg-[#0b6e4f] text-white rounded-full font-bold text-sm mt-4 hover:bg-[#095a3f] transition">Continue</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}All Done! — e-Citizen Onboarding{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[640px] mx-auto text-center" x-data="{ show: false }" x-init="setTimeout(() => show = true, 300)">
+    <p class="text-sm text-[#60758a] mb-2">Step {{ step }} of {{ total_steps }}</p>
+    <div class="h-2 bg-[#f1f2f4] rounded-full mb-8">
+      <div class="h-2 bg-[#0b6e4f] rounded-full transition-all duration-1000" style="width: 100%"></div>
+    </div>
+    <div class="mb-8" x-show="show" x-transition.opacity.scale>
+      <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-[#0b6e4f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <p class="text-[32px] font-bold leading-tight mb-3">{{ step_title }}</p>
+      <p class="text-[#60758a] text-base leading-relaxed">Your e-Citizen profile is ready! You can now apply for government services, track your applications, make payments, and more.</p>
+    </div>
+    <div class="border border-[#dbe0e6] rounded-xl p-6 text-left mb-6" x-show="show" x-transition x-transition.delay.200ms>
+      <p class="font-medium text-base mb-4">What you can do next:</p>
+      <div class="space-y-3 text-sm text-[#60758a]">
+        <div class="flex items-center gap-3">
+          <span class="w-5 h-5 rounded-full bg-[#0b6e4f] text-white flex items-center justify-center text-xs flex-shrink-0">1</span>
+          <span>Browse and apply for government services</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-5 h-5 rounded-full bg-[#0b6e4f] text-white flex items-center justify-center text-xs flex-shrink-0">2</span>
+          <span>Upload your documents securely</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-5 h-5 rounded-full bg-[#0b6e4f] text-white flex items-center justify-center text-xs flex-shrink-0">3</span>
+          <span>Book appointments at Huduma Centres</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-5 h-5 rounded-full bg-[#0b6e4f] text-white flex items-center justify-center text-xs flex-shrink-0">4</span>
+          <span>Track your applications in real-time</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="w-5 h-5 rounded-full bg-[#0b6e4f] text-white flex items-center justify-center text-xs flex-shrink-0">5</span>
+          <span>Pay for services via M-Pesa</span>
+        </div>
+      </div>
+    </div>
+    <form method="post" x-show="show" x-transition x-transition.delay.400ms>
+      {% csrf_token %}
+      <button type="submit" class="h-14 px-10 bg-[#0b6e4f] text-white rounded-full font-bold text-base hover:bg-[#095a3f] transition shadow-lg">Go to Dashboard</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

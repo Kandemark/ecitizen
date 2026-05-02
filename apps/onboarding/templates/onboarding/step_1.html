@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Welcome — e-Citizen Onboarding{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[640px] mx-auto">
+    <p class="text-sm text-[#60758a] mb-2">Step {{ step }} of {{ total_steps }}</p>
+    <div class="h-2 bg-[#f1f2f4] rounded-full mb-8">
+      <div class="h-2 bg-[#0b6e4f] rounded-full" style="width: {{ step|floatformat:0 }}0%"></div>
+    </div>
+    <p class="text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
+    <p class="text-[#60758a] mb-8">Welcome to Kenya's digital government services platform. Let's get you set up in just a few minutes.</p>
+    <form method="post" class="flex flex-col gap-4">
+      {% csrf_token %}
+      <label class="flex flex-col gap-1">
+        <span class="text-sm font-medium">Select Language / Chagua Lugha</span>
+        <select name="language" class="form-select rounded-lg border border-[#dbe0e6] h-12 px-4">
+          <option value="en">English</option>
+          <option value="sw">Kiswahili</option>
+        </select>
+      </label>
+      <button type="submit" class="h-12 px-6 bg-[#0b6e4f] text-white rounded-full font-bold text-sm mt-4">Get Started</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

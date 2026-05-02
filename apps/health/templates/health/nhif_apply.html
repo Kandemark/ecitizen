@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Register for NHIF — e-Citizen{% endblock %}
+{% block content %}
+<div class="max-w-2xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'health:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Health</a>
+  <h1 class="text-2xl font-bold text-[#111418] mb-1">Register for NHIF</h1>
+  <p class="text-[#60758a] mb-8">Register for National Health Insurance Fund coverage.</p>
+  <form method="POST" class="card space-y-5">
+    {% csrf_token %}
+    <div><label class="block text-sm font-medium text-[#111418] mb-1">Employer Name</label><input type="text" name="employer_name" placeholder="e.g. ABC Company Ltd" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></div>
+    <div class="grid grid-cols-2 gap-4">
+      <div><label class="block text-sm font-medium text-[#111418] mb-1">Monthly Contribution (KES)</label><input type="number" name="monthly_contribution" min="0" step="0.01" placeholder="500" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></div>
+      <div><label class="block text-sm font-medium text-[#111418] mb-1">Number of Dependants</label><input type="number" name="dependants" min="0" placeholder="0" class="w-full border border-[#dbe0e6] rounded-lg px-4 py-2.5 text-sm focus:outline-none"></div>
+    </div>
+    <div class="bg-[#f7f8fa] border border-[#f0f2f5] rounded-lg p-4 text-sm text-[#60758a]"><p class="font-medium text-[#111418] mb-2">NHIF Contribution Rates</p><p>Standard rate: KES 500/month. Voluntary contributors: KES 500/month. Employer contributions are matched.</p></div>
+    <div class="flex justify-end gap-3 pt-4 border-t border-[#f0f2f5]"><a href="{% url 'health:list' %}" class="btn-outline">Cancel</a><button type="submit" class="btn-primary">Register</button></div>
+  </form>
+</div>
+{% endblock %}

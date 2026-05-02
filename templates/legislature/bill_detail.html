@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block title %}{{ bill.title }} — Parliament of Kenya{% endblock %}
+
+{% block content %}
+<div class="bg-[#f7f8fa] min-h-screen">
+  <div class="max-w-4xl mx-auto px-10 py-10">
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
+      <a href="{% url 'legislature:dashboard' %}" class="hover:text-[#0b6e4f] transition">Parliament</a>
+      <span>/</span>
+      <a href="{% url 'legislature:bills_list' %}" class="hover:text-[#0b6e4f] transition">Bills</a>
+      <span>/</span>
+      <span class="text-[#111418] font-medium truncate">{{ bill.number }}</span>
+    </nav>
+
+    <article class="bg-white rounded-xl border border-[#dbe0e6] overflow-hidden">
+      <div class="p-8">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="px-3 py-1 rounded-full text-xs font-bold
+            {% if bill.status == 'assented' %}bg-green-100 text-green-700
+            {% elif bill.status == 'passed' %}bg-blue-100 text-blue-700
+            {% elif bill.status == 'rejected' %}bg-red-100 text-red-700
+            {% elif bill.status == 'withdrawn' %}bg-gray-100 text-gray-600
+            {% else %}bg-amber-100 text-amber-700{% endif %}">
+            {{ bill.get_status_display }}
+          </span>
+          <span class="text-xs text-[#60758a]">{{ bill.get_house_display }}</span>
+        </div>
+
+        <h1 class="text-2xl font-black text-[#111418] mb-2">{{ bill.title }}</h1>
+        <p class="text-sm text-[#60758a]">{{ bill.number }}</p>
+
+        {% if bill.sponsor %}
+          <div class="mt-4 flex items-center gap-2">
+            <span class="text-xs font-bold uppercase text-[#60758a]">Sponsor:</span>
+            <span class="text-sm text-[#111418]">{{ bill.sponsor }}</span>
+          </div>
+        {% endif %}
+
+        <!-- Timeline -->
+        <div class="mt-8">
+          <h3 class="text-sm font-bold uppercase tracking-wide text-[#60758a] mb-4">Legislative Timeline</h3>
+          <div class="relative">
+            <div class="absolute left-4 top-0 bottom-0 w-px bg-[#dbe0e6]"></div>
+            <div class="space-y-4">
+              {% if bill.date_introduced %}
+                <div class="relative flex items-start gap-4 pl-10">
+                  <div class="absolute left-2.5 w-3 h-3 rounded-full bg-[#0b6e4f] border-2 border-white"></div>
+                  <div>
+                    <p class="text-sm font-semibold text-[#111418]">Introduced</p>
+                    <p class="text-xs text-[#60758a]">{{ bill.date_introduced|date:"d F Y" }}</p>
+                  </div>
+                </div>
+              {% endif %}
+              {% if bill.status == 'first_reading' or bill.date_passed %}
+                <div class="relative flex items-start gap-4 pl-10">
+                  <div class="absolute left-2.5 w-3 h-3 rounded-full bg-[#0b6e4f] border-2 border-white"></div>
+                  <div>
+                    <p class="text-sm font-semibold text-[#111418]">First Reading</p>
+                  </div>
+                </div>
+              {% endif %}
+              {% if bill.status == 'second_reading' or bill.status == 'committee' or bill.status == 'report' or bill.status == 'third_reading' or bill.date_passed %}
+                <div class="relative flex items-start gap-4 pl-10">
+                  <div class="absolute left-2.5 w-3 h-3 rounded-full bg-[#0b6e4f] border-2 border-white"></div>
+                  <div>
+                    <p class="text-sm font-semibold text-[#111418]">Second Reading</p>
+                  </div>
+                </div>
+              {% endif %}
+              {% if bill.status == 'committee' or bill.status == 'report' or bill.status == 'third_reading' or bill.date_passed %}
+                <div class="relative flex items-start gap-4 pl-10">
+                  <div class="absolute left-2.5 w-3 h-3 rounded-full bg-[#0b6e4f] border-2 border-white"></div>
+                  <div>
+                    <p class="text-sm font-semibold text-[#111418]">Committee Stage</p>
+                  </div>
+                </div>
+              {% endif %}
+              {% if bill.date_passed %}
+                <div class="relative flex items-start gap-4 pl-10">
+                  <div class="absolute left-2.5 w-3 h-3 rounded-full bg-green-500 border-2 border-white"></div>
+                  <div>
+                    <p class="text-sm font-semibold text-[#111418]">Passed</p>
+                    <p class="text-xs text-[#60758a]">{{ bill.date_passed|date:"d F Y" }}</p>
+                  </div>
+                </div>
+              {% endif %}
+              {% if bill.date_assented %}
+                <div class="relative flex items-start gap-4 pl-10">
+                  <div class="absolute left-2.5 w-3 h-3 rounded-full bg-green-600 border-2 border-white"></div>
+                  <div>
+                    <p class="text-sm font-semibold text-[#111418]">Assented to (Became Act of Parliament)</p>
+                    <p class="text-xs text-[#60758a]">{{ bill.date_assented|date:"d F Y" }}</p>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        {% if bill.summary %}
+          <div class="mt-8">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-[#60758a] mb-2">Summary</h3>
+            <div class="text-[#111418] leading-relaxed whitespace-pre-line">{{ bill.summary }}</div>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if bill.full_text_url %}
+        <div class="border-t border-[#dbe0e6] bg-[#f7f8fa] px-8 py-4 flex items-center justify-between">
+          <span class="text-sm text-[#60758a]">Full bill text available on the Parliament website</span>
+          <a href="{{ bill.full_text_url }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm font-medium text-[#0b6e4f] hover:underline">
+            <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            View Full Document
+          </a>
+        </div>
+      {% endif %}
+    </article>
+  </div>
+</div>
+{% endblock %}

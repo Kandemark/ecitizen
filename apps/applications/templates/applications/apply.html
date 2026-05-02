@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Apply — {{ service.name }}{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[720px] mx-auto">
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
+      <a href="{% url 'dashboard' %}" class="hover:text-[#0b6e4f]">Dashboard</a>
+      <span>/</span>
+      <a href="{% url 'service_detail' service.slug %}" class="hover:text-[#0b6e4f]">{{ service.name }}</a>
+      <span>/</span>
+      <span class="text-[#111418]">Apply</span>
+    </nav>
+
+    <h1 class="text-[32px] font-bold leading-tight mb-2">{{ service.name }}</h1>
+    <p class="text-[#60758a] mb-8">{{ service.short_description }}</p>
+
+    {% if service.required_documents.all %}
+    <div class="border border-[#dbe0e6] rounded-xl p-5 mb-6">
+      <h2 class="font-bold text-lg mb-2">Required Documents</h2>
+      <p class="text-sm text-[#60758a] mb-3">Have these ready before applying:</p>
+      <ul class="space-y-2">
+        {% for doc in service.required_documents.all %}
+        <li class="flex items-center gap-2 text-sm">
+          <span class="text-[#0b6e4f]">&#10003;</span>
+          {{ doc.name }}
+          {% if doc.is_mandatory %}<span class="text-xs text-red-500">*</span>{% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="border border-[#dbe0e6] rounded-xl p-6">
+      {% csrf_token %}
+
+      {% if service.counties.all %}
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1">Select County</label>
+        <select name="county" class="w-full rounded-lg border border-[#dbe0e6] h-10 px-3 text-sm bg-white focus:border-[#0b6e4f] focus:outline-none">
+          <option value="">— Choose County —</option>
+          {% for county in service.counties.all %}
+          <option value="{{ county.id }}">{{ county.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      {% endif %}
+
+      {% if service.required_documents.all %}
+      <div class="mb-6">
+        <label class="block text-sm font-medium mb-2">Upload Documents</label>
+        {% for doc in service.required_documents.all %}
+        <div class="mb-3">
+          <label class="text-sm text-[#60758a]">{{ doc.name }}{% if doc.is_mandatory %} <span class="text-red-500">*</span>{% endif %}</label>
+          <input type="file" name="doc_{{ doc.id }}" class="mt-1 block w-full text-sm text-[#60758a] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-medium file:bg-[#e8f5ef] file:text-[#0b6e4f] hover:file:bg-[#d0ebe0]" />
+          {% if doc.description %}
+          <p class="text-xs text-[#60758a] mt-0.5">{{ doc.description }}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="border-t border-[#dbe0e6] pt-4 mb-6">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-[#60758a]">Fee</span>
+          {% if service.fee_kes > 0 %}
+          <span class="font-bold text-lg">KES {{ service.fee_kes }}</span>
+          {% else %}
+          <span class="font-bold text-lg text-[#0b6e4f]">Free</span>
+          {% endif %}
+        </div>
+        {% if service.processing_time %}
+        <div class="flex items-center justify-between mt-2">
+          <span class="text-sm text-[#60758a]">Estimated Processing</span>
+          <span class="text-sm">{{ service.processing_time }}</span>
+        </div>
+        {% endif %}
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button type="submit" class="h-12 px-8 bg-[#0b6e4f] text-white rounded-xl font-medium hover:bg-[#095d42] transition">
+          Submit Application
+        </button>
+        <a href="{% url 'service_detail' service.slug %}" class="h-12 px-6 border border-[#dbe0e6] rounded-xl font-medium text-[#60758a] hover:border-[#0b6e4f] transition inline-flex items-center">
+          Cancel
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

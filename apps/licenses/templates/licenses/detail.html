@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% load ecitizen_tags %}
+{% block title %}{{ title }} {{ record.reference }} — e-Citizen{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'licenses:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Licenses</a>
+  <div class="card mb-6"><div class="flex items-center justify-between"><div><h1 class="text-xl font-bold text-[#111418]">{{ title }}</h1><p class="text-sm text-[#60758a]">Ref: {{ record.reference }}</p></div><span class="status-badge text-sm px-3 py-1 rounded-full {{ record.status|status_color }} font-medium">{{ record.get_status_display }}</span></div></div>
+  <div class="card"><h2 class="font-bold text-[#111418] mb-4">Details</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {% if app_type == 'business' %}
+    <div><span class="text-xs text-[#60758a] block">Business Name</span><span class="text-sm font-medium">{{ record.business_name }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">License Type</span><span class="text-sm font-medium">{{ record.get_license_type_display }}</span></div>
+    {% if record.county %}<div><span class="text-xs text-[#60758a] block">County</span><span class="text-sm font-medium">{{ record.county.name }}</span></div>{% endif %}
+    <div><span class="text-xs text-[#60758a] block">Employees</span><span class="text-sm font-medium">{{ record.number_of_employees }}</span></div>
+    {% elif app_type == 'certification' %}
+    <div><span class="text-xs text-[#60758a] block">Name</span><span class="text-sm font-medium">{{ record.certification_name }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Type</span><span class="text-sm font-medium">{{ record.get_certification_type_display }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Issuing Body</span><span class="text-sm font-medium">{{ record.issuing_body }}</span></div>
+    {% if record.registration_number %}<div><span class="text-xs text-[#60758a] block">Reg Number</span><span class="text-sm font-medium">{{ record.registration_number }}</span></div>{% endif %}
+    {% endif %}
+    <div><span class="text-xs text-[#60758a] block">Submitted</span><span class="text-sm font-medium">{{ record.created_at|date:"d M Y, H:i" }}</span></div>
+    <div><span class="text-xs text-[#60758a] block">Updated</span><span class="text-sm font-medium">{{ record.updated_at|date:"d M Y, H:i" }}</span></div>
+  </div></div>
+</div>{% endblock %}

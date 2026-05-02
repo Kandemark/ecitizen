@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Book Appointment — e-Citizen{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[720px] mx-auto">
+    <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
+      <a href="{% url 'dashboard' %}" class="hover:text-[#0b6e4f]">Dashboard</a>
+      <span>/</span>
+      <span class="text-[#111418]">Book Appointment</span>
+    </nav>
+
+    <h1 class="text-[32px] font-bold leading-tight mb-6">Book an Appointment</h1>
+
+    <form method="post" class="border border-[#dbe0e6] rounded-xl p-6">
+      {% csrf_token %}
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-1">Select Service</label>
+        <select name="service" required class="w-full rounded-lg border border-[#dbe0e6] h-10 px-3 text-sm bg-white focus:border-[#0b6e4f] focus:outline-none">
+          <option value="">— Choose a Service —</option>
+          {% for svc in services %}
+          <option value="{{ svc.id }}" {% if service and service.id == svc.id %}selected{% endif %}>{{ svc.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Select Time Slot</label>
+        {% if available_slots %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-80 overflow-y-auto">
+          {% for slot in available_slots %}
+          <label class="flex items-center gap-3 border border-[#dbe0e6] rounded-lg p-3 cursor-pointer hover:border-[#0b6e4f] transition has-[:checked]:border-[#0b6e4f] has-[:checked]:bg-[#e8f5ef]">
+            <input type="radio" name="time_slot" value="{{ slot.id }}" class="sr-only" required />
+            <div>
+              <p class="text-sm font-medium">{{ slot.date|date:"l, F j, Y" }}</p>
+              <p class="text-xs text-[#60758a]">{{ slot.start_time|time:"g:i A" }} – {{ slot.end_time|time:"g:i A" }}</p>
+              <p class="text-xs text-[#60758a]">{{ slot.office.name }} ({{ slot.max_capacity|add:"-"|add:slot.current_bookings }} spot{{ slot.max_capacity|add:"-1"|pluralize }} left)</p>
+            </div>
+          </label>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-[#60758a] text-sm py-4">No available time slots for the next 30 days. Please check back later.</p>
+        {% endif %}
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-sm font-medium mb-1">Notes (optional)</label>
+        <textarea name="notes" rows="3" class="w-full rounded-lg border border-[#dbe0e6] p-3 text-sm focus:border-[#0b6e4f] focus:outline-none" placeholder="Any additional information..."></textarea>
+      </div>
+
+      <button type="submit" class="h-12 px-8 bg-[#0b6e4f] text-white rounded-xl font-medium hover:bg-[#095d42] transition">
+        Confirm Booking
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

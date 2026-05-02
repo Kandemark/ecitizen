@@ -1,0 +1,29 @@
+<div class="border border-[#dbe0e6] rounded-xl p-5 bg-white">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="font-bold text-lg">Kenya Economic Indicators</h3>
+    <span class="text-xs text-[#60758a]">KNBS/CBK</span>
+  </div>
+  <div class="grid grid-cols-2 gap-3">
+    <div class="bg-[#f7f8fa] rounded-lg p-3">
+      <p class="text-xs text-[#60758a]">Inflation Rate</p>
+      <p class="text-xl font-bold mt-1">{{ indicators.inflation_rate }}%</p>
+      <p class="text-xs text-[#60758a] mt-0.5">CPI Year-on-Year</p>
+    </div>
+    <div class="bg-[#f7f8fa] rounded-lg p-3">
+      <p class="text-xs text-[#60758a]">GDP Growth</p>
+      <p class="text-xl font-bold mt-1">{{ indicators.gdp_growth }}%</p>
+      <p class="text-xs text-[#60758a] mt-0.5">Q4 2025</p>
+    </div>
+    <div class="bg-[#f7f8fa] rounded-lg p-3">
+      <p class="text-xs text-[#60758a]">Population</p>
+      <p class="text-xl font-bold mt-1">{{ indicators.population|stringformat:"d"|slice:":2" }}M</p>
+      <p class="text-xs text-[#60758a] mt-0.5">KNBS Estimate</p>
+    </div>
+    <div class="bg-[#f7f8fa] rounded-lg p-3">
+      <p class="text-xs text-[#60758a]">KES/USD</p>
+      <p class="text-xl font-bold mt-1">1 USD = {{ exchange_rates.USD }}</p>
+      <p class="text-xs text-[#60758a] mt-0.5">CBK Rate</p>
+    </div>
+  </div>
+  <p class="text-xs text-[#60758a] mt-3 text-right">Updated: {{ indicators.last_updated }}</p>
+</div>

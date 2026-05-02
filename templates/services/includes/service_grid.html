@@ -1,0 +1,20 @@
+{% if popular_services and not has_filters %}
+<h3 class="text-lg font-bold mb-4">Popular Services</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+  {% for svc in popular_services %}
+    {% include 'services/includes/service_card.html' with service=svc %}
+  {% endfor %}
+</div>
+{% endif %}
+
+<h3 class="text-lg font-bold mb-4">{% if has_filters %}Search Results{% else %}All Services{% endif %}</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  {% for svc in services %}
+    {% include 'services/includes/service_card.html' with service=svc %}
+  {% empty %}
+    <div class="col-span-full py-16 text-center">
+      <p class="text-[#60758a] text-lg">No services found matching your filters.</p>
+      <p class="text-[#60758a] text-sm mt-1">Try adjusting your search or filter criteria.</p>
+    </div>
+  {% endfor %}
+</div>

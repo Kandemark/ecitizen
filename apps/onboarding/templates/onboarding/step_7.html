@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Biometric Capture — e-Citizen Onboarding{% endblock %}
+{% block content %}
+<div class="px-10 py-6">
+  <div class="max-w-[640px] mx-auto">
+    <p class="text-sm text-[#60758a] mb-2">Step {{ step }} of {{ total_steps }}</p>
+    <div class="h-2 bg-[#f1f2f4] rounded-full mb-8">
+      <div class="h-2 bg-[#0b6e4f] rounded-full" style="width: {{ step|floatformat:0 }}0%"></div>
+    </div>
+    <p class="text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
+    <p class="text-[#60758a] mb-8">Biometric data helps secure your account. This step will be completed at a Huduma Centre or during your first service application.</p>
+    <div class="border border-dashed border-[#dbe0e6] rounded-lg p-8 text-center mb-6">
+      <p class="font-medium">Biometric Setup</p>
+      <p class="text-sm text-[#60758a] mt-1">Fingerprint and photo capture will be available at designated centres.</p>
+      <p class="text-sm text-[#60758a] mt-4">You can skip this step for now and complete it later.</p>
+    </div>
+    <form method="post" class="flex flex-col gap-4">
+      {% csrf_token %}
+      <button type="submit" class="h-12 px-6 bg-[#0b6e4f] text-white rounded-full font-bold text-sm">Skip for Now &amp; Continue</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load ecitizen_tags %}
+
+{% block title %}{{ config.title }} {{ certificate.reference }} — e-Citizen{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+  <a href="{% url 'civil_registry:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Civil Registry</a>
+
+  <!-- Status Card -->
+  <div class="card mb-6">
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-xl font-bold text-[#111418]">{{ config.title }}</h1>
+        <p class="text-sm text-[#60758a]">Ref: {{ certificate.reference }}</p>
+      </div>
+      <span class="status-badge text-sm px-3 py-1 rounded-full {{ certificate.status|status_color }} font-medium">{{ certificate.get_status_display }}</span>
+    </div>
+  </div>
+
+  <!-- Details Grid -->
+  <div class="card mb-6">
+    <h2 class="font-bold text-[#111418] mb-4">Certificate Details</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      {% if cert_type == 'birth' %}
+      <div><span class="text-xs text-[#60758a] block">Child's Name</span><span class="text-sm font-medium">{{ certificate.child_name }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Date of Birth</span><span class="text-sm font-medium">{{ certificate.date_of_birth|date:"d M Y" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Place of Birth</span><span class="text-sm font-medium">{{ certificate.place_of_birth }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Gender</span><span class="text-sm font-medium">{{ certificate.get_gender_display }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Father's Name</span><span class="text-sm font-medium">{{ certificate.father_name|default:"—" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Mother's Name</span><span class="text-sm font-medium">{{ certificate.mother_name|default:"—" }}</span></div>
+      {% if certificate.county_of_birth %}<div><span class="text-xs text-[#60758a] block">County of Birth</span><span class="text-sm font-medium">{{ certificate.get_county_of_birth_display }}</span></div>{% endif %}
+      {% if certificate.registration_number %}<div><span class="text-xs text-[#60758a] block">Registration Number</span><span class="text-sm font-medium">{{ certificate.registration_number }}</span></div>{% endif %}
+
+      {% elif cert_type == 'death' %}
+      <div><span class="text-xs text-[#60758a] block">Deceased Name</span><span class="text-sm font-medium">{{ certificate.deceased_name }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Date of Death</span><span class="text-sm font-medium">{{ certificate.date_of_death|date:"d M Y" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Place of Death</span><span class="text-sm font-medium">{{ certificate.place_of_death }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Gender</span><span class="text-sm font-medium">{{ certificate.get_gender_display }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Age at Death</span><span class="text-sm font-medium">{{ certificate.age_at_death|default:"—" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Cause of Death</span><span class="text-sm font-medium">{{ certificate.cause_of_death|default:"—" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Next of Kin</span><span class="text-sm font-medium">{{ certificate.next_of_kin|default:"—" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Informant</span><span class="text-sm font-medium">{{ certificate.informant_name|default:"—" }}</span></div>
+
+      {% elif cert_type == 'marriage' %}
+      <div><span class="text-xs text-[#60758a] block">Spouse 1</span><span class="text-sm font-medium">{{ certificate.spouse1_name }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Spouse 2</span><span class="text-sm font-medium">{{ certificate.spouse2_name }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Marriage Date</span><span class="text-sm font-medium">{{ certificate.marriage_date|date:"d M Y" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Place</span><span class="text-sm font-medium">{{ certificate.marriage_place|default:"—" }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Type</span><span class="text-sm font-medium">{{ certificate.marriage_type|title }}</span></div>
+      <div><span class="text-xs text-[#60758a] block">Officiant</span><span class="text-sm font-medium">{{ certificate.officiant_name|default:"—" }}</span></div>
+      {% if certificate.registration_number %}<div><span class="text-xs text-[#60758a] block">Registration Number</span><span class="text-sm font-medium">{{ certificate.registration_number }}</span></div>{% endif %}
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="card">
+    <h2 class="font-bold text-[#111418] mb-4">Timeline</h2>
+    <div class="space-y-3">
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="size-3 rounded-full bg-green-500"></div>
+          <div class="w-px h-full bg-[#dbe0e6]"></div>
+        </div>
+        <div>
+          <p class="text-sm font-medium">Application Submitted</p>
+          <p class="text-xs text-[#60758a]">{{ certificate.created_at|date:"d M Y, H:i" }}</p>
+        </div>
+      </div>
+      {% if certificate.status != 'draft' %}
+      <div class="flex gap-3">
+        <div class="flex flex-col items-center">
+          <div class="size-3 rounded-full {% if certificate.status == 'submitted' %}bg-yellow-500{% else %}bg-green-500{% endif %}"></div>
+        </div>
+        <div>
+          <p class="text-sm font-medium">{% if certificate.status == 'submitted' %}Awaiting Review{% else %}Reviewed{% endif %}</p>
+          <p class="text-xs text-[#60758a]">{{ certificate.updated_at|date:"d M Y, H:i" }}</p>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
