@@ -1,7 +1,7 @@
-{% extends "base.html" %}{% load ecitizen_tags %}
+﻿{% extends "base.html" %}{% load ecitizen_tags %}
 {% block title %}{{ petition.title }} — e-Citizen{% endblock %}
 {% block content %}
-<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-7 lg:py-8 page-enter">
   <a href="{% url 'participation:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Public Participation</a>
   <div class="card mb-6"><div class="flex items-start justify-between mb-4"><div><h1 class="text-xl font-bold text-[#111418] mb-1">{{ petition.title }}</h1><p class="text-sm text-[#60758a]">Ref: {{ petition.reference }} · by {{ petition.user.username }}</p></div><span class="status-badge text-sm px-3 py-1 rounded-full {{ petition.status|status_color }} font-medium">{{ petition.get_status_display }}</span></div>
     <p class="text-sm mb-4">{{ petition.description }}</p>

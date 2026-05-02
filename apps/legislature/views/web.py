@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from ..models import Bill, Hansard, CommitteeReport, ParliamentarySitting
@@ -9,7 +11,7 @@ def legislature_dashboard(request):
     recent_hansards = Hansard.objects.order_by('-date')[:5]
     recent_reports = CommitteeReport.objects.order_by('-date_published')[:5]
     upcoming_sittings = ParliamentarySitting.objects.filter(
-        date__gte=__import__('datetime').date.today()
+        date__gte=date.today()
     ).order_by('date')[:10]
     return render(request, 'legislature/dashboard.html', {
         'bills': bills,

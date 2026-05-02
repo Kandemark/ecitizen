@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 {% block title %}My Appointments — e-Citizen{% endblock %}
 {% block content %}
-<div class="px-10 py-6">
+<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
   <div class="max-w-[960px] mx-auto">
     <div class="flex items-center justify-between mb-6">
       <div>
-        <p class="text-[32px] font-bold leading-tight">My Appointments</p>
+        <p class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight">My Appointments</p>
         <p class="text-[#60758a] text-sm mt-1">{{ appointments|length }} appointment{{ appointments|length|pluralize }}</p>
       </div>
       <a href="{% url 'book_appointment' %}" class="h-10 px-5 bg-[#0b6e4f] text-white rounded-full text-sm font-medium leading-10 hover:bg-[#095d42] transition">

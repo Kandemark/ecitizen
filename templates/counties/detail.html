@@ -2,7 +2,7 @@
 {% block title %}{{ county.name }} County Services — e-Citizen Kenya{% endblock %}
 
 {% block content %}
-<div class="px-10 py-6">
+<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
   <div class="max-w-[1100px] mx-auto">
     <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
@@ -16,7 +16,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <!-- Main content -->
       <div class="lg:col-span-2">
-        <h1 class="text-[32px] font-bold leading-tight mb-6">{{ county.name }} County</h1>
+        <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-6">{{ county.name }} County</h1>
 
         {% if services_by_category %}
         {% for cat_name, cat_services in services_by_category.items %}

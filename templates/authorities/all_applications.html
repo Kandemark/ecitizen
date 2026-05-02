@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="bg-[#f7f8fa] min-h-screen">
-  <div class="max-w-7xl mx-auto px-10 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-7 lg:py-8">
     <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-4">
       <a href="{% url 'authorities:staff_dashboard' %}" class="hover:text-[#0b6e4f] transition">Dashboard</a>
       <span>/</span>
@@ -11,7 +11,7 @@
     </nav>
 
     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-      <h1 class="text-[32px] font-bold leading-tight text-[#111418]">All Applications</h1>
+      <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight text-[#111418]">All Applications</h1>
       <form method="get" class="flex items-center gap-3">
         <input type="search" name="q" value="{{ query }}" placeholder="Search reference, citizen, or service…" class="w-64 rounded-xl border border-[#dbe0e6] h-10 px-4 text-sm focus:border-[#0b6e4f] focus:ring-2 focus:ring-[#0b6e4f]/20 focus:outline-none">
         <button type="submit" class="px-4 py-2 bg-[#0b6e4f] text-white rounded-xl text-sm font-bold hover:bg-[#095d42] transition">Search</button>

@@ -1,4 +1,4 @@
-{% if weather %}
+﻿{% if weather %}
 <div class="border border-[#dbe0e6] rounded-xl p-5 bg-white">
   <div class="flex items-center justify-between mb-3">
     <h3 class="font-bold text-lg">{{ weather.name }}</h3>
@@ -7,7 +7,7 @@
   <div class="flex items-center gap-4">
     <span class="text-4xl">{{ weather.condition|default:'🌤️' }}</span>
     <div>
-      <p class="text-[28px] font-bold">{{ weather.temperature|floatformat:1 }}&deg;C</p>
+      <p class="text-xl sm:text-2xl lg:text-[28px] font-bold">{{ weather.temperature|floatformat:1 }}&deg;C</p>
       {% if weather.wind_speed %}
       <p class="text-xs text-[#60758a]">Wind: {{ weather.wind_speed|floatformat:1 }} km/h</p>
       {% endif %}

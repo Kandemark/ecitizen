@@ -1,3 +1,4 @@
+from django.utils import timezone
 from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -17,7 +18,7 @@ class TimeSlotViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        qs = TimeSlot.objects.filter(is_available=True, date__gte=__import__('django').utils.timezone.now().date())
+        qs = TimeSlot.objects.filter(is_available=True, date__gte=timezone.now().date())
         office = self.request.query_params.get('office')
         if office:
             qs = qs.filter(office_id=office)

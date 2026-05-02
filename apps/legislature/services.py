@@ -1,5 +1,5 @@
 import logging
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from typing import Optional
 
 import httpx
@@ -28,7 +28,7 @@ def _parse_date(d: Optional[str]) -> Optional[date]:
     for fmt in ('%Y-%m-%d', '%d/%m/%Y', '%d-%m-%Y', '%B %d, %Y'):
         try:
             return date.fromisoformat(d) if fmt == '%Y-%m-%d' else \
-                   __import__('datetime').datetime.strptime(d, fmt).date()
+                   datetime.strptime(d, fmt).date()
         except (ValueError, TypeError):
             continue
     return None

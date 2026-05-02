@@ -1,7 +1,7 @@
-{% extends "base.html" %}{% load ecitizen_tags %}
+﻿{% extends "base.html" %}{% load ecitizen_tags %}
 {% block title %}{{ tender.title|truncatechars:60 }} — e-Citizen{% endblock %}
 {% block content %}
-<div class="max-w-3xl mx-auto px-10 py-8 page-enter">
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-7 lg:py-8 page-enter">
   <a href="{% url 'procurement:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Procurement</a>
   <div class="card mb-6"><div class="flex items-start justify-between"><div><h1 class="text-xl font-bold text-[#111418]">{{ tender.title }}</h1><p class="text-sm text-[#60758a]">{{ tender.tender_number }} · {{ tender.reference }}</p></div><span class="text-sm px-3 py-1 rounded-full bg-green-100 text-green-700 font-medium">Open</span></div></div>
   <div class="card mb-6"><h2 class="font-bold text-[#111418] mb-4">Tender Details</h2><div class="grid grid-cols-1 md:grid-cols-2 gap-4">

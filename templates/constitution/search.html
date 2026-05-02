@@ -2,7 +2,7 @@
 {% block title %}Search Constitution — e-Citizen Kenya{% endblock %}
 
 {% block content %}
-<div class="px-10 py-6">
+<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
   <div class="max-w-[1100px] mx-auto">
     <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
       <a href="{% url 'constitution:browse' %}" class="hover:text-[#0b6e4f] transition">Constitution</a>
@@ -10,7 +10,7 @@
       <span class="text-[#111418] font-medium">Search</span>
     </nav>
 
-    <h1 class="text-[32px] font-bold leading-tight text-[#111418] mb-2">Search the Constitution</h1>
+    <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight text-[#111418] mb-2">Search the Constitution</h1>
     <p class="text-sm text-[#60758a] mb-6">Search across all chapters, articles, and schedules</p>
 
     <form action="{% url 'constitution:search' %}" method="get">

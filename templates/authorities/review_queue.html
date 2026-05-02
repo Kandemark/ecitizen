@@ -3,14 +3,14 @@
 
 {% block content %}
 <div class="bg-[#f7f8fa] min-h-screen">
-  <div class="max-w-7xl mx-auto px-10 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-7 lg:py-8">
     <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-4">
       <a href="{% url 'authorities:staff_dashboard' %}" class="hover:text-[#0b6e4f] transition">Dashboard</a>
       <span>/</span>
       <span class="text-[#111418] font-medium">Review Queue</span>
     </nav>
 
-    <h1 class="text-[32px] font-bold leading-tight text-[#111418] mb-6">My Review Queue</h1>
+    <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight text-[#111418] mb-6">My Review Queue</h1>
 
     <!-- Filters -->
     <div class="flex flex-wrap items-center gap-3 mb-6">

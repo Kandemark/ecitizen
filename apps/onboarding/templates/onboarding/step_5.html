@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 {% block title %}Your Location — e-Citizen Onboarding{% endblock %}
 {% block extra_head %}
 <style>
@@ -6,13 +6,13 @@
 </style>
 {% endblock %}
 {% block content %}
-<div class="px-10 py-6">
+<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
   <div class="max-w-[640px] mx-auto">
     <p class="text-sm text-[#60758a] mb-2">Step {{ step }} of {{ total_steps }}</p>
     <div class="h-2 bg-[#f1f2f4] rounded-full mb-8">
       <div class="h-2 bg-[#0b6e4f] rounded-full" style="width: {{ step|floatformat:0 }}0%"></div>
     </div>
-    <p class="text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
+    <p class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
     <p class="text-[#60758a] mb-8">Select your county, sub-county, ward, and village. This helps us direct your applications to the right offices.</p>
     <div x-data="locationPicker()" class="flex flex-col gap-4">
       <form method="post" class="flex flex-col gap-4" @submit.prevent="if(selectedWard) $el.submit()">

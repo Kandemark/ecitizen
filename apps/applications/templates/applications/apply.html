@@ -1,7 +1,7 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 {% block title %}Apply — {{ service.name }}{% endblock %}
 {% block content %}
-<div class="px-10 py-6">
+<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
   <div class="max-w-[720px] mx-auto">
     <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
       <a href="{% url 'dashboard' %}" class="hover:text-[#0b6e4f]">Dashboard</a>
@@ -11,7 +11,7 @@
       <span class="text-[#111418]">Apply</span>
     </nav>
 
-    <h1 class="text-[32px] font-bold leading-tight mb-2">{{ service.name }}</h1>
+    <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-2">{{ service.name }}</h1>
     <p class="text-[#60758a] mb-8">{{ service.short_description }}</p>
 
     {% if service.required_documents.all %}

@@ -1,7 +1,7 @@
-{% extends "base.html" %}{% load ecitizen_tags %}
+﻿{% extends "base.html" %}{% load ecitizen_tags %}
 {% block title %}Public Participation — e-Citizen{% endblock %}
 {% block content %}
-<div class="max-w-[1100px] mx-auto px-10 py-8 page-enter">
+<div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-7 lg:py-8 page-enter">
   <div class="flex items-center justify-between mb-8"><div><h1 class="text-2xl font-bold text-[#111418]">Public Participation</h1><p class="text-[#60758a] mt-1">Consultations, petitions, and civic engagement</p></div><div class="flex gap-2"><a href="{% url 'participation:petition_create' %}" class="btn-primary text-sm">+ Create Petition</a></div></div>
   <section class="mb-10"><h2 class="text-lg font-bold text-[#111418] mb-4">📢 Open Consultations</h2>
     {% if consultations %}<div class="grid grid-cols-1 md:grid-cols-2 gap-4">{% for c in consultations %}<a href="{% url 'participation:consultation_detail' pk=c.pk %}" class="card-hover block"><div class="flex items-start justify-between mb-3"><span class="font-semibold text-[#111418] line-clamp-2">{{ c.title }}</span><span class="text-xs text-green-600 whitespace-nowrap ml-2">Open</span></div><p class="text-sm text-[#60758a] line-clamp-2 mb-2">{{ c.description|truncatechars:120 }}</p><div class="text-xs text-[#60758a]"><span>{{ c.ministry.name }}</span> · <span>Ends {{ c.end_date|date:"d M Y" }}</span></div></a>{% endfor %}</div>{% else %}<div class="card text-center py-10 text-[#60758a]"><p class="text-3xl mb-3">📢</p><p>No open consultations at this time.</p></div>{% endif %}

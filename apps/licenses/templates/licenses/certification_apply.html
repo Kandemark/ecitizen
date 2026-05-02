@@ -1,5 +1,5 @@
-{% extends "base.html" %}{% block title %}Apply for Professional Certification — e-Citizen{% endblock %}{% block content %}
-<div class="max-w-2xl mx-auto px-10 py-8 page-enter">
+﻿{% extends "base.html" %}{% block title %}Apply for Professional Certification — e-Citizen{% endblock %}{% block content %}
+<div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-7 lg:py-8 page-enter">
   <a href="{% url 'licenses:list' %}" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition mb-6 inline-block">← Back to Licenses</a>
   <h1 class="text-2xl font-bold text-[#111418] mb-1">Apply for Professional Certification</h1><p class="text-[#60758a] mb-8">Register your professional certification or license.</p>
   <form method="POST" class="card space-y-5">{% csrf_token %}

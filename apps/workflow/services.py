@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.utils import timezone
 from django.db.models import Q
 from .models import WorkflowDefinition, ApprovalStep, ReviewAssignment, EscalationRule
@@ -63,7 +65,7 @@ class WorkflowEngine:
         now = timezone.now()
         overdue = ReviewAssignment.objects.filter(
             is_completed=False,
-            created_at__lt=now - timezone.timedelta(hours=72),
+            created_at__lt=now - timedelta(hours=72),
         ).select_related('step', 'application')
 
         for assignment in overdue:

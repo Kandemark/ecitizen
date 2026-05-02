@@ -2,7 +2,7 @@
 {% block title %}{{ service.name }} — e-Citizen Kenya{% endblock %}
 
 {% block content %}
-<div class="px-10 py-6">
+<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
   <div class="max-w-[960px] mx-auto">
     <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
@@ -19,7 +19,7 @@
         <div class="flex items-start gap-4 mb-6">
           <span class="text-4xl">{{ service.icon|default:'📋' }}</span>
           <div>
-            <h1 class="text-[32px] font-bold leading-tight">{{ service.name }}</h1>
+            <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight">{{ service.name }}</h1>
             {% if service.ministry %}
             <p class="text-sm text-[#60758a] mt-1">{{ service.ministry.name }}</p>
             {% endif %}

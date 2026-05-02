@@ -3,12 +3,12 @@
 
 {% block content %}
 <div class="bg-[#f7f8fa] min-h-screen">
-  <div class="max-w-7xl mx-auto px-10 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-7 lg:py-8">
     <!-- Header -->
     <div class="flex items-center justify-between mb-8">
       <div>
         <p class="text-sm text-[#60758a] uppercase tracking-wide font-bold">Government Staff Portal</p>
-        <h1 class="text-[32px] font-bold leading-tight text-[#111418]">Authorities Dashboard</h1>
+        <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight text-[#111418]">Authorities Dashboard</h1>
       </div>
       <div class="flex items-center gap-3">
         <a href="{% url 'authorities:review_queue' %}" class="px-4 py-2.5 bg-[#0b6e4f] text-white rounded-xl text-sm font-bold hover:bg-[#095d42] transition">
@@ -24,7 +24,7 @@
     </div>
 
     <!-- Stats cards -->
-    <div class="grid grid-cols-4 gap-4 mb-8">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
       <div class="bg-white rounded-xl border border-[#dbe0e6] p-5">
         <p class="text-xs font-bold uppercase tracking-wide text-[#60758a]">Total Pending</p>
         <p class="text-3xl font-black text-[#111418] mt-1">{{ total_pending }}</p>

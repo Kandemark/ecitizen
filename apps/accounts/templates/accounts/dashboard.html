@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard — e-Citizen{% endblock %}
 {% block content %}
-<div class="px-10 py-6">
+<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
   <div class="max-w-[1100px] mx-auto">
     <div class="flex flex-wrap justify-between gap-3 mb-6">
       <div>
-        <p class="text-[32px] font-bold leading-tight">Dashboard</p>
+        <p class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight">Dashboard</p>
         <p class="text-[#60758a] text-sm mt-1">Welcome{% if user.is_authenticated %} back, {{ user.first_name|default:user.username }}{% endif %}</p>
       </div>
     </div>

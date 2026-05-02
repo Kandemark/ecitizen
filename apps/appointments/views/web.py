@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -21,7 +23,7 @@ def book_appointment(request):
 
     # Show available time slots for next 30 days
     today = timezone.now().date()
-    end_date = today + timezone.timedelta(days=30)
+    end_date = today + timedelta(days=30)
     available_slots = TimeSlot.objects.filter(
         date__gte=today,
         date__lte=end_date,

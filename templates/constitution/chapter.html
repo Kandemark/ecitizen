@@ -2,7 +2,7 @@
 {% block title %}Chapter {{ chapter.number }} — Constitution of Kenya{% endblock %}
 
 {% block content %}
-<div class="px-10 py-6">
+<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
   <div class="max-w-[1100px] mx-auto">
     <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-sm text-[#60758a] mb-6">
@@ -16,7 +16,7 @@
       <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-[#0b6e4f]/10 text-[#0b6e4f] uppercase tracking-wide">
         Chapter {{ chapter.number }}
       </span>
-      <h1 class="text-[32px] font-bold leading-tight text-[#111418] mt-3">{{ chapter.title }}</h1>
+      <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight text-[#111418] mt-3">{{ chapter.title }}</h1>
       {% if chapter.subtitle %}<p class="text-[#60758a] mt-2 text-lg">{{ chapter.subtitle }}</p>{% endif %}
       {% if chapter.overview %}
         <div class="mt-4 p-4 bg-white rounded-xl border border-[#dbe0e6] text-[#60758a] text-sm leading-relaxed">

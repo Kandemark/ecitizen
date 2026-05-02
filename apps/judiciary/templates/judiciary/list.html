@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 {% load ecitizen_tags %}
 {% block title %}Judiciary Services — e-Citizen{% endblock %}
 {% block content %}
-<div class="max-w-[1100px] mx-auto px-10 py-8 page-enter">
+<div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-7 lg:py-8 page-enter">
   <div class="flex items-center justify-between mb-8"><div><h1 class="text-2xl font-bold text-[#111418]">Judiciary Services</h1><p class="text-[#60758a] mt-1">Court cases, filings, and fine payments</p></div><div class="flex gap-2 flex-wrap"><a href="{% url 'judiciary:case_file' %}" class="btn-primary text-sm">+ File Case</a><a href="{% url 'judiciary:filing_submit' %}" class="btn-primary text-sm">+ Submit Filing</a><a href="{% url 'judiciary:fine_pay' %}" class="btn-primary text-sm">+ Pay Fine</a></div></div>
   <section class="mb-10"><h2 class="text-lg font-bold text-[#111418] mb-4">⚖️ Court Cases</h2>
     {% if cases %}

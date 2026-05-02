@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Account Security — e-Citizen{% endblock %}
 {% block content %}
-<div class="px-10 py-6">
+<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
   <div class="max-w-[960px] mx-auto">
-    <p class="text-[32px] font-bold leading-tight mb-6">Account Security</p>
+    <p class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-6">Account Security</p>
     {% if messages %}
       {% for msg in messages %}
         <div class="mb-4 p-3 rounded-lg text-sm {% if msg.tags == 'error' %}bg-red-50 text-red-700{% else %}bg-green-50 text-green-700{% endif %}">{{ msg }}</div>

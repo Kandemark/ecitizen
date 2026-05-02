@@ -1,7 +1,7 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
 {% block title %}Create Your Account — e-Citizen Onboarding{% endblock %}
 {% block content %}
-<div class="px-10 py-6">
+<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
   <div class="max-w-[640px] mx-auto" x-data="{
     firstName: '',
     lastName: '',
@@ -22,7 +22,7 @@
     <div class="h-2 bg-[#f1f2f4] rounded-full mb-8">
       <div class="h-2 bg-[#0b6e4f] rounded-full transition-all duration-500" style="width: {{ step|floatformat:0 }}0%"></div>
     </div>
-    <p class="text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
+    <p class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-2">{{ step_title }}</p>
     <p class="text-[#60758a] mb-8">Create your account with a unique username and password. Your personal details help us verify your identity.</p>
 
     {% if messages %}
