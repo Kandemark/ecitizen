@@ -6,7 +6,7 @@ from django.utils import timezone
 
 from apps.applications.models import Application, StatusHistory
 from apps.workflow.models import ReviewAssignment, ApprovalStep
-from apps.services.models import Service
+from apps.services.models import Service, ConstitutionalFunction
 
 
 @staff_member_required(login_url='login')
@@ -31,12 +31,18 @@ def staff_dashboard(request):
         count=Count('id')
     ).order_by('status')
 
+    # County-mandated services — DB-backed with service counts
+    county_mandates = ConstitutionalFunction.objects.filter(
+        is_active=True
+    ).prefetch_related('services').order_by('order')
+
     return render(request, 'authorities/dashboard.html', {
         'pending_assignments': pending_assignments,
         'pending_count': pending_count,
         'recent_applications': recent_applications,
         'total_pending': total_pending,
         'status_counts': status_counts,
+        'county_mandates': county_mandates,
     })
 
 

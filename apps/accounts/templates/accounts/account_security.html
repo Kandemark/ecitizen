@@ -1,30 +1,286 @@
 {% extends 'base.html' %}
-{% block title %}Account Security — e-Citizen{% endblock %}
+{% block title %}Account Security — e-Citizen Kenya{% endblock %}
+
 {% block content %}
-<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
-  <div class="max-w-[960px] mx-auto">
-    <p class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-6">Account Security</p>
+<div class="bg-[#f7f8fa] min-h-screen">
+  <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
+    <!-- Page header -->
+    <div class="mb-6">
+      <h1 class="text-2xl sm:text-3xl font-bold text-[#111418]">Account Security</h1>
+      <p class="text-sm text-[#60758a] mt-1">Protect your account with strong credentials and security settings</p>
+    </div>
+
     {% if messages %}
       {% for msg in messages %}
-        <div class="mb-4 p-3 rounded-lg text-sm {% if msg.tags == 'error' %}bg-red-50 text-red-700{% else %}bg-green-50 text-green-700{% endif %}">{{ msg }}</div>
+        <div class="mb-6 p-4 rounded-xl text-sm font-medium {% if msg.tags == 'error' %}bg-red-50 text-red-700 border border-red-200{% else %}bg-[#e8f5ef] text-[#0b6e4f] border border-[#0b6e4f]/20{% endif %}">
+          {{ msg }}
+        </div>
       {% endfor %}
     {% endif %}
-    <form method="post" class="max-w-[480px] flex flex-col gap-4">
-      {% csrf_token %}
-      <label class="flex flex-col gap-1">
-        <span class="text-sm font-medium">Current Password</span>
-        <input type="password" name="current_password" required class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
-      </label>
-      <label class="flex flex-col gap-1">
-        <span class="text-sm font-medium">New Password</span>
-        <input type="password" name="new_password" required class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
-      </label>
-      <label class="flex flex-col gap-1">
-        <span class="text-sm font-medium">Confirm New Password</span>
-        <input type="password" name="confirm_password" required class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
-      </label>
-      <button type="submit" class="h-10 px-6 bg-[#f1f2f4] rounded-full font-bold text-sm">Change Password</button>
-    </form>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Sidebar -->
+      <div class="lg:col-span-1 space-y-5">
+        <!-- Security Score -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6 text-center">
+          <div class="relative inline-flex items-center justify-center size-24 mb-4">
+            <svg class="size-24 -rotate-90" viewBox="0 0 96 96">
+              <circle cx="48" cy="48" r="40" fill="none" stroke="#f1f2f4" stroke-width="8" />
+              <circle cx="48" cy="48" r="40" fill="none" stroke="{{ security_score.level_color }}" stroke-width="8"
+                      stroke-dasharray="{{ security_score.percentage|floatformat:'0'|add:'*2.513' }} 251.3"
+                      stroke-linecap="round" />
+            </svg>
+            <span class="absolute text-xl font-black text-[#111418]">{{ security_score.percentage }}%</span>
+          </div>
+          <h2 class="text-lg font-bold text-[#111418]">{{ security_score.level }}</h2>
+          <p class="text-sm text-[#60758a] mt-1">{{ security_score.score }} of {{ security_score.max }} checks passed</p>
+        </div>
+
+        <!-- Checklist -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-5">
+          <h3 class="font-bold text-sm text-[#111418] mb-3">Security Checklist</h3>
+          <ul class="space-y-2.5">
+            {% for check in security_checks %}
+              <li class="flex items-start gap-3 text-sm">
+                {% if check.passed %}
+                  <svg class="size-5 text-[#0b6e4f] flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+                {% else %}
+                  <svg class="size-5 text-[#dbe0e6] flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Z"/></svg>
+                {% endif %}
+                <div>
+                  <p class="font-medium {% if check.passed %}text-[#111418]{% else %}text-[#60758a]{% endif %}">{{ check.label }}</p>
+                  <p class="text-xs text-[#60758a]">{{ check.detail }}</p>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- Nav -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-5">
+          <h3 class="font-bold text-sm text-[#111418] mb-3">Account Settings</h3>
+          <nav class="space-y-1">
+            <a href="{% url 'profile' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M227.32,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31l123.32-123.3A16,16,0,0,0,227.32,73.37ZM51.31,160,128,83.32,144.68,100,68,176.68ZM48,208V179.31L76.69,208Z"/></svg>
+              Edit Profile
+            </a>
+            <a href="{% url 'account_security' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#e8f5ef] text-[#0b6e4f] text-sm font-bold">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-80-32a24,24,0,1,0-24-24A24,24,0,0,0,128,176Z"/></svg>
+              Security
+            </a>
+            <a href="{% url 'privacy_settings' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/></svg>
+              Privacy
+            </a>
+            <a href="{% url 'user_roles_access' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM64,168a32,32,0,0,1,64,0Zm56,40a88.13,88.13,0,0,0-72-86.93A40,40,0,1,1,128,136a8,8,0,0,1,0,16,56.06,56.06,0,0,0-56,56,8,8,0,0,1,0,16,88.22,88.22,0,0,0,32,6.34V208h24Z"/></svg>
+              Roles &amp; Access
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="lg:col-span-2 space-y-6">
+        <!-- Change Password -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-[#111418] mb-1">Change Password</h2>
+          <p class="text-sm text-[#60758a] mb-5">Use a strong, unique password that you don't use anywhere else.</p>
+
+          <form method="post" class="max-w-[480px] space-y-4">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="change_password" />
+
+            <div>
+              <label class="block text-sm font-semibold text-[#111418] mb-1.5">Current Password</label>
+              <input type="password" name="current_password" required
+                     class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                     placeholder="Enter current password" />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-[#111418] mb-1.5">New Password</label>
+              <input type="password" name="new_password" required minlength="8"
+                     class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                     placeholder="At least 8 characters" />
+              <div class="mt-2 space-y-1">
+                <p class="text-xs text-[#60758a]">A strong password should include:</p>
+                <ul class="text-xs text-[#60758a] space-y-0.5 ml-4 list-disc">
+                  <li>At least 8 characters</li>
+                  <li>A mix of uppercase and lowercase letters</li>
+                  <li>At least one number</li>
+                  <li>At least one special character (!@#$%^&*)</li>
+                  <li>Not a commonly used password</li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-[#111418] mb-1.5">Confirm New Password</label>
+              <input type="password" name="confirm_password" required
+                     class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                     placeholder="Re-enter new password" />
+            </div>
+
+            <button type="submit" class="h-12 px-6 bg-[#0b6e4f] text-white rounded-xl font-bold text-sm hover:bg-[#095d42] transition">
+              Update Password
+            </button>
+          </form>
+        </div>
+
+        <!-- Transaction PIN -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+          <div class="flex items-start justify-between mb-5">
+            <div>
+              <h2 class="text-lg font-bold text-[#111418] mb-1">Transaction PIN</h2>
+              <p class="text-sm text-[#60758a]">A 4-digit PIN to authorize payments and sensitive actions on your account.</p>
+            </div>
+            {% if profile.transaction_pin %}
+              <span class="px-3 py-1 bg-[#e8f5ef] text-[#0b6e4f] rounded-full text-xs font-bold flex-shrink-0">Set</span>
+            {% else %}
+              <span class="px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-xs font-bold flex-shrink-0">Not Set</span>
+            {% endif %}
+          </div>
+
+          <form method="post" class="max-w-[400px] space-y-4">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="set_transaction_pin" />
+
+            <div>
+              <label class="block text-sm font-semibold text-[#111418] mb-1.5">4-Digit PIN</label>
+              <input type="password" name="transaction_pin" required minlength="4" maxlength="4" pattern="[0-9]{4}" inputmode="numeric"
+                     class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                     placeholder="Enter 4-digit PIN" />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-[#111418] mb-1.5">Confirm PIN</label>
+              <input type="password" name="confirm_transaction_pin" required minlength="4" maxlength="4" pattern="[0-9]{4}" inputmode="numeric"
+                     class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                     placeholder="Re-enter PIN" />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-[#111418] mb-1.5">Current Password (to confirm)</label>
+              <input type="password" name="current_password_for_pin" required
+                     class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                     placeholder="Enter current password" />
+            </div>
+
+            <button type="submit" class="h-12 px-6 bg-[#0b6e4f] text-white rounded-xl font-bold text-sm hover:bg-[#095d42] transition">
+              {% if profile.transaction_pin %}Update PIN{% else %}Set PIN{% endif %}
+            </button>
+          </form>
+
+          <div class="mt-4 p-4 bg-[#f7f8fa] rounded-xl max-w-[400px]">
+            <p class="text-xs text-[#60758a] leading-relaxed">
+              <span class="font-bold text-[#111418]">Why a PIN?</span> Your transaction PIN adds an extra layer of security for payments, document downloads, and changes to sensitive profile fields. Never share your PIN with anyone — e-Citizen staff will never ask for it.
+            </p>
+          </div>
+        </div>
+
+        <!-- Two-Factor Authentication -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+          <div class="flex items-start justify-between mb-5">
+            <div>
+              <h2 class="text-lg font-bold text-[#111418] mb-1">Two-Factor Authentication</h2>
+              <p class="text-sm text-[#60758a]">Add an extra layer of security by requiring a verification code in addition to your password when logging in.</p>
+            </div>
+            <span class="px-3 py-1 bg-[#f1f2f4] text-[#60758a] rounded-full text-xs font-bold flex-shrink-0">Coming Soon</span>
+          </div>
+          <div class="p-4 border border-dashed border-[#dbe0e6] rounded-xl max-w-[480px] text-center">
+            <p class="text-sm text-[#60758a]">Two-factor authentication will be available in a future update. You'll be able to choose between:</p>
+            <div class="flex items-center justify-center gap-6 mt-3">
+              <div class="text-center">
+                <p class="text-lg mb-1">&#x1F4F1;</p>
+                <p class="text-xs text-[#60758a]">SMS Code</p>
+              </div>
+              <div class="text-center">
+                <p class="text-lg mb-1">&#x1F4F2;</p>
+                <p class="text-xs text-[#60758a]">Authenticator App</p>
+              </div>
+              <div class="text-center">
+                <p class="text-lg mb-1">&#x1F50F;</p>
+                <p class="text-xs text-[#60758a]">Security Key</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Session -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-[#111418] mb-1">Active Session</h2>
+          <p class="text-sm text-[#60758a] mb-5">Details about your current login session.</p>
+
+          <div class="max-w-[480px] border border-[#dbe0e6] rounded-xl divide-y divide-[#f1f2f4]">
+            <div class="flex items-center justify-between px-4 py-3">
+              <span class="text-sm text-[#60758a]">IP Address</span>
+              <span class="text-sm font-mono font-medium text-[#111418]">{{ session_info.ip }}</span>
+            </div>
+            <div class="flex items-center justify-between px-4 py-3">
+              <span class="text-sm text-[#60758a]">Connection</span>
+              <span class="text-sm font-medium {% if session_info.is_secure %}text-[#0b6e4f]{% else %}text-amber-700{% endif %}">
+                {% if session_info.is_secure %}Secure (HTTPS){% else %}Standard (HTTP){% endif %}
+              </span>
+            </div>
+            <div class="px-4 py-3">
+              <span class="text-sm text-[#60758a] block mb-1">Browser / Device</span>
+              <span class="text-xs font-mono text-[#111418] break-all">{{ session_info.user_agent }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-[#111418] mb-1">Recent Account Activity</h2>
+          <p class="text-sm text-[#60758a] mb-5">Your most recent actions on the platform.</p>
+
+          {% if recent_activity %}
+            <div class="border border-[#dbe0e6] rounded-xl overflow-hidden">
+              <table class="w-full text-sm">
+                <thead class="bg-[#f7f8fa] border-b border-[#dbe0e6]">
+                  <tr>
+                    <th class="text-left px-4 py-3 text-xs font-bold uppercase text-[#60758a]">Action</th>
+                    <th class="text-left px-4 py-3 text-xs font-bold uppercase text-[#60758a] hidden sm:table-cell">Details</th>
+                    <th class="text-right px-4 py-3 text-xs font-bold uppercase text-[#60758a]">Date &amp; Time</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[#f1f2f4]">
+                  {% for entry in recent_activity %}
+                    <tr>
+                      <td class="px-4 py-3 font-medium text-[#111418]">{{ entry.action }}</td>
+                      <td class="px-4 py-3 text-[#60758a] hidden sm:table-cell max-w-[200px] truncate">{{ entry.details|truncatechars:80 }}</td>
+                      <td class="px-4 py-3 text-[#60758a] text-right whitespace-nowrap">{{ entry.created_at|date:"M d, Y — H:i" }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% else %}
+            <div class="border border-[#dbe0e6] rounded-xl p-8 text-center max-w-[480px]">
+              <p class="text-sm text-[#60758a]">No recent activity recorded.</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="bg-white border border-red-200 rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-red-700 mb-1">Danger Zone</h2>
+          <p class="text-sm text-[#60758a] mb-5">Irreversible actions. Please proceed with caution.</p>
+
+          <div class="flex items-center justify-between max-w-[480px] p-4 border border-red-200 rounded-xl">
+            <div>
+              <p class="text-sm font-bold text-[#111418]">Deactivate Account</p>
+              <p class="text-xs text-[#60758a] mt-0.5">Temporarily disable your account. You can reactivate by contacting support.</p>
+            </div>
+            <button disabled class="h-10 px-4 border border-red-200 text-red-600 rounded-lg text-sm font-bold bg-red-50 cursor-not-allowed opacity-60">
+              Deactivate
+            </button>
+          </div>
+          <p class="text-xs text-[#60758a] mt-3">Account deactivation is processed by our support team. Please <a href="{% url 'contact' %}" class="text-[#0b6e4f] font-medium hover:underline">contact us</a> to proceed.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

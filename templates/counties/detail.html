@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% block title %}{{ county.name }} County Services — e-Citizen Kenya{% endblock %}
 
 {% block content %}
@@ -16,34 +17,40 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <!-- Main content -->
       <div class="lg:col-span-2">
-        <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-6">{{ county.name }} County</h1>
+        <h1 class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-1">{{ county.name }} County</h1>
+        <p class="text-sm text-[#60758a] mb-6">County Government Services — mandated by the Fourth Schedule of the Constitution</p>
 
-        {% if services_by_category %}
-        {% for cat_name, cat_services in services_by_category.items %}
-        <h2 class="text-xl font-bold mb-3">{{ cat_name }} <span class="text-sm font-normal text-[#60758a]">({{ cat_services|length }})</span></h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
-          {% for svc in cat_services %}
-          <a href="{% url 'service_detail' svc.slug %}"
-             class="border border-[#dbe0e6] rounded-lg p-4 hover:border-[#0b6e4f] hover:shadow-sm transition block">
-            <div class="flex items-start gap-3">
-              <span class="text-xl">{{ svc.icon|default:'📋' }}</span>
-              <div>
-                <p class="font-medium text-sm">{{ svc.name }}</p>
-                <p class="text-xs text-[#60758a] mt-1 line-clamp-2">{{ svc.short_description }}</p>
-                <div class="flex items-center gap-2 mt-2">
-                  {% if svc.fee_kes > 0 %}
-                  <span class="text-xs font-medium">KES {{ svc.fee_kes }}</span>
-                  {% else %}
-                  <span class="text-xs font-medium text-[#0b6e4f]">Free</span>
-                  {% endif %}
-                  {% if svc.processing_time %}
-                  <span class="text-xs text-[#60758a]">&middot; {{ svc.processing_time }}</span>
-                  {% endif %}
+        {% if services_grouped %}
+        {% for group in services_grouped %}
+        <div class="mb-6">
+          <h2 class="text-xl font-bold mb-1">{{ group.name }}</h2>
+          {% if group.mandate_ref %}
+          <p class="text-xs text-[#0b6e4f] font-medium mb-3">{{ group.mandate_ref }}</p>
+          {% endif %}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {% for svc in group.services %}
+            <a href="{% url 'service_detail' svc.slug %}"
+               class="border border-[#dbe0e6] rounded-lg p-4 hover:border-[#0b6e4f] hover:shadow-sm transition block">
+              <div class="flex items-start gap-3">
+                <span class="text-xl">{{ svc.icon|default:'📋' }}</span>
+                <div>
+                  <p class="font-medium text-sm">{{ svc.name }}</p>
+                  <p class="text-xs text-[#60758a] mt-1 line-clamp-2">{{ svc.short_description }}</p>
+                  <div class="flex items-center gap-2 mt-2">
+                    {% if svc.fee_kes > 0 %}
+                    <span class="text-xs font-medium">KES {{ svc.fee_kes }}</span>
+                    {% else %}
+                    <span class="text-xs font-medium text-[#0b6e4f]">Free</span>
+                    {% endif %}
+                    {% if svc.processing_time %}
+                    <span class="text-xs text-[#60758a]">&middot; {{ svc.processing_time }}</span>
+                    {% endif %}
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-          {% endfor %}
+            </a>
+            {% endfor %}
+          </div>
         </div>
         {% endfor %}
         {% else %}
@@ -82,8 +89,8 @@
               </div>
               {% endif %}
               <div>
-                <dt class="text-[#60758a]">Available Services</dt>
-                <dd class="font-medium">{{ services|length }}</dd>
+                <dt class="text-[#60758a]">County Services</dt>
+                <dd class="font-medium">{{ county_services|length }}</dd>
               </div>
             </dl>
           </div>
@@ -91,6 +98,37 @@
              class="block w-full h-12 border border-[#dbe0e6] text-[#111418] rounded-xl font-medium text-center leading-[48px] hover:border-[#0b6e4f] transition">
             Browse All Services &rarr;
           </a>
+
+          <!-- National Government Services note -->
+          <div class="border border-[#dbe0e6] rounded-xl p-4 bg-[#fafbfc]">
+            <p class="text-xs font-bold text-[#111418] mb-1">National Government Services</p>
+            <p class="text-xs text-[#60758a]">Passports, national IDs, civil registration, immigration, and other national services are delivered by the National Government.</p>
+            <a href="{% url 'service_browse' %}" class="text-xs font-medium text-[#0b6e4f] hover:underline mt-2 inline-block">Browse National Services &rarr;</a>
+          </div>
+
+          <!-- Constitutional Mandates (DB-backed) -->
+          {% if county_mandates %}
+          <div class="border border-[#dbe0e6] rounded-xl p-5">
+            <h3 class="font-bold mb-2">Constitutional Mandates</h3>
+            <p class="text-xs text-[#60758a] mb-3">Functions assigned to County Governments under the Fourth Schedule of the Constitution of Kenya (2010)</p>
+            <div class="space-y-1 max-h-[400px] overflow-y-auto">
+              {% for mandate in county_mandates %}
+              <div class="py-1.5 {% if not forloop.last %}border-b border-[#f1f2f4]{% endif %}">
+                <div class="flex items-center justify-between">
+                  <p class="text-sm font-medium">{{ mandate.name }}</p>
+                  {% with svc_count=mandate.services.count %}
+                  {% if svc_count > 0 %}
+                  <span class="text-xs bg-[#e8f5ef] text-[#0b6e4f] px-2 py-0.5 rounded-full font-medium">{{ svc_count }} services</span>
+                  {% endif %}
+                  {% endwith %}
+                </div>
+                <p class="text-[11px] text-[#60758a] mt-0.5 line-clamp-2">{{ mandate.description }}</p>
+              </div>
+              {% endfor %}
+            </div>
+            <p class="text-[10px] text-[#60758a] mt-3">Source: Constitution of Kenya (2010), Fourth Schedule, Part 2</p>
+          </div>
+          {% endif %}
         </div>
       </div>
     </div>

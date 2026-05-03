@@ -1,31 +1,165 @@
 {% extends 'base.html' %}
-{% block title %}Privacy Settings — e-Citizen{% endblock %}
+{% block title %}Privacy Settings — e-Citizen Kenya{% endblock %}
+
 {% block content %}
-<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
-  <div class="max-w-[960px] mx-auto">
-    <p class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-6">Privacy Settings</p>
-    <p class="text-[#60758a]">Manage how your personal information is used and shared across government services.</p>
-    <div class="mt-6 space-y-4 max-w-[480px]">
-      <div class="flex items-center justify-between border border-[#dbe0e6] rounded-lg p-4">
-        <div>
-          <p class="font-medium">Profile Visibility</p>
-          <p class="text-sm text-[#60758a]">Allow government officers to view your profile when processing applications</p>
+<div class="bg-[#f7f8fa] min-h-screen">
+  <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
+    <div class="mb-6">
+      <h1 class="text-2xl sm:text-3xl font-bold text-[#111418]">Privacy Settings</h1>
+      <p class="text-sm text-[#60758a] mt-1">Manage how your personal information is used and shared across government services</p>
+    </div>
+
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="mb-6 p-4 rounded-xl text-sm font-medium {% if msg.tags == 'error' %}bg-red-50 text-red-700 border border-red-200{% else %}bg-[#e8f5ef] text-[#0b6e4f] border border-[#0b6e4f]/20{% endif %}">
+          {{ msg }}
         </div>
-        <input type="checkbox" checked class="form-checkbox rounded border-[#dbe0e6]" />
+      {% endfor %}
+    {% endif %}
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Nav -->
+      <div class="lg:col-span-1">
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-5 sticky top-6">
+          <h3 class="font-bold text-sm text-[#111418] mb-3">Account Settings</h3>
+          <nav class="space-y-1">
+            <a href="{% url 'profile' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M227.32,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31l123.32-123.3A16,16,0,0,0,227.32,73.37ZM51.31,160,128,83.32,144.68,100,68,176.68ZM48,208V179.31L76.69,208Z"/></svg>
+              Edit Profile
+            </a>
+            <a href="{% url 'account_security' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-80-32a24,24,0,1,0-24-24A24,24,0,0,0,128,176Z"/></svg>
+              Security
+            </a>
+            <a href="{% url 'privacy_settings' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#e8f5ef] text-[#0b6e4f] text-sm font-bold">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/></svg>
+              Privacy
+            </a>
+            <a href="{% url 'user_roles_access' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM64,168a32,32,0,0,1,64,0Zm56,40a88.13,88.13,0,0,0-72-86.93A40,40,0,1,1,128,136a8,8,0,0,1,0,16,56.06,56.06,0,0,0-56,56,8,8,0,0,1,0,16,88.22,88.22,0,0,0,32,6.34V208h24Z"/></svg>
+              Roles &amp; Access
+            </a>
+          </nav>
+        </div>
       </div>
-      <div class="flex items-center justify-between border border-[#dbe0e6] rounded-lg p-4">
-        <div>
-          <p class="font-medium">Data Sharing</p>
-          <p class="text-sm text-[#60758a]">Share your verified identity across government ministries</p>
+
+      <!-- Main -->
+      <div class="lg:col-span-2">
+        <form method="post">
+          {% csrf_token %}
+          <div class="space-y-4">
+            <!-- Profile Visibility -->
+            <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+              <div class="flex items-start justify-between gap-6">
+                <div>
+                  <h3 class="font-bold text-[#111418]">Profile Visibility</h3>
+                  <p class="text-sm text-[#60758a] mt-1">Allow authorized government officers to view your profile details when processing your applications. This includes your name, ID number, and contact information.</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
+                  <input type="checkbox" name="profile_visible" class="sr-only peer" {% if preferences.profile_visible|default_if_none:True %}checked{% endif %} />
+                  <div class="w-11 h-6 bg-[#dbe0e6] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0b6e4f]"></div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Data Sharing -->
+            <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+              <div class="flex items-start justify-between gap-6">
+                <div>
+                  <h3 class="font-bold text-[#111418]">Inter-Ministry Data Sharing</h3>
+                  <p class="text-sm text-[#60758a] mt-1">Allow your verified identity and basic profile to be shared across government ministries and departments. This speeds up applications by eliminating duplicate data entry.</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
+                  <input type="checkbox" name="data_sharing" class="sr-only peer" {% if preferences.data_sharing|default_if_none:True %}checked{% endif %} />
+                  <div class="w-11 h-6 bg-[#dbe0e6] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0b6e4f]"></div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Analytics -->
+            <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+              <div class="flex items-start justify-between gap-6">
+                <div>
+                  <h3 class="font-bold text-[#111418]">Service Improvement Analytics</h3>
+                  <p class="text-sm text-[#60758a] mt-1">Allow anonymized usage data to be collected to help us improve service delivery. This data cannot be traced back to you and does not include any personal information.</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
+                  <input type="checkbox" name="analytics_opt" class="sr-only peer" {% if preferences.analytics_opt %}checked{% endif %} />
+                  <div class="w-11 h-6 bg-[#dbe0e6] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0b6e4f]"></div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Marketing -->
+            <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+              <div class="flex items-start justify-between gap-6">
+                <div>
+                  <h3 class="font-bold text-[#111418]">Service Updates &amp; Announcements</h3>
+                  <p class="text-sm text-[#60758a] mt-1">Receive email and SMS notifications about new services, system updates, and relevant government announcements.</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
+                  <input type="checkbox" name="marketing_opt" class="sr-only peer" {% if preferences.marketing_opt %}checked{% endif %} />
+                  <div class="w-11 h-6 bg-[#dbe0e6] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0b6e4f]"></div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Activity Log -->
+            <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+              <div class="flex items-start justify-between gap-6">
+                <div>
+                  <h3 class="font-bold text-[#111418]">Activity Logging</h3>
+                  <p class="text-sm text-[#60758a] mt-1">Allow e-Citizen to maintain a log of your activities for security and audit purposes. This helps us detect unauthorized access and protect your account.</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
+                  <input type="checkbox" name="activity_log" class="sr-only peer" {% if preferences.activity_log|default_if_none:True %}checked{% endif %} />
+                  <div class="w-11 h-6 bg-[#dbe0e6] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0b6e4f]"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex items-center gap-3">
+            <button type="submit" class="h-12 px-8 bg-[#0b6e4f] text-white rounded-xl font-bold text-sm hover:bg-[#095d42] transition">
+              Save Privacy Settings
+            </button>
+            <a href="{% url 'dashboard' %}" class="h-12 px-6 border border-[#dbe0e6] text-[#111418] rounded-xl font-medium text-sm inline-flex items-center hover:bg-[#f7f8fa] transition">
+              Cancel
+            </a>
+          </div>
+        </form>
+
+        <!-- Data Rights Info -->
+        <div class="mt-8 bg-white border border-[#dbe0e6] rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-[#111418] mb-3">Your Data Rights</h2>
+          <p class="text-sm text-[#60758a] mb-4">Under the Kenya Data Protection Act (2019), you have the following rights:</p>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="flex items-start gap-2">
+              <svg class="size-5 text-[#0b6e4f] flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              <span class="text-[#60758a]">Right to access your personal data</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <svg class="size-5 text-[#0b6e4f] flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              <span class="text-[#60758a]">Right to correct inaccurate data</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <svg class="size-5 text-[#0b6e4f] flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              <span class="text-[#60758a]">Right to withdraw consent</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <svg class="size-5 text-[#0b6e4f] flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              <span class="text-[#60758a]">Right to object to processing</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <svg class="size-5 text-[#0b6e4f] flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              <span class="text-[#60758a]">Right to request data deletion</span>
+            </div>
+            <div class="flex items-start gap-2">
+              <svg class="size-5 text-[#0b6e4f] flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              <span class="text-[#60758a]">Right to data portability</span>
+            </div>
+          </div>
         </div>
-        <input type="checkbox" checked class="form-checkbox rounded border-[#dbe0e6]" />
-      </div>
-      <div class="flex items-center justify-between border border-[#dbe0e6] rounded-lg p-4">
-        <div>
-          <p class="font-medium">Analytics</p>
-          <p class="text-sm text-[#60758a]">Allow anonymized usage data to improve services</p>
-        </div>
-        <input type="checkbox" class="form-checkbox rounded border-[#dbe0e6]" />
       </div>
     </div>
   </div>

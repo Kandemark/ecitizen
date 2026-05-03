@@ -62,6 +62,23 @@ class RequiredDocument(TimestampMixin):
         return self.name
 
 
+class ConstitutionalFunction(TimestampMixin):
+    """County government function mandated by the Fourth Schedule of the Constitution (2010)."""
+    name = models.CharField(max_length=200)
+    code = models.SlugField(max_length=50, unique=True)
+    description = models.TextField(blank=True)
+    mandate_ref = models.CharField(max_length=100, help_text='e.g. Fourth Schedule Part 2, Section 1')
+    icon = models.CharField(max_length=50, default='Building')
+    order = models.IntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['order', 'name']
+
+    def __str__(self):
+        return self.name
+
+
 class Service(TimestampMixin):
     category = models.ForeignKey(
         ServiceCategory, on_delete=models.SET_NULL, null=True, blank=True,
@@ -70,6 +87,11 @@ class Service(TimestampMixin):
     ministry = models.ForeignKey(
         'ministries.Ministry', on_delete=models.SET_NULL, null=True, blank=True,
         related_name='services'
+    )
+    constitutional_function = models.ForeignKey(
+        ConstitutionalFunction, on_delete=models.SET_NULL, null=True, blank=True,
+        related_name='services',
+        help_text='County government function this service fulfills (Fourth Schedule)'
     )
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)

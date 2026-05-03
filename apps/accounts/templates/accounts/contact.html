@@ -1,20 +1,182 @@
 {% extends 'base.html' %}
-{% block title %}Contact Us — e-Citizen{% endblock %}
+{% block title %}Contact Us — e-Citizen Kenya{% endblock %}
+
 {% block content %}
-<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
-  <div class="max-w-[960px] mx-auto">
-    <p class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-2">Contact Us</p>
-    <p class="text-[#60758a] text-sm mb-6">Get in touch with the e-Citizen support team</p>
-    {% if messages %}
-      {% for msg in messages %}
-        <div class="mb-4 p-3 rounded-lg text-sm {% if msg.tags == 'error' %}bg-red-50 text-red-700{% else %}bg-green-50 text-green-700{% endif %}">{{ msg }}</div>
-      {% endfor %}
-    {% endif %}
-    <form method="post" class="max-w-[480px] flex flex-col gap-4">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="h-10 px-6 bg-[#111418] text-white rounded-full font-bold text-sm">Send Message</button>
-    </form>
+<!-- Header -->
+<section class="bg-[#f7f8fa] border-b border-[#dbe0e6]">
+  <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-12 sm:py-16">
+    <div class="w-12 h-1 bg-[#0b6e4f] rounded-full mb-6"></div>
+    <h1 class="text-3xl sm:text-4xl lg:text-[40px] font-black leading-tight text-[#111418] mb-3">We're here to help</h1>
+    <p class="text-base sm:text-lg text-[#60758a] max-w-[560px] leading-relaxed">
+      Questions about a service? Need help with an application? Our support team is ready to assist you through every step.
+    </p>
   </div>
-</div>
+</section>
+
+<!-- Main content: form + contact details -->
+<section class="bg-white">
+  <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-14">
+    <div class="grid lg:grid-cols-5 gap-10">
+      <!-- Form column -->
+      <div class="lg:col-span-3">
+        <h2 class="text-xl font-bold text-[#111418] mb-6">Send us a message</h2>
+
+        {% if messages %}
+          {% for msg in messages %}
+            <div class="mb-6 p-4 rounded-xl text-sm font-medium {% if msg.tags == 'error' %}bg-red-50 text-red-700 border border-red-200{% else %}bg-[#e8f5ef] text-[#0b6e4f] border border-[#0b6e4f]/20{% endif %}">
+              {{ msg }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
+        <form method="post" class="space-y-5">
+          {% csrf_token %}
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="{{ form.name.id_for_label }}" class="block text-sm font-semibold text-[#111418] mb-1.5">Full Name</label>
+              {{ form.name }}
+              {% if form.name.errors %}
+                <p class="text-xs text-red-600 mt-1">{{ form.name.errors.0 }}</p>
+              {% endif %}
+            </div>
+            <div>
+              <label for="{{ form.email.id_for_label }}" class="block text-sm font-semibold text-[#111418] mb-1.5">Email Address</label>
+              {{ form.email }}
+              {% if form.email.errors %}
+                <p class="text-xs text-red-600 mt-1">{{ form.email.errors.0 }}</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <div>
+            <label for="{{ form.subject.id_for_label }}" class="block text-sm font-semibold text-[#111418] mb-1.5">Subject</label>
+            {{ form.subject }}
+            {% if form.subject.errors %}
+              <p class="text-xs text-red-600 mt-1">{{ form.subject.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+          <div>
+            <label for="{{ form.message.id_for_label }}" class="block text-sm font-semibold text-[#111418] mb-1.5">Message</label>
+            {{ form.message }}
+            {% if form.message.errors %}
+              <p class="text-xs text-red-600 mt-1">{{ form.message.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+          <button type="submit" class="h-12 px-8 bg-[#0b6e4f] text-white rounded-xl font-bold text-sm hover:bg-[#095d42] transition inline-flex items-center gap-2">
+            <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M227.32,28.68a16,16,0,0,0-15.66-4.08L15.06,86.43a16,16,0,0,0-.6,29.88l84.41,32.06,32.06,84.41a16,16,0,0,0,29.88-.6L222.6,44.34A16,16,0,0,0,227.32,28.68ZM104,152,52.72,132.52,194.2,50.61Z"/></svg>
+            Send Message
+          </button>
+
+          <p class="text-xs text-[#60758a]">We typically respond within 2-4 hours during business hours.</p>
+        </form>
+      </div>
+
+      <!-- Contact details column -->
+      <div class="lg:col-span-2">
+        <h2 class="text-xl font-bold text-[#111418] mb-6">Contact Information</h2>
+
+        <div class="space-y-4">
+          <!-- Phone -->
+          <div class="border border-[#dbe0e6] rounded-xl p-5 hover:border-[#0b6e4f] transition">
+            <div class="flex items-start gap-4">
+              <div class="size-10 bg-[#e8f5ef] rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="size-5 text-[#0b6e4f]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M222,158.24l-46.13-19.78a12.84,12.84,0,0,0-11.55.76l-22.68,14.06a135.93,135.93,0,0,1-39.9-39.08L114.42,91.1a12.89,12.89,0,0,0,.67-12L96.7,32.94A12.83,12.83,0,0,0,86.53,26.1,21.06,21.06,0,0,0,83,26L55.39,37.77A20.07,20.07,0,0,0,42,55.48,162.78,162.78,0,0,0,201.87,214a20.09,20.09,0,0,0,18-12.47L231,174A12.84,12.84,0,0,0,222,158.24Z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-sm text-[#111418] mb-1">Phone Support</h3>
+                <a href="tel:+254700000000" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition block">+254 700 000 000</a>
+                <a href="tel:+254711000000" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition block">+254 711 000 000</a>
+                <p class="text-xs text-[#60758a] mt-1">Toll-free: 0800 000 000</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="border border-[#dbe0e6] rounded-xl p-5 hover:border-[#0b6e4f] transition">
+            <div class="flex items-start gap-4">
+              <div class="size-10 bg-[#e8f5ef] rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="size-5 text-[#0b6e4f]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32A16,16,0,0,0,16,64v128a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm-9.34,16L128,139.52,41.34,64ZM216,192H40V74.19l90.09,78.32a8,8,0,0,0,10.28,0L216,76.36Z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-sm text-[#111418] mb-1">Email</h3>
+                <a href="mailto:support@ecitizen.go.ke" class="text-sm text-[#60758a] hover:text-[#0b6e4f] transition">support@ecitizen.go.ke</a>
+                <p class="text-xs text-[#60758a] mt-1">For general inquiries and support</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Physical Address -->
+          <div class="border border-[#dbe0e6] rounded-xl p-5 hover:border-[#0b6e4f] transition">
+            <div class="flex items-start gap-4">
+              <div class="size-10 bg-[#e8f5ef] rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="size-5 text-[#0b6e4f]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.36,15.06,60.72,38.77,82.72C105.45,211.62,128,228.79,128,240c0-11.21,22.55-28.38,49.23-53.28C200.94,164.72,216,135.36,216,104A88.1,88.1,0,0,0,128,16Zm0,206.39c-15.4-14.08-72-66.73-72-118.39a72,72,0,0,1,144,0C200,155.66,143.4,208.31,128,222.39Z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-sm text-[#111418] mb-1">Headquarters</h3>
+                <p class="text-sm text-[#60758a] leading-relaxed">
+                  Teleposta Towers, 14th Floor<br>
+                  Kenyatta Avenue<br>
+                  Nairobi, Kenya
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Working Hours -->
+          <div class="border border-[#dbe0e6] rounded-xl p-5 hover:border-[#0b6e4f] transition">
+            <div class="flex items-start gap-4">
+              <div class="size-10 bg-[#e8f5ef] rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="size-5 text-[#0b6e4f]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h56A8,8,0,0,1,192,128Z"/></svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-sm text-[#111418] mb-1">Working Hours</h3>
+                <div class="space-y-1">
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-[#60758a]">Monday &mdash; Friday</span>
+                    <span class="font-medium text-[#111418]">8:00 AM &mdash; 6:00 PM</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-[#60758a]">Saturday</span>
+                    <span class="font-medium text-[#111418]">9:00 AM &mdash; 1:00 PM</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-[#60758a]">Sunday &amp; Public Holidays</span>
+                    <span class="font-medium text-[#60758a]">Closed</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#60758a] mt-2">East Africa Time (GMT+3)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social / Quick links -->
+        <div class="mt-8">
+          <h3 class="font-bold text-[#111418] mb-3">Also available at</h3>
+          <div class="space-y-2">
+            <a href="#" class="flex items-center gap-3 text-sm text-[#60758a] hover:text-[#0b6e4f] transition py-2">
+              <span class="text-base">&#x1F3E2;</span> Huduma Centres nationwide
+            </a>
+            <a href="#" class="flex items-center gap-3 text-sm text-[#60758a] hover:text-[#0b6e4f] transition py-2">
+              <span class="text-base">&#x1F4F1;</span> USSD: *247#
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick FAQ teaser -->
+<section class="bg-[#f7f8fa] border-t border-[#dbe0e6]">
+  <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-10 text-center">
+    <p class="text-sm text-[#60758a]">
+      Looking for answers about services, accounts, or how e-Citizen works?
+      <a href="{% url 'about' %}#faqs" class="text-[#0b6e4f] font-bold hover:underline ml-1">Browse our FAQs &rarr;</a>
+    </p>
+  </div>
+</section>
 {% endblock %}

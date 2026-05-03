@@ -121,6 +121,31 @@
         {% endif %}
       </div>
     </div>
+
+    {% if county_mandates %}
+    <!-- County Government Constitutional Mandates -->
+    <div class="mt-8">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-[#111418]">County Government Functions</h2>
+          <p class="text-xs text-[#60758a] mt-0.5">Services mandated to County Governments under the Fourth Schedule of the Constitution (2010)</p>
+        </div>
+        <a href="{% url 'county_list' %}" class="text-sm font-medium text-[#0b6e4f] hover:underline">County Directory &rarr;</a>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        {% for mandate in county_mandates %}
+        <div class="bg-white rounded-xl border border-[#dbe0e6] p-4 hover:border-[#0b6e4f] transition">
+          <p class="text-sm font-bold text-[#111418]">{{ mandate.name }}</p>
+          <p class="text-xs text-[#60758a] mt-1 line-clamp-2">{{ mandate.description }}</p>
+          <div class="flex items-center justify-between mt-3">
+            <span class="text-[10px] text-[#60758a]">{{ mandate.mandate_ref }}</span>
+            <span class="text-xs text-[#0b6e4f] font-medium">{{ mandate.services.count }} services</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

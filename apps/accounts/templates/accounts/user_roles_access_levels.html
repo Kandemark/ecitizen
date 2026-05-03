@@ -1,38 +1,152 @@
 {% extends 'base.html' %}
-{% block title %}Roles & Access — e-Citizen{% endblock %}
+{% block title %}Roles & Access — e-Citizen Kenya{% endblock %}
+
 {% block content %}
-<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
-  <div class="max-w-[960px] mx-auto">
-    <p class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-6">Roles & Access Levels</p>
-    <p class="text-[#60758a] mb-6">Your current role and access permissions across e-Citizen services.</p>
-    <div class="border border-[#dbe0e6] rounded-lg p-4 mb-4">
-      <p class="font-medium">Citizen</p>
-      <p class="text-sm text-[#60758a] mt-1">Default role — apply for services, track applications, make payments.</p>
+<div class="bg-[#f7f8fa] min-h-screen">
+  <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
+    <div class="mb-6">
+      <h1 class="text-2xl sm:text-3xl font-bold text-[#111418]">Roles &amp; Access Levels</h1>
+      <p class="text-sm text-[#60758a] mt-1">Your current role and what you can access across e-Citizen services</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="border border-[#dbe0e6] rounded-lg p-4">
-        <p class="font-medium">Service Applications</p>
-        <p class="text-sm text-green-600 mt-1">Full Access</p>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Nav -->
+      <div class="lg:col-span-1">
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-5 sticky top-6">
+          <h3 class="font-bold text-sm text-[#111418] mb-3">Account Settings</h3>
+          <nav class="space-y-1">
+            <a href="{% url 'profile' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M227.32,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31l123.32-123.3A16,16,0,0,0,227.32,73.37ZM51.31,160,128,83.32,144.68,100,68,176.68ZM48,208V179.31L76.69,208Z"/></svg>
+              Edit Profile
+            </a>
+            <a href="{% url 'account_security' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-80-32a24,24,0,1,0-24-24A24,24,0,0,0,128,176Z"/></svg>
+              Security
+            </a>
+            <a href="{% url 'privacy_settings' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/></svg>
+              Privacy
+            </a>
+            <a href="{% url 'user_roles_access' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#e8f5ef] text-[#0b6e4f] text-sm font-bold">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM64,168a32,32,0,0,1,64,0Zm56,40a88.13,88.13,0,0,0-72-86.93A40,40,0,1,1,128,136a8,8,0,0,1,0,16,56.06,56.06,0,0,0-56,56,8,8,0,0,1,0,16,88.22,88.22,0,0,0,32,6.34V208h24Z"/></svg>
+              Roles &amp; Access
+            </a>
+          </nav>
+        </div>
       </div>
-      <div class="border border-[#dbe0e6] rounded-lg p-4">
-        <p class="font-medium">Document Upload</p>
-        <p class="text-sm text-green-600 mt-1">Full Access</p>
-      </div>
-      <div class="border border-[#dbe0e6] rounded-lg p-4">
-        <p class="font-medium">Payments</p>
-        <p class="text-sm text-green-600 mt-1">Full Access</p>
-      </div>
-      <div class="border border-[#dbe0e6] rounded-lg p-4">
-        <p class="font-medium">Appointments</p>
-        <p class="text-sm text-green-600 mt-1">Full Access</p>
-      </div>
-      <div class="border border-[#dbe0e6] rounded-lg p-4">
-        <p class="font-medium">Administration</p>
-        <p class="text-sm text-[#60758a] mt-1">Restricted</p>
-      </div>
-      <div class="border border-[#dbe0e6] rounded-lg p-4">
-        <p class="font-medium">API Access</p>
-        <p class="text-sm text-[#60758a] mt-1">Restricted</p>
+
+      <!-- Main -->
+      <div class="lg:col-span-2 space-y-6">
+        <!-- Current Role -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-[#111418] mb-1">Your Current Role</h2>
+          <p class="text-sm text-[#60758a] mb-5">This role determines what you can do on the platform.</p>
+
+          <div class="border border-[#0b6e4f]/30 rounded-xl p-5 bg-[#e8f5ef] max-w-[480px]">
+            <div class="flex items-center gap-4">
+              <div class="size-12 bg-[#0b6e4f] rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="size-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM64,168a32,32,0,0,1,64,0Zm56,40a88.13,88.13,0,0,0-72-86.93A40,40,0,1,1,128,136a8,8,0,0,1,0,16,56.06,56.06,0,0,0-56,56,8,8,0,0,1,0,16,88.22,88.22,0,0,0,32,6.34V208h24Z"/></svg>
+              </div>
+              <div>
+                <p class="text-lg font-bold text-[#0b6e4f]">Citizen</p>
+                <p class="text-sm text-[#0b6e4f]/80">Default role — apply for services, track applications, make payments, and manage your digital identity.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Permissions grid -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-[#111418] mb-1">Service Permissions</h2>
+          <p class="text-sm text-[#60758a] mb-5">What you can access across e-Citizen modules.</p>
+
+          <div class="grid sm:grid-cols-2 gap-3">
+            <div class="border border-[#dbe0e6] rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-bold text-[#111418]">Service Applications</p>
+                <p class="text-xs text-[#60758a] mt-0.5">Apply for government services</p>
+              </div>
+              <span class="text-xs font-bold text-[#0b6e4f] bg-[#e8f5ef] px-2.5 py-1 rounded-full">Full Access</span>
+            </div>
+            <div class="border border-[#dbe0e6] rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-bold text-[#111418]">Document Upload</p>
+                <p class="text-xs text-[#60758a] mt-0.5">Upload and manage documents</p>
+              </div>
+              <span class="text-xs font-bold text-[#0b6e4f] bg-[#e8f5ef] px-2.5 py-1 rounded-full">Full Access</span>
+            </div>
+            <div class="border border-[#dbe0e6] rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-bold text-[#111418]">Payments &amp; Wallet</p>
+                <p class="text-xs text-[#60758a] mt-0.5">Make payments and manage wallet</p>
+              </div>
+              <span class="text-xs font-bold text-[#0b6e4f] bg-[#e8f5ef] px-2.5 py-1 rounded-full">Full Access</span>
+            </div>
+            <div class="border border-[#dbe0e6] rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-bold text-[#111418]">Appointments</p>
+                <p class="text-xs text-[#60758a] mt-0.5">Book and manage appointments</p>
+              </div>
+              <span class="text-xs font-bold text-[#0b6e4f] bg-[#e8f5ef] px-2.5 py-1 rounded-full">Full Access</span>
+            </div>
+            <div class="border border-[#dbe0e6] rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-bold text-[#111418]">Notifications &amp; Messages</p>
+                <p class="text-xs text-[#60758a] mt-0.5">Receive and send messages</p>
+              </div>
+              <span class="text-xs font-bold text-[#0b6e4f] bg-[#e8f5ef] px-2.5 py-1 rounded-full">Full Access</span>
+            </div>
+            <div class="border border-[#dbe0e6] rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-bold text-[#111418]">Public Participation</p>
+                <p class="text-xs text-[#60758a] mt-0.5">Sign petitions, comment on consultations</p>
+              </div>
+              <span class="text-xs font-bold text-[#0b6e4f] bg-[#e8f5ef] px-2.5 py-1 rounded-full">Full Access</span>
+            </div>
+            <div class="border border-[#dbe0e6] rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-bold text-[#111418]">Administration</p>
+                <p class="text-xs text-[#60758a] mt-0.5">Manage users, services, and settings</p>
+              </div>
+              <span class="text-xs font-bold text-[#60758a] bg-[#f1f2f4] px-2.5 py-1 rounded-full">Restricted</span>
+            </div>
+            <div class="border border-[#dbe0e6] rounded-xl p-4 flex items-center justify-between">
+              <div>
+                <p class="text-sm font-bold text-[#111418]">API Access</p>
+                <p class="text-xs text-[#60758a] mt-0.5">Developer API integration</p>
+              </div>
+              <span class="text-xs font-bold text-[#60758a] bg-[#f1f2f4] px-2.5 py-1 rounded-full">Restricted</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role information -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+          <h2 class="text-lg font-bold text-[#111418] mb-3">Available Roles</h2>
+          <div class="space-y-3">
+            <div class="border border-[#dbe0e6] rounded-xl p-4">
+              <div class="flex items-center justify-between mb-2">
+                <p class="font-bold text-[#111418]">Citizen</p>
+                <span class="text-[10px] bg-[#e8f5ef] text-[#0b6e4f] px-2 py-0.5 rounded-full font-bold">Current</span>
+              </div>
+              <p class="text-sm text-[#60758a]">Default role for all registered users. Apply for services, track applications, make payments, manage documents and appointments.</p>
+            </div>
+            <div class="border border-[#dbe0e6] rounded-xl p-4 opacity-60">
+              <div class="flex items-center justify-between mb-2">
+                <p class="font-bold text-[#111418]">Government Officer</p>
+                <span class="text-[10px] bg-[#f1f2f4] text-[#60758a] px-2 py-0.5 rounded-full font-bold">Not Assigned</span>
+              </div>
+              <p class="text-sm text-[#60758a]">For ministry, county, and agency staff who review applications, process services, and manage workflows. Assigned by government HR departments.</p>
+            </div>
+            <div class="border border-[#dbe0e6] rounded-xl p-4 opacity-60">
+              <div class="flex items-center justify-between mb-2">
+                <p class="font-bold text-[#111418]">Administrator</p>
+                <span class="text-[10px] bg-[#f1f2f4] text-[#60758a] px-2 py-0.5 rounded-full font-bold">Not Assigned</span>
+              </div>
+              <p class="text-sm text-[#60758a]">System administrators who manage the platform, user accounts, service configurations, and security settings.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

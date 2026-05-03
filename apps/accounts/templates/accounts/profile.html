@@ -1,40 +1,231 @@
 {% extends 'base.html' %}
-{% block title %}Profile — e-Citizen{% endblock %}
+{% block title %}My Profile — e-Citizen Kenya{% endblock %}
+
 {% block content %}
-<div class="px-4 sm:px-6 lg:px-10 py-4 sm:py-5 lg:py-6">
-  <div class="max-w-[960px] mx-auto">
-    <p class="text-2xl sm:text-3xl lg:text-[32px] font-bold leading-tight mb-6">My Profile</p>
+<div class="bg-[#f7f8fa] min-h-screen">
+  <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
+    <!-- Page header -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-bold text-[#111418]">My Profile</h1>
+        <p class="text-sm text-[#60758a] mt-1">Manage your personal information and account settings</p>
+      </div>
+    </div>
+
     {% if messages %}
       {% for msg in messages %}
-        <div class="mb-4 p-3 rounded-lg text-sm {% if msg.tags == 'error' %}bg-red-50 text-red-700{% else %}bg-green-50 text-green-700{% endif %}">{{ msg }}</div>
+        <div class="mb-6 p-4 rounded-xl text-sm font-medium {% if msg.tags == 'error' %}bg-red-50 text-red-700 border border-red-200{% else %}bg-[#e8f5ef] text-[#0b6e4f] border border-[#0b6e4f]/20{% endif %}">
+          {{ msg }}
+        </div>
       {% endfor %}
     {% endif %}
-    <form method="post" class="max-w-[480px] flex flex-col gap-4">
-      {% csrf_token %}
-      <label class="flex flex-col gap-1">
-        <span class="text-sm font-medium">First Name</span>
-        <input type="text" name="first_name" value="{{ user.first_name }}" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
-      </label>
-      <label class="flex flex-col gap-1">
-        <span class="text-sm font-medium">Last Name</span>
-        <input type="text" name="last_name" value="{{ user.last_name }}" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
-      </label>
-      <label class="flex flex-col gap-1">
-        <span class="text-sm font-medium">Email</span>
-        <input type="email" name="email" value="{{ user.email }}" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
-      </label>
-      {% if profile %}
-      <label class="flex flex-col gap-1">
-        <span class="text-sm font-medium">Phone</span>
-        <input type="text" name="phone" value="{{ profile.phone }}" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
-      </label>
-      <label class="flex flex-col gap-1">
-        <span class="text-sm font-medium">ID Number</span>
-        <input type="text" name="id_number" value="{{ profile.id_number }}" class="form-input rounded-lg border border-[#dbe0e6] h-12 px-4" />
-      </label>
-      {% endif %}
-      <button type="submit" class="h-10 px-6 bg-[#f1f2f4] rounded-full font-bold text-sm">Save Changes</button>
-    </form>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Sidebar: Account summary -->
+      <div class="lg:col-span-1 space-y-5">
+        <!-- Avatar & Identity card -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6 text-center">
+          <div class="relative inline-block">
+            {% if profile.avatar %}
+              <img src="{{ profile.avatar.url }}" alt="Avatar" class="size-24 rounded-full object-cover mx-auto border-4 border-[#e8f5ef]" />
+            {% else %}
+              <div class="size-24 rounded-full bg-[#e8f5ef] flex items-center justify-center mx-auto border-4 border-[#f1f2f4]">
+                <span class="text-3xl font-black text-[#0b6e4f]">{{ user.first_name|default:user.username|slice:':1'|upper }}</span>
+              </div>
+            {% endif %}
+          </div>
+          <h2 class="text-lg font-bold text-[#111418] mt-4">{{ user.get_full_name|default:user.username }}</h2>
+          <p class="text-sm text-[#60758a]">@{{ user.username }}</p>
+
+          {% if account_info.is_verified %}
+            <span class="inline-flex items-center gap-1 mt-2 px-3 py-1 bg-[#e8f5ef] text-[#0b6e4f] rounded-full text-xs font-bold">
+              <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              Verified Identity
+            </span>
+          {% else %}
+            <span class="inline-flex items-center gap-1 mt-2 px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-xs font-bold">
+              <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/></svg>
+              Not Verified
+            </span>
+          {% endif %}
+        </div>
+
+        <!-- Upload avatar -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-5">
+          <h3 class="font-bold text-sm text-[#111418] mb-3">Profile Photo</h3>
+          <form method="post" enctype="multipart/form-data" class="space-y-3">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="update_avatar" />
+            <input type="file" name="avatar" accept="image/*"
+                   class="block w-full text-sm text-[#60758a] file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#e8f5ef] file:text-[#0b6e4f] hover:file:bg-[#d4ede2] file:transition file:cursor-pointer" />
+            <button type="submit" class="w-full h-10 bg-[#f1f2f4] text-[#111418] rounded-lg font-bold text-sm hover:bg-[#e4e6ea] transition">Upload Photo</button>
+          </form>
+        </div>
+
+        <!-- Account info -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-5">
+          <h3 class="font-bold text-sm text-[#111418] mb-3">Account Information</h3>
+          <dl class="space-y-3 text-sm">
+            <div class="flex justify-between">
+              <dt class="text-[#60758a]">Username</dt>
+              <dd class="font-medium text-[#111418]">{{ account_info.username }}</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-[#60758a]">Role</dt>
+              <dd class="font-medium text-[#111418]">{{ account_info.role }}</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-[#60758a]">Member since</dt>
+              <dd class="font-medium text-[#111418]">{{ account_info.date_joined|date:"M d, Y" }}</dd>
+            </div>
+            {% if account_info.last_login %}
+            <div class="flex justify-between">
+              <dt class="text-[#60758a]">Last login</dt>
+              <dd class="font-medium text-[#111418]">{{ account_info.last_login|date:"M d, Y — H:i" }}</dd>
+            </div>
+            {% endif %}
+          </dl>
+        </div>
+
+        <!-- Quick links -->
+        <div class="bg-white border border-[#dbe0e6] rounded-2xl p-5">
+          <h3 class="font-bold text-sm text-[#111418] mb-3">Account Settings</h3>
+          <nav class="space-y-1">
+            <a href="{% url 'profile' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#e8f5ef] text-[#0b6e4f] text-sm font-bold">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M227.32,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31l83.67-83.66,3.48,13.9-36.8,36.79a8,8,0,0,0,11.31,11.32l40-40a8,8,0,0,0,2.11-7.6l-6.9-27.61L227.32,96A16,16,0,0,0,227.32,73.37ZM192,108.68,147.31,64l24-24L216,84.68Z"/></svg>
+              Edit Profile
+            </a>
+            <a href="{% url 'account_security' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Zm-80-32a24,24,0,1,0-24-24A24,24,0,0,0,128,176Z"/></svg>
+              Security
+            </a>
+            <a href="{% url 'privacy_settings' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"/></svg>
+              Privacy
+            </a>
+            <a href="{% url 'user_roles_access' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#60758a] text-sm font-medium hover:bg-[#f7f8fa] transition">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM64,168a32,32,0,0,1,64,0Zm56,40a88.13,88.13,0,0,0-72-86.93A40,40,0,1,1,128,136a8,8,0,0,1,0,16,56.06,56.06,0,0,0-56,56,8,8,0,0,1,0,16,88.22,88.22,0,0,0,32,6.34V208h24Z"/></svg>
+              Roles &amp; Access
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Main form -->
+      <div class="lg:col-span-2 space-y-5">
+        <form method="post" class="space-y-5">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="update_profile" />
+
+          <!-- Personal Information -->
+          <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+            <h2 class="text-lg font-bold text-[#111418] mb-1">Personal Information</h2>
+            <p class="text-sm text-[#60758a] mb-5">Your basic identity details as registered with the government.</p>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-[#111418] mb-1.5">First Name</label>
+                <input type="text" name="first_name" value="{{ user.first_name }}"
+                       class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                       placeholder="Your first name" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-[#111418] mb-1.5">Last Name</label>
+                <input type="text" name="last_name" value="{{ user.last_name }}"
+                       class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                       placeholder="Your last name" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4 mt-4">
+              <div>
+                <label class="block text-sm font-semibold text-[#111418] mb-1.5">Gender</label>
+                <select name="gender"
+                        class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition bg-white">
+                  <option value="">Select gender</option>
+                  <option value="male" {% if profile.gender == 'male' %}selected{% endif %}>Male</option>
+                  <option value="female" {% if profile.gender == 'female' %}selected{% endif %}>Female</option>
+                  <option value="other" {% if profile.gender == 'other' %}selected{% endif %}>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-[#111418] mb-1.5">Date of Birth</label>
+                <input type="date" name="date_of_birth" value="{{ profile.date_of_birth|date:'Y-m-d' }}"
+                       class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition" />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-sm font-semibold text-[#111418] mb-1.5">National ID Number</label>
+              <input type="text" name="id_number" value="{{ profile.id_number }}"
+                     class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition bg-[#fafbfc]"
+                     placeholder="e.g. 12345678"
+                     {% if profile.is_verified %}readonly{% endif %} />
+              {% if profile.is_verified %}
+                <p class="text-xs text-[#60758a] mt-1">ID number is locked after verification. Contact support to update.</p>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Contact Details -->
+          <div class="bg-white border border-[#dbe0e6] rounded-2xl p-6">
+            <h2 class="text-lg font-bold text-[#111418] mb-1">Contact Details</h2>
+            <p class="text-sm text-[#60758a] mb-5">How the government can reach you about your applications.</p>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-[#111418] mb-1.5">Email Address</label>
+                <input type="email" name="email" value="{{ user.email }}"
+                       class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                       placeholder="your@email.com" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-[#111418] mb-1.5">Phone Number</label>
+                <input type="text" name="phone" value="{{ profile.phone }}"
+                       class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                       placeholder="e.g. 0712 345 678" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4 mt-4">
+              <div>
+                <label class="block text-sm font-semibold text-[#111418] mb-1.5">City / Town</label>
+                <input type="text" name="city" value="{{ profile.city }}"
+                       class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                       placeholder="e.g. Nairobi" />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-[#111418] mb-1.5">Postal Address</label>
+                <input type="text" name="postal_address" value="{{ profile.postal_address }}"
+                       class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition"
+                       placeholder="e.g. P.O. Box 12345" />
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <label class="block text-sm font-semibold text-[#111418] mb-1.5">County</label>
+              <select name="county"
+                      class="w-full h-12 px-4 rounded-lg border border-[#dbe0e6] text-[#111418] text-sm focus:outline-none focus:border-[#0b6e4f] focus:ring-1 focus:ring-[#0b6e4f]/20 transition bg-white">
+                <option value="">Select your county</option>
+                {% for c in counties %}
+                  <option value="{{ c.id }}" {% if profile.county_id == c.id %}selected{% endif %}>{{ c.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Save -->
+          <div class="flex items-center gap-3">
+            <button type="submit" class="h-12 px-8 bg-[#0b6e4f] text-white rounded-xl font-bold text-sm hover:bg-[#095d42] transition">
+              Save Changes
+            </button>
+            <a href="{% url 'dashboard' %}" class="h-12 px-6 border border-[#dbe0e6] text-[#111418] rounded-xl font-medium text-sm inline-flex items-center hover:bg-[#f7f8fa] transition">
+              Cancel
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

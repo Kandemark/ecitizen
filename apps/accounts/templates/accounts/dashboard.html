@@ -41,6 +41,63 @@
     </div>
     {% endif %}
 
+    <!-- County Services (detected or profile-based) -->
+    {% if county_info %}
+    <div class="mb-6">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <svg class="size-4 text-[#0b6e4f]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <h3 class="text-lg font-bold">{{ county_info.name }} County Services</h3>
+          <span class="text-xs text-[#60758a] bg-[#f0f2f5] px-2 py-0.5 rounded-full" id="countyBadge">Your area</span>
+        </div>
+        <a href="{% url 'county_detail' county_info.code %}" class="text-sm font-medium text-[#0b6e4f] hover:underline">View all &rarr;</a>
+      </div>
+      {% if county_services_grouped %}
+      <div class="space-y-5">
+        {% for group in county_services_grouped %}
+        <div>
+          <h4 class="text-sm font-bold text-[#111418] mb-2">{{ group.name }}</h4>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {% for svc in group.services %}
+            <a href="{% url 'service_detail' svc.slug %}" class="border border-[#dbe0e6] rounded-lg p-4 bg-white hover:border-[#0b6e4f] hover:shadow-sm transition block">
+              <p class="font-medium text-sm">{{ svc.name }}</p>
+              {% if svc.short_description %}
+              <p class="text-xs text-[#60758a] mt-1 line-clamp-2">{{ svc.short_description }}</p>
+              {% endif %}
+              <p class="text-xs font-medium mt-2 {% if svc.fee_kes %}text-[#60758a]{% else %}text-[#0b6e4f]{% endif %}">
+                {% if svc.fee_kes %}KES {{ svc.fee_kes|floatformat:0 }}{% else %}Free{% endif %}
+              </p>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="border border-dashed border-[#dbe0e6] rounded-xl p-6 text-center bg-white">
+        <p class="text-sm text-[#60758a]">No services listed for {{ county_info.name }} yet.</p>
+        <a href="{% url 'services_list' %}" class="text-sm font-medium text-[#0b6e4f] hover:underline mt-1 inline-block">Browse all services</a>
+      </div>
+      {% endif %}
+    </div>
+    {% else %}
+    <!-- Location detection prompt -->
+    <div id="locationPrompt" class="mb-6 border border-dashed border-[#dbe0e6] rounded-xl p-5 bg-white hidden">
+      <div class="flex items-center gap-3">
+        <div class="size-10 rounded-full bg-[#f0f2f5] flex items-center justify-center flex-shrink-0">
+          <svg class="size-5 text-[#60758a]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div>
+          <p class="font-medium text-sm">Find services in your county</p>
+          <p class="text-xs text-[#60758a] mt-0.5">Share your location to see county-specific services and updates.</p>
+        </div>
+        <button id="detectLocationBtn" class="ml-auto flex-shrink-0 px-4 py-2 bg-[#0b6e4f] text-white text-sm font-medium rounded-lg hover:bg-[#095d42] transition">
+          Detect
+        </button>
+      </div>
+    </div>
+    {% endif %}
+
     {% if news_articles %}
     <div class="mb-6">
       {% include 'accounts/includes/news_feed.html' %}
@@ -97,4 +154,85 @@
   });
 </script>
 {% endif %}
+<script>
+  (function() {
+    // CSRF helper — reads Django's csrftoken cookie
+    function getCSRF() {
+      var name = 'csrftoken';
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            return decodeURIComponent(cookie.substring(name.length + 1));
+          }
+        }
+      }
+      return null;
+    }
+
+    var prompt = document.getElementById('locationPrompt');
+    var detectBtn = document.getElementById('detectLocationBtn');
+
+    // Show the location prompt only if no county detected yet
+    if (prompt && !{{ county_info|yesno:"true,false" }}) {
+      var storedCounty = localStorage.getItem('ecitizen_county');
+      if (!storedCounty) {
+        prompt.classList.remove('hidden');
+      }
+    }
+
+    if (detectBtn) {
+      detectBtn.addEventListener('click', function() {
+        if (!navigator.geolocation) {
+          alert('Geolocation is not supported by your browser. Please select your county manually from the Counties page.');
+          return;
+        }
+
+        detectBtn.textContent = 'Detecting...';
+        detectBtn.disabled = true;
+
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            var lat = position.coords.latitude;
+            var lon = position.coords.longitude;
+
+            fetch('{% url "nearest_county" %}', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCSRF()
+              },
+              body: JSON.stringify({ latitude: lat, longitude: lon })
+            })
+            .then(function(resp) { return resp.json(); })
+            .then(function(data) {
+              if (data.county) {
+                localStorage.setItem('ecitizen_county', JSON.stringify(data.county));
+                window.location.reload();
+              } else {
+                alert('Could not determine your county. Please visit the Counties page to select one manually.');
+                detectBtn.textContent = 'Detect';
+                detectBtn.disabled = false;
+              }
+            })
+            .catch(function() {
+              alert('Error connecting to server. Please try again.');
+              detectBtn.textContent = 'Detect';
+              detectBtn.disabled = false;
+            });
+          },
+          function(error) {
+            console.log('Geolocation error:', error);
+            alert('Location access denied. You can select your county from the Counties page instead.');
+            detectBtn.textContent = 'Detect';
+            detectBtn.disabled = false;
+            prompt.classList.add('hidden');
+          },
+          { timeout: 10000, enableHighAccuracy: false }
+        );
+      });
+    }
+  })();
+</script>
 {% endblock %}
